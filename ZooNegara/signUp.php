@@ -129,7 +129,7 @@ if (!$con) {
                     VALUES('$name','$dob','$contactNumber','$email','$pass','$re_pass')";
                     
             $result = mysqli_query($con, $sql);
-            header("location:registerSignIn.php");
+            echo "<script>window.location.href='registerSignIn.php';</script>";
             exit();
         }
     }
