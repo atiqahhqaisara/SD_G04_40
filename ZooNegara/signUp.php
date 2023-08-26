@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,16 +33,28 @@
                         <form method="POST" class="register-form" id="register-form">
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name"/>
+                                <input type="text" name="name" id="name" placeholder="Your Full Name" required/>
                             </div>
+
+                            <div class="form-group">
+                                <label for="dob"><i class="zmdi zmdi-calendar"></i></label>
+                                <input type="date" name="dob" id="dob" placeholder="Your Date Of Birth" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactNumber"><i class="zmdi zmdi-smartphone"></i></label>
+                                <input type="number" name="contactNumber" id="contactNumber" placeholder="Your Phone Number" required/>
+                            </div>
+
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email"/>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required/>
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="pass" id="pass" placeholder="Password"/>
                             </div>
+
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                                 <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
@@ -57,7 +70,7 @@
                     </div>
                     <div class="signup-image">
                         <figure><img src="RegisterSignIn/images/signup-image.png" alt="sing up image"></figure>
-                        <a href="registerSignIn.html" class="signup-image-link">I am already member</a>
+                        <a href="registerSignIn.php" class="signup-image-link">I am already member</a>
                     </div>
                 </div>
             </div>
@@ -91,3 +104,37 @@
 </div>
 </body>
 </html>
+
+<?php
+include "connection.php";
+
+if (!$con) {
+    echo "Error: " . mysqli_connect_error($con);
+} else {
+    session_start();
+
+    if (isset($_POST['signup'])) {
+        $name = $_POST['name'];
+        $dob = $_POST['dob'];
+        $contactNumber = $_POST['contactNumber'];
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+        $re_pass = $_POST['re_pass'];
+
+        if ($_POST['pass'] != $_POST['re_pass']) {
+            echo "Your passwords did not match.";
+        } 
+        else {
+            $sql = "insert into customer(name, dob, contactNumber, email, pass, re_pass)
+                    VALUES('$name','$dob','$contactNumber','$email','$pass','$re_pass')";
+                    
+            $result = mysqli_query($con, $sql);
+            header("location:registerSignIn.php");
+            exit();
+        }
+    }
+}
+?>
+
+
+
