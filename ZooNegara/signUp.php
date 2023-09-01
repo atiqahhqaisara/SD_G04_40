@@ -1,4 +1,4 @@
-
+<?php require_once "controllerUserData.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +31,31 @@
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
                         <form method="POST" class="register-form" id="register-form">
+                        <?php
+                    if(count($errors) == 1){
+                        ?>
+                        <div class="alert alert-danger text-center">
+                            <?php
+                            foreach($errors as $showerror){
+                                echo $showerror;
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }elseif(count($errors) > 1){
+                        ?>
+                        <div class="alert alert-danger">
+                            <?php
+                            foreach($errors as $showerror){
+                                ?>
+                                <li><?php echo $showerror; ?></li>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="name" id="name" placeholder="Your Full Name" required/>
@@ -51,13 +76,13 @@
                                 <input type="email" name="email" id="email" placeholder="Your Email" required/>
                             </div>
                             <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Password"/>
                             </div>
 
                             <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                                <label for="cpassword"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="cpassword" id="cpassword" placeholder="Repeat your password"/>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
@@ -105,36 +130,7 @@
 </body>
 </html>
 
-<?php
-include "connection.php";
 
-if (!$con) {
-    echo "Error: " . mysqli_connect_error($con);
-} else {
-    session_start();
-
-    if (isset($_POST['signup'])) {
-        $name = $_POST['name'];
-        $dob = $_POST['dob'];
-        $contactNumber = $_POST['contactNumber'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $re_pass = $_POST['re_pass'];
-
-        if ($_POST['pass'] != $_POST['re_pass']) {
-            echo "Your passwords did not match.";
-        } 
-        else {
-            $sql = "insert into customer(name, dob, contactNumber, email, pass, re_pass)
-                    VALUES('$name','$dob','$contactNumber','$email','$pass','$re_pass')";
-                    
-            $result = mysqli_query($con, $sql);
-            echo "<script>window.location.href='registerSignIn.php';</script>";
-            exit();
-        }
-    }
-}
-?>
 
 
 

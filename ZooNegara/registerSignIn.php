@@ -1,3 +1,4 @@
+<?php require_once "controllerUserData.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +29,19 @@
                     <div class="signin-form">
                         <h2 class="form-title">Sign In</h2>
                         <form method="POST" class="register-form" id="login-form">
+                        <?php
+                    if(count($errors) > 0){
+                        ?>
+                        <div class="alert alert-danger text-center">
+                            <?php
+                            foreach($errors as $showerror){
+                                echo $showerror;
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email"/>
@@ -35,14 +49,15 @@
 
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                <input type="password" name="password" id="password" placeholder="Your Password"/>
                             </div>
+                            <div class="link forget-pass text-left"><a href="reset_password.php">Forgot password?</a></div>
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                                <input type="submit" name="login" id="login" class="form-submit" value="Log in"/>
                             </div>
                         </form>
                         
@@ -59,29 +74,5 @@
 </body>
 </html>
 
-<?php
-include "connection.php";
 
-if (!$con) {
-    echo "Error: " . mysqli_connect_error($con);
-} else {
-    session_start();
-
-    if (isset($_POST['signin'])) {
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-
-        $sql = "select *
-            from customer
-            where email='$email' and pass='$pass' 
-            limit 1";
-
-        $result = mysqli_query($con, $sql);
-
-        header("location:index.html");
-        exit();
-
-    }
-}
-?>
 
