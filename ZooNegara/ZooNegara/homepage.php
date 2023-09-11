@@ -21,12 +21,13 @@
     </ul>
     <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
     <ul id="navigation">
-      <li id="link1" class="selected"><a href="index.html">Home</a></li>
+      <li id="link1" class="selected"><a href="homepage.html">Home</a></li>
       <li id="link2"><a href="zoo.html">The Zoo</a></li>
       <li id="link3"><a href="info.html">Visitors Info</a></li>
       <li id="link4"><a href="events.html">Events</a></li>
       <li id="link5"><a href="gallery.html">Gallery</a></li>
-      <li id="link7"><a href="contact.html">Contact Us</a></li>
+      <li id="link6"><a href="contact.html">Contact Us</a></li>
+      <li id="link7"><a href="signOut.php">Sign Out</a></li>
     </ul>
     <img src="images/tiger.png" alt=""/>
     <div>

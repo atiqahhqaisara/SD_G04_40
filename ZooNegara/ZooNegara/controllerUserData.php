@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require "connection.php";
+require("vendor/autoload.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 $email = "";
@@ -23,31 +24,50 @@ if(isset($_POST['signup'])){
     if(mysqli_num_rows($res) > 0){
         $errors['email'] = "Email that you have entered is already exist!";
     }
-    if(count($errors) === 0){
+    
+    if (count($errors) === 0) {
         $encpass = password_hash($password, PASSWORD_BCRYPT);
         $code = rand(999999, 111111);
         $status = "notverified";
         $insert_data = "INSERT INTO customer (name, dob, contactNumber, email, password, code, status)
                         values('$name', '$dob', '$contactNumber', '$email', '$encpass', '$code', '$status')";
         $data_check = mysqli_query($con, $insert_data);
-        if($data_check){
+        
+        if ($data_check) {
             $subject = "Email Verification Code";
             $message = "Your verification code is $code";
-            $sender = "From: irdinathingy@gmail.com";
-            if(mail($email, $subject, $message, $sender)){
+            
+            // Configure PHPMailer
+            require("vendor/autoload.php");
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->Host = "smtp.gmail.com"; // Enter your SMTP host
+            $mail->SMTPAuth = true;
+            $mail->Username = "irdinathingy@gmail.com"; // Enter your email address
+            $mail->Password = "axuloplpfjnjojfk"; // Enter your email password
+            $mail->Port = 587;
+            $mail->IsHTML(true);
+            $mail->From = "irdinathingy@gmail.com";
+            $mail->FromName = "Admin Zoo Negara";
+            $mail->Subject = $subject;
+            $mail->Body = $message;
+            $mail->addAddress($email);
+            
+            if ($mail->send()) {
                 $info = "We've sent a verification code to your email - $email";
                 $_SESSION['info'] = $info;
                 $_SESSION['email'] = $email;
                 $_SESSION['password'] = $password;
                 header('location: cust_otp.php');
                 exit();
-            }else{
+            } else {
                 $errors['otp-error'] = "Failed while sending code!";
             }
-        }else{
-            $errors['db-error'] = "Failed while inserting data into database!";
+        } else {
+            $errors['db-error'] = "Failed while inserting data into the database!";
         }
     }
+    
 
 }
     //if user click verification code submit button
@@ -67,7 +87,7 @@ if(isset($_POST['signup'])){
             if($update_res){
                 $_SESSION['name'] = $name;
                 $_SESSION['email'] = $email;
-                header('location: index.html');
+                header('location: homepage.php');
                 exit();
             }else{
                 $errors['otp-error'] = "Failed while updating code!";
@@ -92,7 +112,7 @@ if(isset($_POST['signup'])){
                 if($status == 'verified'){
                   $_SESSION['email'] = $email;
                   $_SESSION['password'] = $password;
-                    header('location: index.html');
+                    header('location: homepage.php');
                 }else{
                     $info = "It's look like you haven't still verify your email - $email";
                     $_SESSION['info'] = $info;
@@ -106,47 +126,60 @@ if(isset($_POST['signup'])){
         }
     }
 
-    //if user click continue button in forgot password form
-    if(isset($_POST['check-email'])){
-        $email = mysqli_real_escape_string($con, $_POST['email']);
-        $check_email = "SELECT * FROM customer WHERE email='$email'";
-        $run_sql = mysqli_query($con, $check_email);
-        if(mysqli_num_rows($run_sql) > 0){
-            $code = rand(999999, 111111);
-            $insert_code = "UPDATE customer SET code = $code WHERE email = '$email'";
-            $run_query =  mysqli_query($con, $insert_code);
-            if($run_query){
-                require("vendor/autoload.php");
-                $mail = new PHPMailer();
+
+    include('connection.php');
+
+if (isset($_POST['check-email'])) {
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $check_email = "SELECT * FROM customer WHERE email='$email'";
+    $run_sql = mysqli_query($con, $check_email);
+
+    if (mysqli_num_rows($run_sql) > 0) {
+        $code = rand(999999, 111111);
+        $insert_code = "UPDATE customer SET code = $code WHERE email = '$email'";
+        $run_query =  mysqli_query($con, $insert_code);
+
+        if ($run_query) {
+            $subject = "Password Reset Code";
+            $message = "Your password reset code is $code";
+
+            $mail = new PHPMailer(true);
+            try {
                 $mail->IsSMTP();
                 $mail->Host = "smtp.gmail.com"; // Enter your host here
                 $mail->SMTPAuth = true;
                 $mail->Username = "irdinathingy@gmail.com"; // Enter your email here
-                $mail->Password = "axuloplpfjnjojfk"; //Enter your password here
+                $mail->Password = "axuloplpfjnjojfk"; // Enter your password here
                 $mail->Port = 587;
                 $mail->IsHTML(true);
                 $mail->From = "irdinathingy@gmail.com";
                 $mail->FromName = "Admin Zoo Negara";
-                $subject = "Password Reset Code";
-                $message = "Your password reset code is $code";
-                $sender = "From: irdinathingy@gmail.com";
-                if(mail($email, $subject, $message, $sender)){
-                    $info = "We've sent a password reset otp to your email - $email";
-                    $_SESSION['info'] = $info;
-                    $_SESSION['email'] = $email;
-                    header('location: reset_code.php');
-                    exit();
-                }else{
-                    $errors['otp-error'] = "Failed while sending code!";
-                }
-            }else{
-                $errors['db-error'] = "Something went wrong!";
-            }
-        }else{
-            $errors['email'] = "This email address does not exist!";
-        }
-    }
 
+                // Set the recipient's email address
+                $mail->addAddress($email);
+
+                // Set email subject and body
+                $mail->Subject = $subject;
+                $mail->Body = $message;
+
+                $mail->send();
+
+                $info = "We've sent a password reset OTP to your email - $email";
+                $_SESSION['info'] = $info;
+                $_SESSION['email'] = $email;
+                header('location: reset_code.php');
+                exit();
+            } catch (Exception $e) {
+                echo "Mailer Error: " . $mail->ErrorInfo;
+            }
+        } else {
+            echo "Database Error: Something went wrong!";
+        }
+    } else {
+        echo "Email Error: This email address does not exist!";
+    }
+}
+    
     //if user click check reset otp button
     if(isset($_POST['check-reset-otp'])){
         $_SESSION['info'] = "";
@@ -196,6 +229,4 @@ if(isset($_POST['signup'])){
         header('Location: registerSignIn.php');
     }
 
-
-    
 ?>
