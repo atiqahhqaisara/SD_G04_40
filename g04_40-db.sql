@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 11, 2023 at 07:25 AM
+-- Generation Time: Sep 12, 2023 at 06:12 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.2.0
 
@@ -28,25 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `fullName` varchar(50) NOT NULL,
-  `position` varchar(10) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `phone` varchar(11) NOT NULL,
-  `dob` date NOT NULL,
-  `gender` varchar(10) NOT NULL,
-  `country` varchar(20) NOT NULL,
-  `states` varchar(20) NOT NULL,
-  `postal` int NOT NULL,
-  `address` varchar(200) NOT NULL
+  `email` varchar(50) NOT NULL,
+  `password` varchar(80) NOT NULL,
+  `position` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`fullName`, `position`, `email`, `password`, `phone`, `dob`, `gender`, `country`, `states`, `postal`, `address`) VALUES
-('ATIQAH QAISARA ', 'ADMIN', 'atiqahqaisarah@gmail.com', '[ABC123]', '0162663054', '2003-07-31', 'Female', 'Malaysia', 'Kuala Lumpur', 51000, 'Sentul');
+INSERT INTO `admin` (`email`, `password`, `position`) VALUES
+('irdina5566@gmail.com', '86b19a0013a70a10e5c46bfd2b0b8504', 'admin'),
+('irdinathingy@gmail.com', '86b19a0013a70a10e5c46bfd2b0b8504', 'staff');
 
 -- --------------------------------------------------------
 
@@ -58,7 +51,7 @@ CREATE TABLE `customer` (
   `id` int NOT NULL,
   `name` varchar(255) NOT NULL,
   `dob` date NOT NULL,
-  `contactNumber` int NOT NULL,
+  `contactNumber` varchar(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `code` mediumint NOT NULL,
@@ -70,7 +63,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `name`, `dob`, `contactNumber`, `email`, `password`, `code`, `status`) VALUES
-(1, 'irdina', '2003-11-03', 132889249, 'irdina5566@gmail.com', '$2y$10$eAFNw86Vv0g5.kaNmjvlau6MtqiXs9DoBYdADsg5N6BshYWpREwHG', 0, 'verified');
+(1, 'irdina', '2003-11-03', '0132889249', 'irdina5566@gmail.com', '$2y$10$eAFNw86Vv0g5.kaNmjvlau6MtqiXs9DoBYdADsg5N6BshYWpREwHG', 0, 'verified'),
+(2, 'sofia', '2003-11-03', '012345678', 'irdinacs21@gmail.com', '$2y$10$16HWHnhE/PWaB9CNWZQxA.KLbUhMDPv38X0xugURe0bMH5uoXR0Ze', 0, 'verified');
 
 -- --------------------------------------------------------
 
@@ -89,12 +83,17 @@ CREATE TABLE `password_reset_temp` (
 --
 
 INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`) VALUES
-('irdinacs21@gmail.com', '7eccae5dc990675dceff1c881cc96656443676d379', '2023-09-11 16:54:07'),
-('atiqahqaisarah@gmail.com', '5cadc73c1ff393f2c73d7a7d571517e4928f164308', '2023-09-12 03:37:43');
+('gajanand.kgn@rediffmail.com', 'f53997f1a58352e1fe65046d6953672562bc648b72', '2020-12-30 11:05:26');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `customer`
@@ -110,7 +109,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
