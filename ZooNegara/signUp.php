@@ -18,7 +18,7 @@
 <body>
 <div id="page">
 <ul id="navigation">
-  <div id="header"> <a href="index.html" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
+  <div id="header"> <a href="index.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
     
   </div>
 
@@ -111,12 +111,12 @@
         <p>Ellentesque habitant morbi tristique senectus et 0000</p>
         <span>285 067-39 282 / 5282 9273 999</span> <span>email@animalkingdomzoo.com</span> </div>
       <ul class="navigation">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="tickets.html">Tickets</a></li>
-        <li><a href="zoo.html">The Zoo</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="tickets.php">Tickets</a></li>
+        <li><a href="zoo.php">The Zoo</a></li>
+        <li><a href="events.php">Events</a></li>
+        <li><a href="blog.php">Blog</a></li>
+        <li><a href="gallery.php">Gallery</a></li>
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Zoo Negara | Sign In / Register</title>
+<title>Zoo Negara | Contact</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -21,31 +19,38 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    
+    <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
     <ul id="navigation">
-          <li id="link1"><a href="index.php">Home</a></li>
-          <li id="link2"><a href="zoo.php">The Zoo</a></li>
-          <li id="link3"><a href="info.php">Visitors Info</a></li>
-          <li id="link4"><a href="events.php">Events</a></li>
-          <li id="link5"><a href="gallery.php">Gallery</a></li>
-          <li id="link7"><a href="contact.php">Contact Us</a></li>
-        </ul>
+      <li id="link1"><a href="index.php">Home</a></li>
+      <li id="link2"><a href="zoo.php">The Zoo</a></li>
+      <li id="link3"><a href="info.php">Visitors Info</a></li>
+      <li id="link4"><a href="events.php">Events</a></li>
+      <li id="link5"><a href="gallery.php">Gallery</a></li>
+      <li id="link7" class="selected"><a href="contact.php">Contact Us</a></li>
+    </ul>
   </div>
   <div id="content">
-  <ul id="navigation">
-    <h2> Haven't have an account? Let's Sign up to purchase your ticket!</h2>
-    <a href="signUp.php"><button class="" role="button">Sign Up / Register</button></a>
-    <h2>Have account? Sign in NOW !!</h2>
-    <a href="registerSignin.php"><button class="" role="button">Sign in</button></a>
-  </ul>
-
-  <div id="tickets">
-      <h1><br>Tickets</h1>
-      <a href="#"><img src="images/openinghourrate.png" alt="" weight = 500px height = 440px /></a></a>
-      
+    <div id="contact">
+      <h1>Contact Information</h1>
+      <h4>For any enquiries, call our general lines +603-4108 3422 / +603-4108 3424 and ask for the following Department:</h4>
+      <h4><br>Location :</h4>
+      <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia.</p>
+      <h4>Reception Counter :</h4>
+      <p>receptionist@zoonegaramalaysia.my</p>
+      <h4>Customer Service :</h4>
+      <p>customerservice@zoonegaramalaysia.my</p>
+      <h4>Administration :</h4>
+      <p>admindepartment@zoonegaramalaysia.my</p>
+      <h4>Public Relations & Marketing :</h4>
+      <p>marketing@zoonegaramalaysia.my</p>
+      <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a>
+      <form action="#">
+        <h3>Subscribe to our</h3>
+        <h2>NEWSLETTER</h2>
+        <input type="text" value="your email here..." onBlur="this.value=!this.value?'your email here...':this.value;" onFocus="this.select()" onClick="this.value='';" />
+      </form>
     </div>
-
-  <div class="featured">
+    <div class="featured">
       <h2>Meet our Cutie Animals</h2>
       <ul>
         <li class="first"> <a href="#"><img src="images/lion.png" alt=""/></a> <a href="#">Lion</a> </li>
@@ -58,13 +63,12 @@
         
       </ul>
     </div>
-
   </div>
   <div id="footer">
     <div> <a href="#" class="logo"><img src="images/capybaraFooter2.png" alt=""/></a>
       <div>
-        <p>Ellentesque habitant morbi tristique senectus et 0000</p>
-        <span>285 067-39 282 / 5282 9273 999</span> <span>email@animalkingdomzoo.com</span> </div>
+        <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia</p>
+        <span>For enquiries, please call : </span><span>+603-4108 3422</span><span>Fax : +603-4107 5375</span> <span>Email: @zoonegaramalaysia.com</span> </div>
       <ul class="navigation">
         <li><a href="index.php">Home</a></li>
         <li><a href="tickets.php">Tickets</a></li>
@@ -78,7 +82,7 @@
         <li><a href="#">Love : Donate for the animals</a></li>
         <li><a href="#">Learn : Get to know the animals</a></li>
       </ul>
-      <p>Copyright &copy; <a href="#">Domain Name</a> - All Rights Reserved | Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">FreeWebsiteTemplates.com</a></p>
+      <p><br>Copyright &copy; <a href="#">Zoo Negara 2023</a> - All Rights Reserved | <a target="_blank" href="index.php">zoonegaramalaysia.my</a></p>
     </div>
   </div>
 </div>
