@@ -21,14 +21,14 @@
     </ul>
     <a href="buyTicketSignUp.php">Buy tickets Now</a>
     <ul id="navigation">
+      <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1"><a href="homepage.php">Home</a></li>
       <li id="link2"><a href="zooCustomer.php">The Zoo</a></li>
       <li id="link3"><a href="infoCustomer.php">Visitors Info</a></li>
       <li id="link4" class="selected"><a href="eventsCustomer.php">Events</a></li>
-      <li id="link5"><a href="galleryCustomer.php">Gallery</a></li>
       <li id="link6"><a href="contactCustomer.php">Contact Us</a></li>
       <li id="link7">
-        <a href="signOut.php">Sign out</a>
+        <a href="signOut.php">Sign Out</a>
         </li>  
     </ul>
   </div>
@@ -37,22 +37,26 @@
       <h1>Events</h1>
       <ul>
         <li>
-          <div><a href="#"><img src="images/event-lion.jpg" alt=""/></a></div>
-          <h4><a href="#">This website template has been designed by freewebsite templates.com for you, for free.</a></h4>
-          <p>Date : Jan 1 - 30 2011</p>
-          <p>This website template has been designed by Free Website Templates for you, for free. You can replace all this text with your own text. You can remove any link to our website from this website template, you're free to use this website template without linking back to us</p>
+          <div><a href="#"><img src="images/event (3).png" alt=""/></a></div>
+          <h4><a href="#">BIRTHDAY – ZOO FIESTA PARTY PACKAGE</a></h4>
+          <p>Celebrate your birthday with us and let our party crew host this memorable function.  We can even bring out some tame animals on your special day. Join our package now!</p>
+          <p><b>More information: </b><a href="birthdayPartyPackageCustomer.php">BIRTHDAY – ZOO FIESTA PARTY PACKAGE</a></p>
         </li>
         <li>
-          <div><a href="#"><img src="images/event-dolphin.jpg" alt=""/></a></div>
-          <h4><a href="#">Suspendisse nunc nibh, commodo Nulla ac accumsan ante</a></h4>
-          <p>Date : Feb 1 - 30 2011</p>
-          <p>Looking for more templates? Just browse through all our Free Website Templates and find what you’re looking for. But if you don’t find any website template you can use, you can try our Free Web Design service and tell us all about it. Maybe you’re looking for something different, something special. And we love the challenge of doing something different and something special.</p>
+          <div><a href="#"><img src="images/event (2).png" alt=""/></a></div>
+          <h4><a href="#">Orangutan Fun Walk @ Zoo Negara</a></h4>
+          <p>Date: 17th & 18th Discember 2023</p>
+          <p>With a minimum commitment fees you will get a free entrance to Zoo Negara, fun activities, lucky draw, t-shirt, finisher medal, 2 meals (breakfast & lunch) and e-certificate.
+            During the Orangutan Fun Walk, participants will have the opportunity to explore the zoo grounds while enjoying a leisurely stroll alongside the orangutan enclosures.
+            <br><b>More information: </b><a href = "orangUtanWalkCustomer.php">Orangutan Fun Walk</a>
+          </p>
         </li>
         <li>
-          <div><a href="#"><img src="images/event-gorilla.jpg" alt=""/></a></div>
-          <h4><a href="#">Cras tempus varius mauris, et dictum neque malesuada vitae. Cras sit amet orci at magna ornare porta nec et neque. Cras congue nibh eu felis dictum non aliquam elit scelerisque</a></h4>
-          <p>Date : Feb 1 - 30 2011</p>
-          <p>If you’re experiencing issues and concerns about this website template, join the discussion on our Forum and meet other people in the community who share the same interests with you.</p>
+          <div><a href="#"><img src="images/event (1).png" alt=""/></a></div>
+          <h4><a href="#">Zoo Walk 2023 Fun with NATURE</a></h4>
+          <p>Date : November 25 2023</p>
+          <p>Zoo Walk will be held every single year, this year is no exception. Join our Zoo Walk and collect tiger t-shirt with a finisher medal.</p>
+          <p><b>More information: </b><a href = "zooWalk2023Customer.php">Zoo Walk 2023 Fun with NATURE</a>
         </li>
       </ul>
     </div>

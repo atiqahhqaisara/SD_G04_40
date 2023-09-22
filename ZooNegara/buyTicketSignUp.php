@@ -7,6 +7,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
+
+<style>
+
+button {
+            background-color: #964B00;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #CC9966;
+        }
+
+</style>
+
 <body>
 <div id="page">
   <div id="header"> <a href="index.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
@@ -23,11 +41,11 @@
     </ul>
     
     <ul id="navigation">
+          <li id="link1"><a href="registerSignIn.php">Profile</a></li>
           <li id="link1"><a href="index.php">Home</a></li>
           <li id="link2"><a href="zoo.php">The Zoo</a></li>
           <li id="link3"><a href="info.php">Visitors Info</a></li>
           <li id="link4"><a href="events.php">Events</a></li>
-          <li id="link5"><a href="gallery.php">Gallery</a></li>
           <li id="link7"><a href="contact.php">Contact Us</a></li>
         </ul>
   </div>

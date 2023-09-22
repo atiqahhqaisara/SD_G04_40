@@ -6,18 +6,6 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
-<!-- Rest of your HTML content here -->
-</body>
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Zoo Negara</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="css/style.css" type="text/css" />
-</head>
-<body>
 <div id="page">
   <div id="header"> <a href="homepage.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
     <ul>
@@ -33,15 +21,13 @@
     </ul>
     <a href="buyTicketSignUpCustomer.php">Buy Ticket Now</a>
     <ul id="navigation">
+      <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1" class="selected"><a href="homepage.php">Home</a></li>
       <li id="link2"><a href="zooCustomer.php">The Zoo</a></li>
       <li id="link3"><a href="infoCustomer.php">Visitors Info</a></li>
       <li id="link4"><a href="eventsCustomer.php">Events</a></li>
-      <li id="link5"><a href="galleryCustomer.php">Gallery</a></li>
       <li id="link6"><a href="contactCustomer.php">Contact Us</a></li>
-      <li id="link7">
-      <a href="signOut.php">Sign Out</a>
-      </li>
+      <li id="link7"><a href="signOut.php">Sign Out</a></li>
     </ul>
     <img src="images/tiger.png" alt=""/>
     <div>

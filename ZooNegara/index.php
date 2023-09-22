@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
+
 <div id="page">
   <div id="header"> <a href="index.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
     <ul>
@@ -21,11 +22,11 @@
     </ul>
     <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
     <ul id="navigation">
+      <li id="link1"><a href="registerSignIn.php">Profile</a></li>
       <li id="link1" class="selected"><a href="index.php">Home</a></li>
       <li id="link2"><a href="zoo.php">The Zoo</a></li>
       <li id="link3"><a href="info.php">Visitors Info</a></li>
       <li id="link4"><a href="events.php">Events</a></li>
-      <li id="link5"><a href="gallery.php">Gallery</a></li>
       <li id="link7"><a href="contact.php">Contact Us</a></li>
     </ul>
     <img src="images/tiger.png" alt=""/>

@@ -21,6 +21,7 @@
     </ul>
     <a href="buyTicketSignUp.php">Buy tickets Now</a>
     <ul id="navigation">
+      <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1"><a href="homepage.php">Home</a></li>
       <li id="link2"><a href="zooCustomer.php">The Zoo</a></li>
       <li id="link3"><a href="infoCustomer.php">Visitors Info</a></li>

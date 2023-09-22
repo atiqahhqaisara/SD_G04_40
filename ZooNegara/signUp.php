@@ -111,6 +111,7 @@
         <p>Ellentesque habitant morbi tristique senectus et 0000</p>
         <span>285 067-39 282 / 5282 9273 999</span> <span>email@animalkingdomzoo.com</span> </div>
       <ul class="navigation">
+        <li id="link1"><a href="registerSignIn.php">Profile</a></li>
         <li><a href="index.php">Home</a></li>
         <li><a href="tickets.php">Tickets</a></li>
         <li><a href="zoo.php">The Zoo</a></li>

@@ -23,14 +23,14 @@
     </ul>
     
     <ul id="navigation">
+      <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1"><a href="homepage.php">Home</a></li>
       <li id="link2"><a href="zooCustomer.php">The Zoo</a></li>
       <li id="link3"><a href="infoCustomer.php">Visitors Info</a></li>
       <li id="link4"><a href="eventsCustomer.php">Events</a></li>
-      <li id="link5"><a href="galleryCustomer.php">Gallery</a></li>
       <li id="link6"><a href="contactCustomer.php">Contact Us</a></li>
       <li id="link7">
-      <a href="signOut.php">Sign out</a>
+      <a href="signOut.php">Sign Out</a>
       </li>
     </ul>
   </div>
