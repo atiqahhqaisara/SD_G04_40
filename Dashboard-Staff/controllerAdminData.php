@@ -11,7 +11,7 @@ if (isset($_POST['login'])) {
     $password = mysqli_real_escape_string($con, $password);
 
     // Query to check if the user with provided credentials exists
-    $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password' LIMIT 1";
+    $sql = "SELECT * FROM admin WHERE email='$email' LIMIT 1";
 
     $result = mysqli_query($con, $sql);
 
@@ -21,25 +21,41 @@ if (isset($_POST['login'])) {
 
     if (mysqli_num_rows($result) == 1) {
         $record = mysqli_fetch_array($result);
+
+        $md5_hash = md5($password);
+
+        if($md5_hash != $record['password']){
+            echo "<script>alert('Invalid Email/Password');</script>";
+            echo "<script>window.history.back();</script>";
+            exit();
+        }
+
         $_SESSION['email'] = $record['email'];
         $_SESSION['password'] = $record['password'];
+
+
         
         // Determine the position based on the user's email
         $position = $record['position'];
 
-        if ($position == 'admin') {
+        if ($position == strtoupper('admin')) {
             header("Location: \Dashboard\dashboard_admin.php");
             exit; // Make sure to exit after redirection
-        } else if ($position == 'staff') {
-            header("Location:  \Dashboard-Staff\index.html");
+        } else if ($position == strtoupper('staff')) {
+            header("Location:  \Dashboard-Staff\dashboard_staff.php");
             exit; // Make sure to exit after redirection
         } else {
             echo "<script>alert('Invalid position: $position');</script>";
             echo "<script>window.history.back();</script>";
         }
     } else {
-        echo "<script>alert('Login Unsuccessful');</script>";
+        echo "<script>alert('Invalid Email/Password');</script>";
         echo "<script>window.history.back();</script>";
     }
 }
+
+
+
+
 ?>
+

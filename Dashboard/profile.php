@@ -1,4 +1,6 @@
-
+<?php
+require 'controllerAdminData.php'
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,14 +155,30 @@
 			</div>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
-					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
-						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+						<?php
+						$currentAdmin = $_SESSION['email'];
+						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
+						$result = $con->query($sql);
+
+						if ($result && mysqli_num_rows($result) > 0) {
+							$row = mysqli_fetch_assoc($result);
+							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
+							$fullName = $row['fullName']; // Assuming the column name is 'fullName'
+							if (!empty($profileImage)) {
+								echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="user-icon">';
+							} else {
+								echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="user-icon">';
+							}
+							echo '<span class="user-name">' . $fullName . '</span>';
+						} else {
+							echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="user-icon">';
+						}
+						?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
+						<a class="dropdown-item" href="change_password.php"><i class="dw dw-password"></i> Change Password</a>
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
 						<a class="dropdown-item" href="index.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -469,159 +487,194 @@
 				<div class="row">
 					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
-							<div class="profile-photo">
-								<a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
-								<img src="vendors/images/photo1.jpg" alt="" class="avatar-photo">
-								<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-									<div class="modal-dialog modal-dialog-centered" role="document">
-										<div class="modal-content">
-											<div class="modal-body pd-5">
-												<div class="img-container">
-													<img id="image" src="vendors/images/photo2.jpg" alt="Picture">
-												</div>
-											</div>
-											<div class="modal-footer">
-												<input type="submit" value="Update" class="btn btn-primary">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											</div>
+							<div class="card-body">
+								<div class="profile-photo">
+								<!-- Remove the pencil icon link -->
+								<!-- Display the user's profile image -->
+								<?php
+								$currentAdmin = $_SESSION['email'];
+								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
+								$result = $con->query($sql);
+
+								if ($result && mysqli_num_rows($result) > 0) {
+									$row = mysqli_fetch_assoc($result);
+									$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
+									if (!empty($profileImage)) {
+										echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="profile-photo">';
+									} else {
+										echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
+									}
+								} else {
+									echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
+								}
+								?>
+							</div>
+								<!-- Fetch and display user profile information -->
+								<?php
+								$currentAdmin = $_SESSION['email'];
+								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
+								$result = $con->query($sql);
+
+								if ($result) {
+									if (mysqli_num_rows($result) > 0) {
+										$row = mysqli_fetch_assoc($result);
+								?>
+										<h5 class="text-center h5 mt-3"><?php echo $row['fullName']; ?></h5>
+										<p class="text-center text-muted font-14"><?php echo $row['position']; ?></p>
+										<div class="profile-info">
+											<h5 class="mt-3 text-blue">Contact Information</h5>
+											<ul class="list-unstyled">
+												<li>
+													<span>Email Address:</span>
+													<?php echo $row['email']; ?>
+												</li>
+												<li>
+													<span>Phone Number:</span>
+													<?php echo $row['phone']; ?>
+												</li>
+												<li>
+													<span>Address:</span>
+													<?php echo $row['address']; ?><br>
+													<?php echo $row['postal']; ?><br>
+													<?php echo $row['district']; ?><br>
+													<?php echo $row['states']; ?>
+												</li>
+											</ul>
 										</div>
-									</div>
-								</div>
+								<?php
+									}
+								}
+								?>
 							</div>
-							<h5 class="text-center h5 mb-0">Ross C. Lopez</h5>
-							<p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
-							<div class="profile-info">
-								<h5 class="mb-20 h5 text-blue">Contact Information</h5>
-								<ul>
-									<li>
-										<span>Email Address:</span>
-										FerdinandMChilds@test.com
-									</li>
-									<li>
-										<span>Phone Number:</span>
-										619-229-0054
-									</li>
-									<li>
-										<span>Country:</span>
-										America
-									</li>
-									<li>
-										<span>Address:</span>
-										1807 Holden Street<br>
-										San Diego, CA 92115
-									</li>
-								</ul>
-							</div>
-							
-							
 						</div>
 					</div>
+
 					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
 						<div class="card-box height-100-p overflow-hidden">
 							<div class="profile-tab height-100-p">
 								<div class="tab height-100-p">
 									<ul class="nav nav-tabs customtab" role="tablist">
 										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Update Profile</a>
+											<a class="nav-link active" data-toggle="tab" href="#setting" role="tab">Update Profile</a>
 										</li>
 									</ul>
-										
-										<!-- Setting Tab start -->
-										<div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
-											<div class="profile-setting">
-												<form>
-													<ul class="profile-edit-list row">
-														<li class="weight-500 col-md-6">
-															<h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4>
-															<div class="form-group">
-																<label>Full Name</label>
-																<input class="form-control form-control-lg" type="text" name="fullName">
-															</div>
-															<div class="form-group">
-																<label>Title</label>
-																<input class="form-control form-control-lg" type="text" name="title">
-															</div>
-															<div class="form-group">
-																<label>Email</label>
-																<input class="form-control form-control-lg" type="email" name="email">
-															</div>
-															<div class="form-group">
-																<label>Phone Number</label>
-																<input class="form-control form-control-lg" type="text" name="phone">
-															</div>
-															<div class="form-group">
-																<label>Date of birth</label>
-																<input class="form-control form-control-lg date-picker" type="text" name="dob">
-															</div>
-															<div class="form-group">
-																<label>Gender</label>
-																<div class="d-flex">
-																<div class="custom-control custom-radio mb-5 mr-20">
-																	<input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-																	<label class="custom-control-label weight-400" for="customRadio4">Male</label>
-																</div>
-																<div class="custom-control custom-radio mb-5">
-																	<input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
-																	<label class="custom-control-label weight-400" for="customRadio5">Female</label>
-																</div>
-																</div>
-															</div>
-															<div class="form-group">
-																<label>Country</label>
-																<select class="selectpicker form-control form-control-lg" data-style="btn-outline-secondary btn-lg" title="Not Chosen" id="country" name="country">
-																	<option value="MY">Malaysia</option>
-																</select>
-															</div>
-															<div class="form-group">
-																<label>State</label>
-																<select class="selectpicker form-control form-control-lg" data-style="btn-outline-secondary btn-lg" title="Not Chosen" id="states" name="states">
-								
-																	<option value="">Select state</option>
-																	<option value="01">Johor</option>
-																	<option value="02">Kedah</option>
-																	<option value="03">Kelantan</option>
-																	<option value="14">Kuala Lumpur</option>
-																	<option value="15">Labuan</option>
-																	<option value="04">Melaka</option>
-																	<option value="05">Negeri Sembilan</option>
-																	<option value="06">Pahang</option>
-																	<option value="07">Penang</option>
-																	<option value="08">Perak</option>
-																	<option value="09">Perlis</option>
-																	<option value="16">Putrajaya</option>
-																	<option value="12">Sabah</option>
-																	<option value="13">Sarawak</option>
-																	<option value="10">Selangor</option>
-																	<option value="11">Terengganu</option>
-																</select>
-															</div>
-															<div class="form-group">
-																<label>Postal Code</label>
-																<input class="form-control form-control-lg" type="number" name="postal">
-															</div>
-															
-															<div class="form-group">
-																<label>Address</label>
-																<textarea class="form-control" name="address"></textarea>
-															</div>
-				
-															<div class="form-group">
-																<div class="custom-control custom-checkbox mb-5">
-																	<input type="checkbox" class="custom-control-input" id="customCheck1-1">
-																	<label class="custom-control-label weight-400" for="customCheck1-1">I agree to receive notification emails</label>
-																</div>
-															</div>
-															<div class="form-group mb-0">
-																<input type="submit" class="btn btn-primary" name="UpdateAdmin" value="Update Information">
-															</div>
-														</li>
+									<!-- Setting Tab start -->
+									<?php
+									if (isset($_POST['UpdateAdmin'])) {
+										$fullName = $_POST['fullName'];
+										$position = $_POST['position'];
+										$email = $_POST['email'];
+										$phone = $_POST['phone'];
+										$address = $_POST['address'];
+										$postal = $_POST['postal'];
+										$district = isset($_POST['district']) ? $_POST['district'] : '';
+										$states = $_POST['states'];
 									
-													</ul>
-												</form>
-											</div>
-										</div>
-										<!-- Setting Tab End -->
-									</div>
+										// Check if a file was uploaded successfully
+										if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["error"] == 0) {
+											$filename = $_FILES["profilePicture"]["name"];
+											$tempname = $_FILES["profilePicture"]["tmp_name"];
+											$folder = "./profile/" . $filename;
+									
+											// Construct the SQL query to update the user's information
+											$sql = "UPDATE admin SET
+												fullName = '$fullName',
+												position = '$position',
+												phone = '$phone',
+												address = '$address',
+												postal = '$postal',
+												district = '$district',
+												states = '$states',
+												profilePicture = '$filename'
+												WHERE email = '$email'";
+									
+											// Move the uploaded file to the desired directory
+											if (move_uploaded_file($tempname, $folder)) {
+												// Execute the SQL query to update user information (assuming you have a database connection)
+												$result = $con->query($sql);
+											}
+										} else {
+											// Handle the case where no new profile picture was uploaded
+											$sql = "UPDATE admin SET
+												fullName = '$fullName',
+												position = '$position',
+												phone = '$phone',
+												address = '$address',
+												postal = '$postal',
+												district = '$district',
+												states = '$states'
+												WHERE email = '$email'";
+									
+											// Execute the SQL query to update user information (assuming you have a database connection)
+											$result = $con->query($sql);
+									
+										}
+									}
+								$currentAdmin = $_SESSION['email'];
+								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
+								$result = $con->query($sql);
+								
+								if ($result) {
+									if (mysqli_num_rows($result) > 0) {
+										while ($row = mysqli_fetch_array($result)) {
+									?>
+												<div class="tab-pane fade show active" id="setting" role="tabpanel">
+													<div class="profile-setting">
+														<form action="" method="POST" enctype="multipart/form-data">
+															<ul class="profile-edit-list row">
+																<li class="weight-500 col-md-6">
+																	<h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4>
+																	<div class="form-group">
+																		<label>Full Name</label>
+																		<input class="form-control form-control-lg" type="text" name="fullName" value="<?php echo $row['fullName']; ?>" readonly>
+																	</div>
+																	<div class="form-group">
+																		<label>Position</label>
+																		<input class="form-control form-control-lg" type="text" name="position" value="<?php echo $row['position']; ?>" readonly>
+																	</div>
+																	<div class="form-group">
+																		<label>Email</label>
+																		<input class="form-control form-control-lg" type="email" name="email" value="<?php echo $row['email']; ?>" readonly>
+																	</div>
+																	<div class="form-group">
+																		<label>Phone Number</label>
+																		<input class="form-control form-control-lg" type="text" name="phone" value="<?php echo $row['phone']; ?>">
+																	</div>
+																	<div class="form-group">
+																		<label>Address</label>
+																		<input class="form-control form-control-lg" type="text" name="address" value="<?php echo $row['address']; ?>">
+																	</div>
+																	<div class="form-group">
+																		<label>Postal Code</label>
+																		<input class="form-control form-control-lg" type="number" name="postal" value="<?php echo $row['postal']; ?>">
+																	</div>
+																	<div class="form-group">
+																		<label>District</label>
+																		<input class="form-control form-control-lg" type="text" name="district" value="<?php echo $row['district']; ?>">
+																	</div>
+																	<div class="form-group">
+																		<label>States</label>
+																		<input class="form-control form-control-lg" type="text" name="states" value="<?php echo $row['states']; ?>">
+																	</div>
+																	<div class="form-group">
+																	<label>Profile Picture</label>
+																	<input class="form-control form-control-lg" type="file" name="profilePicture">
+																</div>
+																	<div class="form-group mb-0">
+																		<input type="submit" class="btn btn-primary" name="UpdateAdmin" value="Update Information">
+																	</div>
+																</li>
+															</ul>
+														</form>
+													</div>
+												</div>
+										<?php
+											}
+										}
+									}
+									?>
+	
+									<!-- Setting Tab End -->
 								</div>
 							</div>
 						</div>
@@ -632,40 +685,51 @@
 	</div>
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/cropperjs/dist/cropper.js"></script>
-	<script>
-		window.addEventListener('DOMContentLoaded', function () {
-			var image = document.getElementById('image');
-			var cropBoxData;
-			var canvasData;
-			var cropper;
+		<script src="vendors/scripts/script.min.js"></script>
+		<script src="vendors/scripts/process.js"></script>
+		<script src="vendors/scripts/layout-settings.js"></script>
+		<script src="src/plugins/cropperjs/dist/cropper.js"></script>
+		<script>
+			window.addEventListener("DOMContentLoaded", function () {
+				var image = document.getElementById("image");
+				var cropBoxData;
+				var canvasData;
+				var cropper;
 
-			$('#modal').on('shown.bs.modal', function () {
-				cropper = new Cropper(image, {
-					autoCropArea: 0.5,
-					dragMode: 'move',
-					aspectRatio: 3 / 3,
-					restore: false,
-					guides: false,
-					center: false,
-					highlight: false,
-					cropBoxMovable: false,
-					cropBoxResizable: false,
-					toggleDragModeOnDblclick: false,
-					ready: function () {
-						cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-					}
-				});
-			}).on('hidden.bs.modal', function () {
-				cropBoxData = cropper.getCropBoxData();
-				canvasData = cropper.getCanvasData();
-				cropper.destroy();
+				$("#modal")
+					.on("shown.bs.modal", function () {
+						cropper = new Cropper(image, {
+							autoCropArea: 0.5,
+							dragMode: "move",
+							aspectRatio: 3 / 3,
+							restore: false,
+							guides: false,
+							center: false,
+							highlight: false,
+							cropBoxMovable: false,
+							cropBoxResizable: false,
+							toggleDragModeOnDblclick: false,
+							ready: function () {
+								cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+							},
+						});
+					})
+					.on("hidden.bs.modal", function () {
+						cropBoxData = cropper.getCropBoxData();
+						canvasData = cropper.getCanvasData();
+						cropper.destroy();
+					});
 			});
-		});
-	</script>
-</body>
+		</script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
 </html>
-

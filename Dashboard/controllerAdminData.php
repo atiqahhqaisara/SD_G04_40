@@ -38,11 +38,11 @@ if (isset($_POST['login'])) {
         // Determine the position based on the user's email
         $position = $record['position'];
 
-        if ($position == 'admin') {
+        if ($position == strtoupper('admin')) {
             header("Location: \Dashboard\dashboard_admin.php");
             exit; // Make sure to exit after redirection
-        } else if ($position == 'staff') {
-            header("Location:  \Dashboard-Staff\index.html");
+        } else if ($position == strtoupper('staff')) {
+            header("Location:  \Dashboard-Staff\dashboard_staff.php");
             exit; // Make sure to exit after redirection
         } else {
             echo "<script>alert('Invalid position: $position');</script>";
@@ -53,4 +53,9 @@ if (isset($_POST['login'])) {
         echo "<script>window.history.back();</script>";
     }
 }
+
+
+
+
 ?>
+

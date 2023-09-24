@@ -1,3 +1,6 @@
+<?php
+require 'controllerAdminData.php'
+?>
 <!DOCTYPE html
 
 <html>
@@ -156,10 +159,25 @@
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<span class="user-icon">
-							<img src="vendors/images/photo1.jpg" alt="">
-						</span>
-						<span class="user-name">Ross C. Lopez</span>
+					<?php
+						$currentAdmin = $_SESSION['email'];
+						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
+						$result = $con->query($sql);
+
+						if ($result && mysqli_num_rows($result) > 0) {
+							$row = mysqli_fetch_assoc($result);
+							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
+							$fullName = $row['fullName']; // Assuming the column name is 'fullName'
+							if (!empty($profileImage)) {
+								echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="user-icon">';
+							} else {
+								echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="user-icon">';
+							}
+							echo '<span class="user-name">' . $fullName . '</span>';
+						} else {
+							echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="user-icon">';
+						}
+						?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
@@ -167,9 +185,6 @@
 						<a class="dropdown-item" href="index.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
-			</div>
-			<div class="github-link">
-				<a href="https://github.com/dropways/deskapp" target="_blank"><img src="vendors/images/github.svg" alt=""></a>
 			</div>
 		</div>
 	</div>
