@@ -414,133 +414,105 @@ require 'controllerAdminData.php'
 							</div>
 						</div>
 					</div>
-
-					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
 						<div class="card-box height-100-p overflow-hidden">
-							<div class="profile-tab height-100-p">
+							<div class="change_password-tab height-100-p">
 								<div class="tab height-100-p">
 									<ul class="nav nav-tabs customtab" role="tablist">
 										<li class="nav-item">
-											<a class="nav-link active" data-toggle="tab" href="#setting" role="tab">Update Profile</a>
+											<a class="nav-link active" data-toggle="tab" href="#" role="tab">Change Password</a>
 										</li>
 									</ul>
-									<!-- Setting Tab start -->
-									<?php
-									if (isset($_POST['UpdateAdmin'])) {
-										$fullName = $_POST['fullName'];
-										$position = $_POST['position'];
-										$email = $_POST['email'];
-										$phone = $_POST['phone'];
-										$address = $_POST['address'];
-										$postal = $_POST['postal'];
-										$district = isset($_POST['district']) ? $_POST['district'] : '';
-										$states = $_POST['states'];
-									
-										// Check if a file was uploaded successfully
-										if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["error"] == 0) {
-											$filename = $_FILES["profilePicture"]["name"];
-											$tempname = $_FILES["profilePicture"]["tmp_name"];
-											$folder = "./profile/" . $filename;
-									
-											// Construct the SQL query to update the user's information
-											$sql = "UPDATE admin SET
-												fullName = '$fullName',
-												position = '$position',
-												phone = '$phone',
-												address = '$address',
-												postal = '$postal',
-												district = '$district',
-												states = '$states',
-												profilePicture = '$filename'
-												WHERE email = '$email'";
-									
-											// Move the uploaded file to the desired directory
-											if (move_uploaded_file($tempname, $folder)) {
-												// Execute the SQL query to update user information (assuming you have a database connection)
-												$result = $con->query($sql);
-											}
-										} else {
-											// Handle the case where no new profile picture was uploaded
-											$sql = "UPDATE admin SET
-												fullName = '$fullName',
-												position = '$position',
-												phone = '$phone',
-												address = '$address',
-												postal = '$postal',
-												district = '$district',
-												states = '$states'
-												WHERE email = '$email'";
-									
-											// Execute the SQL query to update user information (assuming you have a database connection)
-											$result = $con->query($sql);
-									
-										}
-									}
-								$currentAdmin = $_SESSION['email'];
-								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-								$result = $con->query($sql);
-								
-								if ($result) {
-									if (mysqli_num_rows($result) > 0) {
-										while ($row = mysqli_fetch_array($result)) {
-									?>
-												<div class="tab-pane fade show active" id="setting" role="tabpanel">
-													<div class="profile-setting">
-														<form action="" method="POST" enctype="multipart/form-data">
-															<ul class="profile-edit-list row">
-																<li class="weight-500 col-md-6">
-																	<h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4>
-																	<div class="form-group">
-																		<label>Full Name</label>
-																		<input class="form-control form-control-lg" type="text" name="fullName" value="<?php echo $row['fullName']; ?>" readonly>
-																	</div>
-																	<div class="form-group">
-																		<label>Position</label>
-																		<input class="form-control form-control-lg" type="text" name="position" value="<?php echo $row['position']; ?>" readonly>
-																	</div>
-																	<div class="form-group">
-																		<label>Email</label>
-																		<input class="form-control form-control-lg" type="email" name="email" value="<?php echo $row['email']; ?>" readonly>
-																	</div>
-																	<div class="form-group">
-																		<label>Phone Number</label>
-																		<input class="form-control form-control-lg" type="text" name="phone" value="<?php echo $row['phone']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>Address</label>
-																		<input class="form-control form-control-lg" type="text" name="address" value="<?php echo $row['address']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>Postal Code</label>
-																		<input class="form-control form-control-lg" type="number" name="postal" value="<?php echo $row['postal']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>District</label>
-																		<input class="form-control form-control-lg" type="text" name="district" value="<?php echo $row['district']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>States</label>
-																		<input class="form-control form-control-lg" type="text" name="states" value="<?php echo $row['states']; ?>">
-																	</div>
-																	<div class="form-group">
-																	<label>Profile Picture</label>
-																	<input class="form-control form-control-lg" type="file" name="profilePicture">
+									<div class="tab-content">
+										<div class="tab-pane fade show active" id="setting" role="tabpanel">
+											<div class="change_password-setting">
+												<div class="container">
+													<br>
+													<?php
+													if (isset($_SESSION['email'])) {
+														$currentAdmin = $_SESSION['email'];
+														
+														if (isset($_POST['updatePassword'])) {
+															// Include your database connection file
+															include('connection.php');
+															
+															$old_pass = $_POST['oldPass'];
+															$new_pass = $_POST['newPass'];
+															$re_pass = $_POST['rePass'];
+															
+															// Check the connection
+															if ($con->connect_error) {
+																die("Connection failed: " . $con->connect_error);
+															}
+															
+															// Use prepared statements to prevent SQL injection
+															$stmt = $con->prepare("SELECT * FROM admin WHERE email = ?");
+															$stmt->bind_param("s", $currentAdmin);
+															$stmt->execute();
+															$result = $stmt->get_result();
+															
+															if ($result->num_rows === 1) {
+																$row = $result->fetch_assoc();
+																$stored_md5_pwd = $row['password']; // Stored MD5 hashed password
+																
+																// Verify the old password using MD5 hashing
+																if (md5($old_pass) === $stored_md5_pwd) {
+																	if ($new_pass === $re_pass) {
+																		// Hash the new password using MD5
+																		$hashed_new_pass = md5($new_pass);
+																		
+																		// Use prepared statement to update the MD5 hashed password
+																		$update_stmt = $con->prepare("UPDATE admin SET password = ? WHERE email = ?");
+																		$update_stmt->bind_param("ss", $hashed_new_pass, $currentAdmin);
+																		$update_stmt->execute();
+																		$update_stmt->close();
+																		
+																		echo "<script>alert('Update Successfully'); window.location='change_password.php'</script>";
+																	} else {
+																		echo "<script>alert('Your new and Retype Password do not match'); window.location='change_password.php'</script>";
+																	}
+																} else {
+																	echo "<script>alert('Your old password is incorrect'); window.location='change_password.php'</script>";
+																}
+															} else {
+																// Handle the case when the user doesn't exist
+																echo "<script>alert('User with email $currentAdmin not found'); window.location='change_password.php'</script>";
+															}
+															
+															// Close the database connection
+															$con->close();
+														}
+													} else {
+														echo "<script>alert('Session not found. Please log in.'); window.location='login.php'</script>";
+													}
+													?>
+													<form action="" method="POST">
+														<h4 class="text-blue h5 mb-4">Change Your Password</h4>
+														<ul class="change_password-edit-list row">
+															<li class="weight-500 col-md-6">
+																<div class="form-group">
+																	<label for="oldPassword">Old Password</label>
+																	<input class="form-control form-control-lg" type="password" id="oldPass" name="oldPass" required>
 																</div>
-																	<div class="form-group mb-0">
-																		<input type="submit" class="btn btn-primary" name="UpdateAdmin" value="Update Information">
-																	</div>
-																</li>
-															</ul>
-														</form>
-													</div>
+																<div class="form-group">
+																	<label for="newPassword">New Password</label>
+																	<input class="form-control form-control-lg" type="password" id="newPass" name="newPass" required>
+																</div>
+																<div class="form-group">
+																	<label for="newPassword">Re-Type Password</label>
+																	<input class="form-control form-control-lg" type="password" id="newPassword" name="rePass" required>
+																</div>
+																<div class="form-group mb-0">
+																	<input type="submit" class="btn btn-primary" name="updatePassword" value="Update Password">
+																</div>
+															</li>
+														</ul>
+													</form>
 												</div>
-										<?php
-											}
-										}
-									}
-									?>
-	
-									<!-- Setting Tab End -->
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>

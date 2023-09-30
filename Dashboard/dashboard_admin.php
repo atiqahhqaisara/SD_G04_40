@@ -7,7 +7,7 @@ require 'controllerAdminData.php'
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Zoo Negara Administration</title>
+	<title>Admin Dashboard</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -181,6 +181,7 @@ require 'controllerAdminData.php'
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
+
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
 						<a class="dropdown-item" href="index.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -293,11 +294,19 @@ require 'controllerAdminData.php'
 							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
 						</a>
 					</li>
-					<li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Staff</span>
+					
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-house-1"></span><span class="mtext">Staff</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="addStaff.php">Add Staff</a></li>
+							<li><a href="staffList.php">Staff List</a></li>
+						</ul>
+					
 					</li>
+					
+
 					<li>
 						<div class="dropdown-divider"></div>
 					</li>
@@ -340,9 +349,20 @@ require 'controllerAdminData.php'
 					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue">Johnny Brown!</div>
+							Welcome back 
+							<?php
+							$currentAdmin = $_SESSION['email'];
+							$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
+							$result = $con->query($sql);
+
+						if ($result && mysqli_num_rows($result) > 0) {
+							$row = mysqli_fetch_assoc($result);
+							$fullName = $row['fullName']; // Assuming the column name is 'fullName'
+							echo '<div class="weight-600 font-30 text-blue">' . $fullName . '</div>';
+						}	
+						?>
 						</h4>
-						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
+						<p class="font-18 max-width-600">"Every challenge you face is an opportunity for growth, and with determination and resilience, you have the power to turn obstacles into stepping stones on your journey to success."</p>
 					</div>
 				</div>
 			</div>

@@ -21,8 +21,8 @@ require 'controllerAdminData.php'
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/cropperjs/dist/cropper.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -331,271 +331,153 @@ require 'controllerAdminData.php'
 	</div>
 	<div class="mobile-menu-overlay"></div>
 
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
 				<div class="page-header">
 					<div class="row">
-						<div class="col-md-12 col-sm-12">
+						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Profile</h4>
+								<h4>Edit Staff</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Profile</li>
+									<li class="breadcrumb-item"><a href="staffList.php">Staff List</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Edit Staff</li>
 								</ol>
 							</nav>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
-						<div class="pd-20 card-box height-100-p">
-							<div class="card-body">
-								<div class="profile-photo">
-								<!-- Remove the pencil icon link -->
-								<!-- Display the user's profile image -->
-								<?php
-								$currentAdmin = $_SESSION['email'];
-								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-								$result = $con->query($sql);
 
-								if ($result && mysqli_num_rows($result) > 0) {
-									$row = mysqli_fetch_assoc($result);
-									$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
-									if (!empty($profileImage)) {
-										echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="profile-photo">';
-									} else {
-										echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
-									}
-								} else {
-									echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
-								}
-								?>
-							</div>
-								<!-- Fetch and display user profile information -->
-								<?php
-								$currentAdmin = $_SESSION['email'];
-								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-								$result = $con->query($sql);
+				<!-- Add Staff Form and PHP Code Start -->
+				<?php
+				error_reporting(E_ALL);
+				ini_set('display_errors', 1);
+				// Include the database connection file (connection.php)
+				include 'connection.php';
 
-								if ($result) {
-									if (mysqli_num_rows($result) > 0) {
-										$row = mysqli_fetch_assoc($result);
-								?>
-										<h5 class="text-center h5 mt-3"><?php echo $row['fullName']; ?></h5>
-										<p class="text-center text-muted font-14"><?php echo $row['position']; ?></p>
-										<div class="profile-info">
-											<h5 class="mt-3 text-blue">Contact Information</h5>
-											<ul class="list-unstyled">
-												<li>
-													<span>Email Address:</span>
-													<?php echo $row['email']; ?>
-												</li>
-												<li>
-													<span>Phone Number:</span>
-													<?php echo $row['phone']; ?>
-												</li>
-												<li>
-													<span>Address:</span>
-													<?php echo $row['address']; ?><br>
-													<?php echo $row['postal']; ?><br>
-													<?php echo $row['district']; ?><br>
-													<?php echo $row['states']; ?>
-												</li>
-											</ul>
-										</div>
-								<?php
-									}
-								}
-								?>
-							</div>
-						</div>
-					</div>
+				// Check if the form is submitted
+				if (isset($_POST['addStaff'])) {
+					print_r($_POST);
+					// Retrieve form data and sanitize
+					$fullName = $_POST['fullName'];
+					$phone = $_POST['phone'];
+					$email = $_POST['email'];
+					$position = $_POST['position'];
+					$address = $_POST['address'];
+					$postal = $_POST['postal'];
+					$district = $_POST['district'];
+					$states = $_POST['states'];
 
-					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
-						<div class="card-box height-100-p overflow-hidden">
-							<div class="profile-tab height-100-p">
-								<div class="tab height-100-p">
-									<ul class="nav nav-tabs customtab" role="tablist">
-										<li class="nav-item">
-											<a class="nav-link active" data-toggle="tab" href="#setting" role="tab">Update Profile</a>
-										</li>
-									</ul>
-									<!-- Setting Tab start -->
-									<?php
-									if (isset($_POST['UpdateAdmin'])) {
-										$fullName = $_POST['fullName'];
-										$position = $_POST['position'];
-										$email = $_POST['email'];
-										$phone = $_POST['phone'];
-										$address = $_POST['address'];
-										$postal = $_POST['postal'];
-										$district = isset($_POST['district']) ? $_POST['district'] : '';
-										$states = $_POST['states'];
-									
-										// Check if a file was uploaded successfully
-										if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["error"] == 0) {
-											$filename = $_FILES["profilePicture"]["name"];
-											$tempname = $_FILES["profilePicture"]["tmp_name"];
-											$folder = "./profile/" . $filename;
-									
-											// Construct the SQL query to update the user's information
-											$sql = "UPDATE admin SET
-												fullName = '$fullName',
-												position = '$position',
-												phone = '$phone',
-												address = '$address',
-												postal = '$postal',
-												district = '$district',
-												states = '$states',
-												profilePicture = '$filename'
-												WHERE email = '$email'";
-									
-											// Move the uploaded file to the desired directory
-											if (move_uploaded_file($tempname, $folder)) {
-												// Execute the SQL query to update user information (assuming you have a database connection)
-												$result = $con->query($sql);
-											}
-										} else {
-											// Handle the case where no new profile picture was uploaded
-											$sql = "UPDATE admin SET
-												fullName = '$fullName',
-												position = '$position',
-												phone = '$phone',
-												address = '$address',
-												postal = '$postal',
-												district = '$district',
-												states = '$states'
-												WHERE email = '$email'";
-									
-											// Execute the SQL query to update user information (assuming you have a database connection)
-											$result = $con->query($sql);
-									
-										}
-									}
-								$currentAdmin = $_SESSION['email'];
-								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-								$result = $con->query($sql);
-								
-								if ($result) {
-									if (mysqli_num_rows($result) > 0) {
-										while ($row = mysqli_fetch_array($result)) {
-									?>
-												<div class="tab-pane fade show active" id="setting" role="tabpanel">
-													<div class="profile-setting">
-														<form action="" method="POST" enctype="multipart/form-data">
-															<ul class="profile-edit-list row">
-																<li class="weight-500 col-md-6">
-																	<h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4>
-																	<div class="form-group">
-																		<label>Full Name</label>
-																		<input class="form-control form-control-lg" type="text" name="fullName" value="<?php echo $row['fullName']; ?>" readonly>
-																	</div>
-																	<div class="form-group">
-																		<label>Position</label>
-																		<input class="form-control form-control-lg" type="text" name="position" value="<?php echo $row['position']; ?>" readonly>
-																	</div>
-																	<div class="form-group">
-																		<label>Email</label>
-																		<input class="form-control form-control-lg" type="email" name="email" value="<?php echo $row['email']; ?>" readonly>
-																	</div>
-																	<div class="form-group">
-																		<label>Phone Number</label>
-																		<input class="form-control form-control-lg" type="text" name="phone" value="<?php echo $row['phone']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>Address</label>
-																		<input class="form-control form-control-lg" type="text" name="address" value="<?php echo $row['address']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>Postal Code</label>
-																		<input class="form-control form-control-lg" type="number" name="postal" value="<?php echo $row['postal']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>District</label>
-																		<input class="form-control form-control-lg" type="text" name="district" value="<?php echo $row['district']; ?>">
-																	</div>
-																	<div class="form-group">
-																		<label>States</label>
-																		<input class="form-control form-control-lg" type="text" name="states" value="<?php echo $row['states']; ?>">
-																	</div>
-																	<div class="form-group">
-																	<label>Profile Picture</label>
-																	<input class="form-control form-control-lg" type="file" name="profilePicture">
-																</div>
-																	<div class="form-group mb-0">
-																		<input type="submit" class="btn btn-primary" name="UpdateAdmin" value="Update Information">
-																	</div>
-																</li>
-															</ul>
-														</form>
-													</div>
-												</div>
-										<?php
-											}
-										}
-									}
-									?>
-	
-									<!-- Setting Tab End -->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					// Construct the SQL query to insert the staff record using prepared statements
+					$sql = "INSERT INTO admin (fullName, phone, email, position, address, postal, district, states) 
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+					// Create a prepared statement
+					$stmt = mysqli_prepare($con, $sql);
+
+					
+					if ($stmt) {
+						// Bind parameters and execute the statement
+						mysqli_stmt_bind_param($stmt, "ssssssss", $fullName, $phone, $email, $position, $address, $postal, $district, $states);
+
+						if (mysqli_stmt_execute($stmt)) {
+							// Redirect to home page
+							header("Location: /Dashboard/staffList.php");
+							exit(); // Make sure to exit to prevent further execution
+						} else {
+							// Display error message and redirect back to add employee page
+							echo "Something went wrong, try again...";
+						}
+
+						// Close the statement
+						mysqli_stmt_close($stmt);
+					} else {
+						// Display error message and redirect back to add employee page
+						echo "Error in preparing the statement";
+					}
+				} else {
+					// Handle the case when the form is not submitted
+					echo "Form not submitted.";
+				}
+
+				// Close the database connection
+				mysqli_close($con);
+				?>
+
+
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h4 class="text-blue h4">Add Staff</h4>
+                            <p class="mb-30">Add new staff information</p>
+                        </div>
+                    </div>
+                   
+                    <form action="" method="POST">
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Full Name</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="fullName" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Phone Number</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Position</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="position" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Address</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="address" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Postal Code</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="number" name="postal" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">District</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="district" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">States</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="states" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-10 offset-md-2">
+                                <button type="submit" class="btn btn-primary" name="addStaff">Add Staff</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 			</div>
 		</div>
 	</div>
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
-		<script src="vendors/scripts/script.min.js"></script>
-		<script src="vendors/scripts/process.js"></script>
-		<script src="vendors/scripts/layout-settings.js"></script>
-		<script src="src/plugins/cropperjs/dist/cropper.js"></script>
-		<script>
-			window.addEventListener("DOMContentLoaded", function () {
-				var image = document.getElementById("image");
-				var cropBoxData;
-				var canvasData;
-				var cropper;
-
-				$("#modal")
-					.on("shown.bs.modal", function () {
-						cropper = new Cropper(image, {
-							autoCropArea: 0.5,
-							dragMode: "move",
-							aspectRatio: 3 / 3,
-							restore: false,
-							guides: false,
-							center: false,
-							highlight: false,
-							cropBoxMovable: false,
-							cropBoxResizable: false,
-							toggleDragModeOnDblclick: false,
-							ready: function () {
-								cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-							},
-						});
-					})
-					.on("hidden.bs.modal", function () {
-						cropBoxData = cropper.getCropBoxData();
-						canvasData = cropper.getCanvasData();
-						cropper.destroy();
-					});
-			});
-		</script>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript
-			><iframe
-				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
-				height="0"
-				width="0"
-				style="display: none; visibility: hidden"
-			></iframe
-		></noscript>
-		<!-- End Google Tag Manager (noscript) -->
-	</body>
+	<script src="vendors/scripts/script.min.js"></script>
+	<script src="vendors/scripts/process.js"></script>
+	<script src="vendors/scripts/layout-settings.js"></script>
+</body>
 </html>
