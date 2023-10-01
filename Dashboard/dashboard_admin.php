@@ -181,7 +181,7 @@ require 'controllerAdminData.php'
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
-
+						<a class="dropdown-item" href="change_password.php"><i class="dw dw-password"></i> Change Password</a>
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
 						<a class="dropdown-item" href="index.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
@@ -268,7 +268,7 @@ require 'controllerAdminData.php'
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.php">
+			<a href="/Dashboard/dashboard_admin.php" >
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -289,15 +289,9 @@ require 'controllerAdminData.php'
 						</ul>
 					</li>
 					
-					<li>
-						<a href="chat.html" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
-						</a>
-					</li>
-					
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-house-1"></span><span class="mtext">Staff</span>
+							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="addStaff.php">Add Staff</a></li>
@@ -305,7 +299,11 @@ require 'controllerAdminData.php'
 						</ul>
 					
 					</li>
-					
+					<li>
+						<a href="chat.html" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
+						</a>
+					</li>
 
 					<li>
 						<div class="dropdown-divider"></div>
@@ -576,9 +574,6 @@ require 'controllerAdminData.php'
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<div class="footer-wrap pd-20 mb-20 card-box">
-				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
 			</div>
 		</div>
 	</div>

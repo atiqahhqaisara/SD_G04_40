@@ -359,7 +359,7 @@ require 'controllerAdminData.php'
 
 				// Check if the form is submitted
 				if (isset($_POST['addStaff'])) {
-					print_r($_POST);
+			
 					// Retrieve form data and sanitize
 					$fullName = $_POST['fullName'];
 					$phone = $_POST['phone'];
@@ -369,10 +369,11 @@ require 'controllerAdminData.php'
 					$postal = $_POST['postal'];
 					$district = $_POST['district'];
 					$states = $_POST['states'];
+					$password = md5($_POST['password']);
 
 					// Construct the SQL query to insert the staff record using prepared statements
-					$sql = "INSERT INTO admin (fullName, phone, email, position, address, postal, district, states) 
-							VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+					$sql = "INSERT INTO admin (fullName, phone, email, position, address, postal, district, states, password) 
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 					// Create a prepared statement
 					$stmt = mysqli_prepare($con, $sql);
@@ -380,11 +381,12 @@ require 'controllerAdminData.php'
 					
 					if ($stmt) {
 						// Bind parameters and execute the statement
-						mysqli_stmt_bind_param($stmt, "ssssssss", $fullName, $phone, $email, $position, $address, $postal, $district, $states);
+						mysqli_stmt_bind_param($stmt, "sssssssss", $fullName, $phone, $email, $position, $address, $postal, $district, $states, $password);
 
 						if (mysqli_stmt_execute($stmt)) {
 							// Redirect to home page
-							header("Location: /Dashboard/staffList.php");
+							// header("Location: /Dashboard/staffList.php");
+							echo "<script>window.location.href='/Dashboard/staffList.php'</script>";
 							exit(); // Make sure to exit to prevent further execution
 						} else {
 							// Display error message and redirect back to add employee page
@@ -393,15 +395,8 @@ require 'controllerAdminData.php'
 
 						// Close the statement
 						mysqli_stmt_close($stmt);
-					} else {
-						// Display error message and redirect back to add employee page
-						echo "Error in preparing the statement";
-					}
-				} else {
-					// Handle the case when the form is not submitted
-					echo "Form not submitted.";
-				}
-
+					} 
+				} 
 				// Close the database connection
 				mysqli_close($con);
 				?>
@@ -437,7 +432,11 @@ require 'controllerAdminData.php'
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Position</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" name="position" required>
+                            	<select class="form-control" name="position" required>
+                            		<!-- <option value="ADMIN" selected>Admin</option> -->
+                            		<option value="STAFF" selected>Staff</option>
+                            	</select>
+                                <!-- <input class="form-control" type="text" name="position" required> -->
                             </div>
                         </div>
                         <div class="form-group row">
@@ -462,6 +461,12 @@ require 'controllerAdminData.php'
                             <label class="col-sm-12 col-md-2 col-form-label">States</label>
                             <div class="col-sm-12 col-md-10">
                                 <input class="form-control" type="text" name="states" required>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Password</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="password" name="password" required>
                             </div>
                         </div>
                         <div class="form-group row">

@@ -265,7 +265,7 @@ require 'controllerAdminData.php'
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.php">
+			<a href="/Dashboard/dashboard_admin.php" >
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -286,15 +286,19 @@ require 'controllerAdminData.php'
 						</ul>
 					</li>
 					
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="addStaff.php">Add Staff</a></li>
+							<li><a href="staffList.php">Staff List</a></li>
+						</ul>
+					
+					</li>
 					<li>
 						<a href="chat.html" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="staffList.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Staff</span>
 						</a>
 					</li>
 
