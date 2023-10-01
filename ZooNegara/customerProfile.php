@@ -1,3 +1,6 @@
+<?php
+require 'controllerUserData.php'
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,28 +76,57 @@
 
 <div id="content">
     <div id="profile">
+    <?php
+      if(isset($_POST['UpdateCust'])){
+        $name=$_POST['name'];
+        $dob=$_POST['dob'];
+        $contactNumber=$_POST['contactNumber'];
+        $email=$_POST['email'];
+
+        $sql="UPDATE customer SET
+        name='$name',
+        dob='$dob',
+        contactNumber='$contactNumber',
+        email='$email' 
+        WHERE email='$email'";
+
+        if ($con->query($sql) === TRUE) {
+          echo "Record updated successfully";
+        } else {
+          echo "Error updating record: " . $con->error;
+        }
+      }
+      $currentCust = $_SESSION['email'];
+      $sql = "SELECT * FROM customer WHERE email='$currentCust'";
+      $result = $con->query($sql);
+      if ($result) {
+          if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_array($result)) {
+                  ?>
+      <form action="" method="POST">
         <h1>Your Profile</h1>
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" value="<?php echo $row['name']; ?>">
 
                     <br><br><label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" name="dob" required>
+                    <input type="date" id="dob" name="dob" value="<?php echo $row['dob']; ?>">
 
                     <br><br><label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" id="phone" name="contactNumber" value="<?php echo $row['contactNumber']; ?>">
 
                     <br><br><label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br>
+                    <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>">
+                
+                    <br><br><button type="submit" name="UpdateCust">Edit Profile</button><br><br><br><br>
+                    <button type="submit"><a href="changePassword.php"></a>Change Password</button><br><br><br><br>
 
-                    </div> 
+      </form>
+      <?php
+              }
+            }
+          }
+          ?>
 
-
-                    <div id="header"> 
-                    <a href="">Edit Profile</a>
-                    <a href="changePassword.php">Change Password</a>
-                   
-
-                    </div>
 
         <div class="featured">
                 <h2>Meet our Cutie Animals</h2>

@@ -6,6 +6,7 @@
     <title>Forgot Password</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <style>
@@ -30,7 +31,7 @@
             border-radius: 5px;
             font-size: 16px;
         }
-        button {
+        .button {
             background-color: #964B00;
             color: #fff;
             padding: 10px 20px;
@@ -39,7 +40,7 @@
             font-size: 16px;
             cursor: pointer;
         }
-        button:hover {
+        .button:hover {
             background-color: #CC9966;
         }
 </style>
@@ -82,8 +83,8 @@
                     <div class="form-group">
                         <input class="form-control" type="email" name="email" placeholder="Enter email address" required value="<?php echo $email ?>">
                     </div>
-                    <div class="form-group">
-                        <input class="form-control button" type="submit" name="check-email" value="Continue">
+                    <div class="form-group text-center"> <!-- This new div is added for centering -->
+                        <input class="button" type="submit" name="check-email" value="Continue">
                     </div>
                     </form>
                     

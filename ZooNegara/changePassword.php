@@ -1,3 +1,6 @@
+<?php
+require 'controllerUserData.php'
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +26,14 @@
             display: block;
             font-weight: bold;
         }
-        input[type="text"], input[type="date"], input[type="tel"], input[type="email"] {
+        input[type="password"], input[type="date"], input[type="tel"], input[type="email"] {
             width: 300%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
         }
-        button {
+        .button {
             background-color: #964B00;
             color: #fff;
             padding: 10px 20px;
@@ -39,7 +42,7 @@
             font-size: 16px;
             cursor: pointer;
         }
-        button:hover {
+        .button:hover {
             background-color: #CC9966;
         }
 </style>
@@ -71,25 +74,87 @@
         </ul>
       </div>
 
-<div id="content">
-   
-    <div id="changePassword">
+    <div id="content">
+      <form method="post" action="">
+        <div id="changePassword">
+        <?php
+        if (isset($_SESSION['email'])) {
+            $currentUser = $_SESSION['email'];
 
-          <label for="name">New Password:</label>
-          <input type="text" id="newPassword" name="newPassword" required>
+            if (isset($_POST['updatePassword'])) {
+                // Include your database connection file
+                include('connection.php');
+
+                $old_pass = trim($_POST['oldPass']); // Trim whitespace from the input
+                $new_pass = $_POST['newPass'];
+                $re_pass = $_POST['rePass'];
+
+                // Check the connection
+                if ($con->connect_error) {
+                    die("Connection failed: " . $con->connect_error);
+                }
+
+                // Use prepared statements to prevent SQL injection
+                $stmt = $con->prepare("SELECT * FROM customer WHERE email = ?");
+                $stmt->bind_param("s", $currentUser);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows === 1) {
+                    $row = $result->fetch_assoc();
+                    $stored_hashed_pwd = $row['password']; // Stored hashed password
+
+                    // Verify the old password using password_verify
+                    if (password_verify($old_pass, $stored_hashed_pwd)) {
+                        if ($new_pass === $re_pass) {
+                            // Hash the new password using password_hash
+                            $hashed_new_pass = password_hash($new_pass, PASSWORD_BCRYPT);
+
+                            // Use prepared statement to update the hashed password
+                            $update_stmt = $con->prepare("UPDATE customer SET password = ? WHERE email = ?");
+                            $update_stmt->bind_param("ss", $hashed_new_pass, $currentUser);
+                            $update_stmt->execute();
+                            $update_stmt->close();
+
+                            echo "<script>alert('Update Successfully'); window.location='changePassword.php'</script>";
+                        } else {
+                            echo "<script>alert('Your new and Retype Password do not match'); window.location='changePassword.php'</script>";
+                        }
+                    } else {
+                        echo "<script>alert('Your old password is incorrect'); window.location='changePassword.php'</script>";
+                    }
+                } else {
+                    // Handle the case when the user doesn't exist
+                    echo "<script>alert('User with email $currentUser not found'); window.location='changePassword.php'</script>";
+                }
+
+                // Close the database connection
+                $con->close();
+            }
+        } else {
+            echo "<script>alert('Session not found. Please log in.'); window.location='registerSignIn.php'</script>";
+        }
+        ?>
+
+          <label for="name">Old Password:</label>
+            <input type="password" name="oldPass" required>
           <br><br>
 
-          <label for="name">Reenter New Password:</label>
-          <input type="text" id="newPassword" name="newPassword" required>
+          <label for="name">New Password:</label>
+            <input type="password" name="newPass" required>
+          <br><br>
+
+          <label for="name">Re-Enter New Password:</label>
+            <input type="password" name="rePass" required>
           <br><br>
 
           </div>
 
+            <div id="header"> 
+            <input type="submit" class="button" name="updatePassword" value="Change Password">
+        </div>
+    </form>
 
-                    <div id="header"> 
-                    <a href="">Change Password</a>
-                   
-                     </div>
 
         <div class="featured">
                 <h2>Meet our Cutie Animals</h2>
