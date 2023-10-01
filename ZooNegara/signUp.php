@@ -76,7 +76,7 @@ button {
                             <p>Your Full Name:</p>
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="" required/>
+                                <input type="text" name="name" id="name" placeholder="E.g: Abu bin Ali" required/>
                             </div>
                             <p>Your Date Of Birth:</p>
                             <div class="form-group">
@@ -87,13 +87,13 @@ button {
                             <p>Your Phone Number:</p>
                             <div class="form-group">
                                 <label for="contactNumber"><i class="zmdi zmdi-smartphone"></i></label>
-                                <input type="number" name="contactNumber" id="contactNumber" placeholder="" required/>
+                                <input type="number" name="contactNumber" id="contactNumber" placeholder="E.g: 0172236871" required/>
                             </div>
 
                             <p>Your Email:</p>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="" required/>
+                                <input type="email" name="email" id="email" placeholder="E.g: abu@gmail.com" required/>
                             </div>
 
                             <p>Your Password:</p>

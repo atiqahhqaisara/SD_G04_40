@@ -21,8 +21,8 @@ require 'controllerAdminData.php'
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/cropperjs/dist/cropper.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -180,7 +180,7 @@ require 'controllerAdminData.php'
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
 						<a class="dropdown-item" href="change_password.php"><i class="dw dw-password"></i> Change Password</a>
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-						<a class="dropdown-item" href="/Dashboard/index.php"><i class="dw dw-logout"></i> Log Out</a>
+						<a class="dropdown-item" href="index.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -262,7 +262,7 @@ require 'controllerAdminData.php'
 		</div>
 	</div>
 
-	<!-- sidebar menu - left -->
+<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="dashboard_staff.php" >
@@ -342,249 +342,118 @@ require 'controllerAdminData.php'
 
 					</ul>
 					</li>
+					
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
 
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-12 col-sm-12">
-							<div class="title">
-								<h4>Profile</h4>
-							</div>
-							<nav aria-label="breadcrumb" role="navigation">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="http://localhost/Dashboard-Staff/dashboard_staff.php">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Profile</li>
-								</ol>
-							</nav>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
-						<div class="pd-20 card-box height-100-p">
-							<div class="card-body">
-								<div class="profile-photo">
-								<!-- Remove the pencil icon link -->
-								<!-- Display the user's profile image -->
-								<?php
-								$currentAdmin = $_SESSION['email'];
-								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-								$result = $con->query($sql);
+				
+			
+				<!-- Add Staff Form and PHP Code Start 
+				<?php /*
+				error_reporting(E_ALL);
+				ini_set('display_errors', 1);
+				// Include the database connection file (connection.php)
+				include 'connection.php';
 
-								if ($result && mysqli_num_rows($result) > 0) {
-									$row = mysqli_fetch_assoc($result);
-									$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
-									if (!empty($profileImage)) {
-										echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="profile-photo">';
-									} else {
-										echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
-									}
-								} else {
-									echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
-								}
-								?>
-							</div>
-								<!-- Fetch and display user profile information -->
-								<?php
-								$currentAdmin = $_SESSION['email'];
-								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-								$result = $con->query($sql);
+				// Check if the form is submitted
+				if (isset($_POST['addStaff'])) {
+			
+					// Retrieve form data and sanitize
+					$fullName = $_POST['fullName'];
+					$phone = $_POST['phone'];
+					$email = $_POST['email'];
+					$position = $_POST['position'];
+					$address = $_POST['address'];
+					$postal = $_POST['postal'];
+					$district = $_POST['district'];
+					$states = $_POST['states'];
+					$password = md5($_POST['password']);
 
-								if ($result) {
-									if (mysqli_num_rows($result) > 0) {
-										$row = mysqli_fetch_assoc($result);
-								?>
-										<h5 class="text-center h5 mt-3"><?php echo $row['fullName']; ?></h5>
-										<p class="text-center text-muted font-14"><?php echo $row['position']; ?></p>
-										<div class="profile-info">
-											<h5 class="mt-3 text-blue">Contact Information</h5>
-											<ul class="list-unstyled">
-												<li>
-													<span>Email Address:</span>
-													<?php echo $row['email']; ?>
-												</li>
-												<li>
-													<span>Phone Number:</span>
-													<?php echo $row['phone']; ?>
-												</li>
-												<li>
-													<span>Address:</span>
-													<?php echo $row['address']; ?><br>
-													<?php echo $row['postal']; ?><br>
-													<?php echo $row['district']; ?><br>
-													<?php echo $row['states']; ?>
-												</li>
-											</ul>
-										</div>
-								<?php
-									}
-								}
-								?>
-							</div>
-						</div>
-					</div>
-                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
-						<div class="card-box height-100-p overflow-hidden">
-							<div class="change_password-tab height-100-p">
-								<div class="tab height-100-p">
-									<ul class="nav nav-tabs customtab" role="tablist">
-										<li class="nav-item">
-											<a class="nav-link active" data-toggle="tab" href="#" role="tab">Change Password</a>
-										</li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane fade show active" id="setting" role="tabpanel">
-											<div class="change_password-setting">
-												<div class="container">
-													<br>
-													<?php
-													if (isset($_SESSION['email'])) {
-														$currentAdmin = $_SESSION['email'];
-														
-														if (isset($_POST['updatePassword'])) {
-															// Include your database connection file
-															include('connection.php');
-															
-															$old_pass = $_POST['oldPass'];
-															$new_pass = $_POST['newPass'];
-															$re_pass = $_POST['rePass'];
-															
-															// Check the connection
-															if ($con->connect_error) {
-																die("Connection failed: " . $con->connect_error);
-															}
-															
-															// Use prepared statements to prevent SQL injection
-															$stmt = $con->prepare("SELECT * FROM admin WHERE email = ?");
-															$stmt->bind_param("s", $currentAdmin);
-															$stmt->execute();
-															$result = $stmt->get_result();
-															
-															if ($result->num_rows === 1) {
-																$row = $result->fetch_assoc();
-																$stored_md5_pwd = $row['password']; // Stored MD5 hashed password
-																
-																// Verify the old password using MD5 hashing
-																if (md5($old_pass) === $stored_md5_pwd) {
-																	if ($new_pass === $re_pass) {
-																		// Hash the new password using MD5
-																		$hashed_new_pass = md5($new_pass);
-																		
-																		// Use prepared statement to update the MD5 hashed password
-																		$update_stmt = $con->prepare("UPDATE admin SET password = ? WHERE email = ?");
-																		$update_stmt->bind_param("ss", $hashed_new_pass, $currentAdmin);
-																		$update_stmt->execute();
-																		$update_stmt->close();
-																		
-																		echo "<script>alert('Update Successfully'); window.location='change_password.php'</script>";
-																	} else {
-																		echo "<script>alert('Your new and Retype Password do not match'); window.location='change_password.php'</script>";
-																	}
-																} else {
-																	echo "<script>alert('Your old password is incorrect'); window.location='change_password.php'</script>";
-																}
-															} else {
-																// Handle the case when the user doesn't exist
-																echo "<script>alert('User with email $currentAdmin not found'); window.location='change_password.php'</script>";
-															}
-															
-															// Close the database connection
-															$con->close();
-														}
-													} else {
-														echo "<script>alert('Session not found. Please log in.'); window.location='login.php'</script>";
-													}
-													?>
-													<form action="" method="POST">
-														<h4 class="text-blue h5 mb-4">Change Your Password</h4>
-														<ul class="change_password-edit-list row">
-															<li class="weight-500 col-md-6">
-																<div class="form-group">
-																	<label for="oldPassword">Old Password</label>
-																	<input class="form-control form-control-lg" type="password" id="oldPass" name="oldPass" required>
-																</div>
-																<div class="form-group">
-																	<label for="newPassword">New Password</label>
-																	<input class="form-control form-control-lg" type="password" id="newPass" name="newPass" required>
-																</div>
-																<div class="form-group">
-																	<label for="newPassword">Re-Type Password</label>
-																	<input class="form-control form-control-lg" type="password" id="newPassword" name="rePass" required>
-																</div>
-																<div class="form-group mb-0">
-																	<input type="submit" class="btn btn-primary" name="updatePassword" value="Update">
-																</div>
-															</li>
-														</ul>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
+					// Construct the SQL query to insert the staff record using prepared statements
+					$sql = "INSERT INTO admin (fullName, phone, email, position, address, postal, district, states, password) 
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+					// Create a prepared statement
+					$stmt = mysqli_prepare($con, $sql);
+
+					
+					if ($stmt) {
+						// Bind parameters and execute the statement
+						mysqli_stmt_bind_param($stmt, "sssssssss", $fullName, $phone, $email, $position, $address, $postal, $district, $states, $password);
+
+						if (mysqli_stmt_execute($stmt)) {
+							// Redirect to home page
+							// header("Location: /Dashboard/staffList.php");
+							echo "<script>window.location.href='/Dashboard/staffList.php'</script>";
+							exit(); // Make sure to exit to prevent further execution
+						} else {
+							// Display error message and redirect back to add employee page
+							echo "Something went wrong, try again...";
+						}
+
+						// Close the statement
+						mysqli_stmt_close($stmt);
+					} 
+				} 
+				// Close the database connection
+				mysqli_close($con);
+				*/
+				?>
+				-->
+
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h4 class="text-blue h4">Edit Events</h4>
+                            <p class="mb-30">Edit events</p>
+                        </div>
+                    </div>
+                   
+                    <form action="" method="POST">
+                       
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Title of the Events</label>
+                            <div class="col-sm-12 col-md-10">
+                            	<select class="form-control" name=" " required>
+                            		<option value=" " selected>a</option>
+                            		<option value=" " selected>b</option>
+                            	</select>
+                            </div>
+                        </div>      
+
+						 <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Date of the Events</label>
+                            <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="date" name=" " required>
+                            </div>
+                        </div>      
+						
+						  <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Description of the Events</label>
+                            <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" name=" " required>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-10 offset-md-2">
+                                <button type="submit" class="btn btn-primary" name=" ">Edit Events</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 			</div>
 		</div>
 	</div>
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
-		<script src="vendors/scripts/script.min.js"></script>
-		<script src="vendors/scripts/process.js"></script>
-		<script src="vendors/scripts/layout-settings.js"></script>
-		<script src="src/plugins/cropperjs/dist/cropper.js"></script>
-		<script>
-			window.addEventListener("DOMContentLoaded", function () {
-				var image = document.getElementById("image");
-				var cropBoxData;
-				var canvasData;
-				var cropper;
-
-				$("#modal")
-					.on("shown.bs.modal", function () {
-						cropper = new Cropper(image, {
-							autoCropArea: 0.5,
-							dragMode: "move",
-							aspectRatio: 3 / 3,
-							restore: false,
-							guides: false,
-							center: false,
-							highlight: false,
-							cropBoxMovable: false,
-							cropBoxResizable: false,
-							toggleDragModeOnDblclick: false,
-							ready: function () {
-								cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-							},
-						});
-					})
-					.on("hidden.bs.modal", function () {
-						cropBoxData = cropper.getCropBoxData();
-						canvasData = cropper.getCanvasData();
-						cropper.destroy();
-					});
-			});
-		</script>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript
-			><iframe
-				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
-				height="0"
-				width="0"
-				style="display: none; visibility: hidden"
-			></iframe
-		></noscript>
-		<!-- End Google Tag Manager (noscript) -->
-	</body>
+	<script src="vendors/scripts/script.min.js"></script>
+	<script src="vendors/scripts/process.js"></script>
+	<script src="vendors/scripts/layout-settings.js"></script>
+</body>
 </html>

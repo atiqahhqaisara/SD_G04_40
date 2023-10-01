@@ -300,25 +300,44 @@ require 'controllerAdminData.php'
 					<li>
 						<div class="sidebar-small-cap">Zoo Negara Website</div>
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/index.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Homepage</span>
-						</a>
+						<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon dw dw-invoice"></span><span class="mtext">Ticket Price</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="http://localhost/ZooNegara/buyTicketSignUp.php">View Ticket Price</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/addTicketPrice.php">Add Ticket Price</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/editTicketPrice.php">Edit Ticket Price</a></li>
+						<li><a href=" ">Delete Ticket Price</a></li>
+						
+					</ul>
 					</li>
-					<li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Ticket Price</span>
-						</a>
+
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/events.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Events</span>
-						</a>
+					<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon dw dw-invoice"></span><span class="mtext">Events</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="http://localhost/ZooNegara/events.php">View Events</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/addEvents.php">Add Events</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/editEvents.php">Edit Events</a></li>
+						<li><a href="">Delete Events</a></li>
+
+					</ul>
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/info.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Promotions</span>
-						</a>
+
+					<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon dw dw-invoice"></span><span class="mtext">Promotions</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="http://localhost/ZooNegara/info.php">View Promotions</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/addPromotions.php">Add Promotions</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/editPromotions.php">Edit Promotions</a></li>
+						<li><a href="">Delete Events</a></li>
+
+					</ul>
 					</li>
 					
 				</ul>
@@ -338,7 +357,7 @@ require 'controllerAdminData.php'
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item"><a href="http://localhost/Dashboard-Staff/dashboard_staff.php">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Profile</li>
 								</ol>
 							</nav>

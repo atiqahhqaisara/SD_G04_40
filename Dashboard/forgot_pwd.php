@@ -159,11 +159,7 @@ $error = "";
 						<img src="vendors/images/deskapp-logo.svg" alt="" />
 					</a>
 				</div>
-				<div class="login-menu">
-					<ul>
-						<li><a href="#">Login</a></li>
-					</ul>
-				</div>
+				
 			</div>
 		</div>
 		<div
