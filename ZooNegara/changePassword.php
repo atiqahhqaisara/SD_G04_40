@@ -151,7 +151,7 @@ require 'controllerUserData.php'
           </div>
 
             <div id="header"> 
-            <input type="submit" class="button" name="updatePassword" value="Change Password">
+            <input type="submit" class="button" name="updatePassword" value="Change Password"><br><br>
         </div>
     </form>
 

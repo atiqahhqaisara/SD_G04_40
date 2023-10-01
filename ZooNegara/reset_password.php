@@ -84,12 +84,12 @@
                         <input class="form-control" type="email" name="email" placeholder="Enter email address" required value="<?php echo $email ?>">
                     </div>
                     <div class="form-group text-center"> <!-- This new div is added for centering -->
-                        <input class="button" type="submit" name="check-email" value="Continue">
+                       <br><br><br> <input class="button" type="submit" name="check-email" value="Continue">
                     </div>
                     </form>
-                    
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div class="featured">
+       
+        <br><br><br><br>
+         <div class="featured">
         <h2>Meet our Cutie Animals</h2>
         <ul>
           <li class="first"> <a href="#"><img src="images/lion.png" alt=""/></a> <a href="#">Lion</a> </li>
@@ -98,7 +98,8 @@
           <li> <a href="#"><img src="images/capybara.png" alt=""/></a> <a href="#">Capybara</a> </li>
           <li> <a href="#"><img src="images/zif.png" alt=""/></a> <a href="#">Giraffe</a> </li>
         </ul>
-      </div>
+            </div>
+
     </div>
   </div>
   

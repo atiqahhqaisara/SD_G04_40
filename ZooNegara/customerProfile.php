@@ -27,7 +27,7 @@ require 'controllerUserData.php'
             font-weight: bold;
         }
         input[type="text"], input[type="date"], input[type="tel"], input[type="email"] {
-            width: 300%;
+            width: 60%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -117,9 +117,12 @@ require 'controllerUserData.php'
                     <br><br><label for="email">Email:</label>
                     <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>">
                 
-                    <br><br><button type="submit" name="UpdateCust">Edit Profile</button><br><br><br><br>
-                    <button type="submit"><a href="changePassword.php"></a>Change Password</button><br><br><br><br>
+                    <br><br><button type="submit" name="UpdateCust">Edit Profile</button><br><br><br>
 
+                    <div id="header"> 
+                    <a href="changePassword.php">Change Password</a>
+                    </div>
+                    <br>
       </form>
       <?php
               }
@@ -138,7 +141,6 @@ require 'controllerUserData.php'
                 <li> <a href="#"><img src="images/zif.png" alt=""/></a> <a href="#">Giraffe</a> </li>
                 <li> <a href="#"><img src="images/gibbon.png" alt=""/></a> <a href="#">White Gibbon</a> </li>
                 <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>
-                <li> <a href="#"><img src="images/deer.png" alt=""/></a> <a href="#">Spotted Deer</a> </li>
       </ul>
                 </ul>
         </div>
