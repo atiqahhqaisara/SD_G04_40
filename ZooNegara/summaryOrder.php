@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Zoo Negara | Profile</title>
+    <title>Zoo Negara | Book Ticket</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 
@@ -24,7 +24,7 @@
             font-weight: bold;
         }
         input[type="text"], input[type="date"], input[type="tel"], input[type="email"] {
-            width: 300%;
+            width: 40%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -59,9 +59,9 @@
             <h2><a href="#">Learn</a></h2>
             <span>Get to know the animals</span> </li>
         </ul>
-      
+       
         <ul id="navigation">
-          <li id="link1" class="selected"><a href="customerProfile.php">Profile</a></li>
+          <li id="link1"><a href="customerProfile.php">Profile</a></li>
           <li id="link1"><a href="homepage.php">Home</a></li>
           <li id="link2"><a href="zooCustomer.php">The Zoo</a></li>
           <li id="link3"><a href="infoCustomer.php">Visitors Info</a></li>
@@ -71,30 +71,41 @@
         </ul>
       </div>
 
-<div id="content">
-    <div id="profile">
-        <h1>Your Profile</h1>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+<div id="content" >
+   <h1 style = "text-align: center"> Summary Order </h1>
+   <h2> &emsp; Selected Date: </h2>
+   &emsp;&emsp;<input type="date" id="selectedDate" name="selectedDate" required>
+   <br>
+   <br>
 
-                    <br><br><label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" name="dob" required>
-
-                    <br><br><label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-
-                    <br><br><label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br>
-
-                    </div> 
+   <!-- info ticket here --> 
+   <h2> &emsp; Ticket Info  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Quantity </h2>
+   &emsp;&emsp;<input type="text" id="selectedTicket" name="selectedTicket" required>
+   &emsp;&emsp;&emsp;<input type="text" id="selectedTicket" name="selectedTicket" required>
+   <br>
+   <br>
 
 
-                    <div id="header"> 
-                    <a href="">Edit Profile</a>
-                    <a href="changePassword.php">Change Password</a>
-                   
+   <hr>
+   
+   <h2> &emsp; Total:</h2>
+   &emsp;&emsp;<input type="text" id="selectedTicket" name="selectedTicket" required>
+   <br> <br>
+   <hr>
+   <br>
 
-                    </div>
+   &emsp; &emsp; <a>Name: </a>
+   <br>
+   &emsp; &emsp; <a>Email: </a>
+   <br>
+   &emsp; &emsp; <a>Phone Number: </a>
+   <br>
+
+    <div id="header"> 
+        <br>
+        <a>Pay Now</a>
+       
+        </div>
 
         <div class="featured">
                 <h2>Meet our Cutie Animals</h2>
@@ -107,7 +118,6 @@
                 <li> <a href="#"><img src="images/gibbon.png" alt=""/></a> <a href="#">White Gibbon</a> </li>
                 <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>
                 <li> <a href="#"><img src="images/deer.png" alt=""/></a> <a href="#">Spotted Deer</a> </li>
-      </ul>
                 </ul>
         </div>
     

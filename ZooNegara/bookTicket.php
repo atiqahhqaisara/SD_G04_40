@@ -3,11 +3,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Zoo Negara | Ticket Price and Operation Hours</title>
+<title>Zoo Negara | Book Ticket</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-    <title>Zoo Negara | Profile</title>
+    <title>Zoo Negara | Book Ticket</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 
@@ -30,9 +30,10 @@
         label {
             display: block;
             font-weight: bold;
+            line-height: 3.5
         }
-        input[type="text"], input[type="date"], input[type="tel"], input[type="email"] {
-            width: 300%;
+        input[type="text"], input[type="date"], input[type="tel"], input[type="email"], input[type="number"] {
+            width: 37%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -50,6 +51,9 @@
         button:hover {
             background-color: #CC9966;
         }
+
+        
+
 </style>
 </head>
 <body>
@@ -80,21 +84,37 @@
     </ul>
   </div>
   <div id="content">
+    <div id="tickets">
+       <h1><br>Booking Details</h1>
+            <label for="booking">Select Date:</label>
+            <input type="date" id="booking" name="booking" required>
 
-  <div id="tickets">
-      <h1 style="text-align:center"><br>Tickets Price and Operation Hours</h1>
-      <a href="#"><img src="images/openinghourrate.png" alt="" weight = 500px height = 440px /></a></a>
+            <label for="ticket">Select Ticket:</label>
+            <label for="visitors">Malaysian (MyKad) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Foreigner (i-KAD)</label>
 
-<div id ="header"> 
-<br><br>
-        
-       <a href= "bookTicket.php">Book Here</a>
+            <a><br>Adult - RM45.00&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Adult - RM50.00 </a>
+            <br><input type = "number" id="MYadult" name="MYadult" min="1" max="10">
+            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <input type = "number" id="Iadult" name="Iadult" min="1" max="10"><br>
+
+            <a><br>Children (3 to 12 years old) - RM18.00  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Children (3 to 12 years old) - RM25.00 </a></a>
+            <br><input type = "number" id="MYchild" name="MYchild" min="1" max="10">
+            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <input type = "number" id="Ichild" name="Ichild" min="1" max="10"><br>
+
+            <a><br>Senior Citizen (60 years and above) - RM23.00&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Senior Citizen (60 years and above) - RM50.00 </a>
+            <br><input type = "number" id="MYsenior" name="MYsenior" min="1" max="10">
+            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <input type = "number" id="Isenior" name="Isenior" min="1" max="10"><br>
+
+        <div id="header"> 
+        <br>
+        <a href="summaryOrder.php">Next</a>
        
-      </div>
+        </div>
 
 
-      
-    </div>
+   </div>
 
   <div class="featured">
       <h2>Meet our Cutie Animals</h2>
@@ -124,6 +144,7 @@
         <li><a href="blogCustomer.php">Blog</a></li>
         <li><a href="galleryCustomer.php">Gallery</a></li>
         <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
+
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

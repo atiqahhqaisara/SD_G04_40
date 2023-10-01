@@ -18,11 +18,15 @@ button {
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
+            font-family: Arial;
         }
         button:hover {
             background-color: #CC9966;
         }
 
+h2{
+  font-family: Arial;
+}
 </style>
 
 <body>

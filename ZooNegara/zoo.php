@@ -19,7 +19,6 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
     <ul id="navigation">
       <li id="link1"><a href="registerSignIn.php">Profile</a></li>
       <li id="link1"><a href="index.php">Home</a></li>
@@ -34,14 +33,17 @@
     <div id="zoo">
       <h1>Zoo Negara Malaysia</h1>
       <h3>About Us</h3>
-      <p>Zoo Negara Malaysia is managed by the Malaysian Zoological Society, a non-governmental organization established to create the first local zoo for Malaysians. Zoo Negara was officially opened on 14th November 1963 and has matured into a well-known zoo all around the world. We have a total of over 5137 specimen from 476 species of mammals, birds, reptiles, amphibians and fish.</p>
+      <img src="images/bannerZoo.png" alt="" weight = 900px height = 120px/></a>
+      <p>Zoo Negara Malaysia is managed by the Malaysian Zoological Society, a non-governmental organization established to create the first local zoo for Malaysians.</p>
+      <p>Zoo Negara was officially opened on 14th November 1963 and has matured into a well-known zoo all around the world. We have a total of over 5137 specimen from 476 species of mammals, birds, reptiles, amphibians and fish.</p>
       <h3>Vision</h3>
       <p>To be one of the world’s premier zoological park and aquaria dedicated to conservation, recreation, education, training and research of various animal and plant species.</p>
       <h3>Mission</h3>
       <p>1. To provide an outstanding and dynamic habitat for animals and plant life and incorporating high quality animal health care and husbandry.</p>
       <p>2. To be the leader and innovator in wildlife conservation, recreation, education, training and research.</p>
       <p>3. To collaborate and disseminate scientific knowledge to local, regional and worldwide zoos through our science-based approach to wildlife management.</p>
-      <h3>Logo of Zoo Negara</h3>
+      <h3>Logo of Zoo Negara</h3><br>
+      <img src="images/sangkancil.png" alt=""/></a>
       <h4>The Malaysian Zoological Society has adopted the drawing of a mouse deer or “Sang Kancil” as the Society’s emblem.</h4>
       <h4>Sang Kancil is a clever, tricky mouse deer who is always finding himself in predicaments with animals that want to eat him or harm him, but he cleverly manages to escape each time.</h4>
     </div>
@@ -71,6 +73,7 @@
         <li><a href="events.php">Events</a></li>
         <li><a href="blog.php">Blog</a></li>
         <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

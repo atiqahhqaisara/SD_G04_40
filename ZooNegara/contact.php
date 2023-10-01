@@ -19,7 +19,6 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
     <ul id="navigation">
       <li id="link1"><a href="registerSignIn.php">Profile</a></li>
       <li id="link1"><a href="index.php">Home</a></li>
@@ -35,20 +34,17 @@
       <h4>For any enquiries, call our general lines +603-4108 3422 / +603-4108 3424 and ask for the following Department:</h4>
       <h4><br>Location :</h4>
       <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia.</p>
+      <h4>Operating Hours :</h4>
+      <p>Open Daily: 9:30 AM - 5:00 PM</p> 
       <h4>Reception Counter :</h4>
       <p>receptionist@zoonegaramalaysia.my</p>
-      <h4>Customer Service :</h4>
+      <br><h4>Customer Service :</h4>
       <p>customerservice@zoonegaramalaysia.my</p>
       <h4>Administration :</h4>
       <p>admindepartment@zoonegaramalaysia.my</p>
       <h4>Public Relations & Marketing :</h4>
       <p>marketing@zoonegaramalaysia.my</p>
       <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a>
-      <form action="#">
-        <h3>Subscribe to our</h3>
-        <h2>NEWSLETTER</h2>
-        <input type="text" value="your email here..." onBlur="this.value=!this.value?'your email here...':this.value;" onFocus="this.select()" onClick="this.value='';" />
-      </form>
     </div>
     <div class="featured">
       <h2>Meet our Cutie Animals</h2>
@@ -76,6 +72,8 @@
         <li><a href="events.php">Events</a></li>
         <li><a href="blog.php">Blog</a></li>
         <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
+
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
+
 <body>
 <div id="page">
   <div id="header"> <a href="index.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
@@ -19,7 +20,6 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
     <ul id="navigation">
       <li id="link1"><a href="registerSignIn.php">Profile</a></li>
       <li id="link1"><a href="index.php">Home</a></li>
@@ -70,6 +70,7 @@
         <li><a href="events.php">Events</a></li>
         <li><a href="blog.php">Blog</a></li>
         <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

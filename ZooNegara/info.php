@@ -19,7 +19,6 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
     <ul id="navigation">
       <li id="link1"><a href="registerSignIn.php">Profile</a></li>
       <li id="link1"><a href="index.php">Home</a></li>
@@ -32,7 +31,7 @@
   <div id="content">
     <div id="info">
       <h1>Visitors Info</h1>
-      <a href="https://www.zoonegara.my/map.php" id="zooNegara">Zoo Negara Map</a>
+      <p><a href="https://www.zoonegara.my/map.html" id="zooNegara">Zoo Negara Map</a></p>
       <ul>
         <li>
           <h2><a href="#">Getting Here: </a></h2>
@@ -92,6 +91,8 @@
         <li><a href="events.php">Events</a></li>
         <li><a href="blog.php">Blog</a></li>
         <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
+
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

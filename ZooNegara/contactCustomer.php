@@ -19,7 +19,6 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="buyTicketSignUp.php">Buy tickets Now</a>
     <ul id="navigation">
       <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1"><a href="homepage.php">Home</a></li>
@@ -38,6 +37,8 @@
       <h4>For any enquiries, call our general lines +603-4108 3422 / +603-4108 3424 and ask for the following Department:</h4>
       <h4><br>Location :</h4>
       <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia.</p>
+      <h4>Operating Hours :</h4>
+      <p>Open Daily: 9:30 AM - 5:00 PM</p> 
       <h4>Reception Counter :</h4>
       <p>receptionist@zoonegaramalaysia.my</p>
       <h4>Customer Service :</h4>
@@ -46,13 +47,9 @@
       <p>admindepartment@zoonegaramalaysia.my</p>
       <h4>Public Relations & Marketing :</h4>
       <p>marketing@zoonegaramalaysia.my</p>
-      <a href="#" id="facebook">Facebook</a> <a href="#" id="twitter">Twitter</a>
-      <form action="#">
-        <h3>Subscribe to our</h3>
-        <h2>NEWSLETTER</h2>
-        <input type="text" value="your email here..." onBlur="this.value=!this.value?'your email here...':this.value;" onFocus="this.select()" onClick="this.value='';" />
-      </form>
+      <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a>
     </div>
+    
     <div class="featured">
       <h2>Meet our Cutie Animals</h2>
       <ul>
@@ -79,6 +76,7 @@
         <li><a href="eventsCustomer.php">Events</a></li>
         <li><a href="blogCustomer.php">Blog</a></li>
         <li><a href="galleryCustomer.php">Gallery</a></li>
+
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

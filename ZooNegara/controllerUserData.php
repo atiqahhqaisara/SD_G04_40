@@ -120,7 +120,7 @@ if(isset($_POST['signup'])){
                     header('location: cust_otp.php');
                 }
             }else{
-                $errors['email'] = "Incorrect email or password!";
+                $errors['email'] = "<span style='color: red;'>Incorrect email or password!</span>";
             }
         }else{
             $errors['email'] = "It's look like you're not yet a member! Click on the bottom link to signup.";

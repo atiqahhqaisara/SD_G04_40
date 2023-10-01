@@ -121,6 +121,7 @@
         <li><a href="events.php">Events</a></li>
         <li><a href="blog.php">Blog</a></li>
         <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>
