@@ -1,13 +1,12 @@
 <?php
 require 'controllerAdminData.php'
 ?>
-<!DOCTYPE html
-
+<!DOCTYPE html>
 <html>
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Admin Dashboard</title>
+	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -22,9 +21,8 @@ require 'controllerAdminData.php'
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
-	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
+
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -60,9 +58,8 @@ require 'controllerAdminData.php'
 						<i class="dw dw-search2 search-icon"></i>
 						<input type="text" class="form-control search-input" placeholder="Search Here">
 						<div class="dropdown">
-							
-							<a class="dropdown-toggle " href="#" role="button" data-toggle="dropdown">
-								<i class="icon-arrow-down-c"></i>
+							<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+								<i class="ion-arrow-down-c"></i>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<div class="form-group row">
@@ -158,8 +155,8 @@ require 'controllerAdminData.php'
 			</div>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
-					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-					<?php
+						<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+						<?php
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
@@ -265,10 +262,10 @@ require 'controllerAdminData.php'
 		</div>
 	</div>
 
-	<!-- sidebar menu - left -->
+<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/Dashboard/dashboard_admin.php" >
+			<a href="dashboard_staff.php" >
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -289,16 +286,6 @@ require 'controllerAdminData.php'
 						</ul>
 					</li>
 					
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
-						</a>
-						<ul class="submenu">
-							<li><a href="addStaff.php">Add Staff</a></li>
-							<li><a href="staffList.php">Staff List</a></li>
-						</ul>
-					
-					</li>
 					<li>
 						<a href="chat.html" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
@@ -316,20 +303,44 @@ require 'controllerAdminData.php'
 							<span class="micon dw dw-invoice"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-					<li>
-						<a href="addTicketPrice.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Ticket Price</span>
-						</a>
+					<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon dw dw-invoice"></span><span class="mtext">Ticket Price</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="http://localhost/ZooNegara/buyTicketSignUp.php">View Ticket Price</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/addTicketPrice.php">Add Ticket Price</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/editTicketPrice.php">Edit Ticket Price</a></li>
+						<li><a href=" ">Delete Ticket Price</a></li>
+						
+					</ul>
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/events.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Events</span>
-						</a>
+
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/info.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Promotions</span>
-						</a>
+					<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon dw dw-invoice"></span><span class="mtext">Events</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="http://localhost/ZooNegara/events.php">View Events</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/addEvents.php">Add Events</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/editEvents.php">Edit Events</a></li>
+						<li><a href="">Delete Events</a></li>
+
+					</ul>
+					</li>
+
+					<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon dw dw-invoice"></span><span class="mtext">Promotions</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="http://localhost/ZooNegara/info.php">View Promotions</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/addPromotions.php">Add Promotions</a></li>
+						<li><a href="http://localhost/Dashboard-Staff/Promotions.php">Edit Promotions</a></li>
+						<li><a href="">Delete Events</a></li>
+
+					</ul>
 					</li>
 					
 				</ul>
@@ -339,241 +350,91 @@ require 'controllerAdminData.php'
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
-		<div class="pd-ltr-20">
-			<div class="card-box pd-20 height-50-p mb-30">
-				<div class="row align-items-center">
-					<div class="col-md-4">
-						<img src="vendors/images/banner-img.png" alt="">
-					</div>
-					<div class="col-md-8">
-						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back 
-							<?php
-							$currentAdmin = $_SESSION['email'];
-							$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-							$result = $con->query($sql);
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				
+				<?php 
+				include 'connection.php';
+				if (isset($_POST['addTicket'])) {
+			
+					// Retrieve form data and sanitize
+					$visitor = $_POST['visitor'];
+					$category = $_POST['category'];
+					$price = $_POST['price'];
+				
+					$sql = "INSERT INTO ticket (visitor,category,price) 
+							VALUES (?, ?, ?)";
 
-						if ($result && mysqli_num_rows($result) > 0) {
-							$row = mysqli_fetch_assoc($result);
-							$fullName = $row['fullName']; // Assuming the column name is 'fullName'
-							echo '<div class="weight-600 font-30 text-blue">' . $fullName . '</div>';
-						}	
-						?>
-						</h4>
-						<p class="font-18 max-width-600">"Every challenge you face is an opportunity for growth, and with determination and resilience, you have the power to turn obstacles into stepping stones on your journey to success."</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">2020</div>
-								<div class="weight-600 font-14">Contact</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">400</div>
-								<div class="weight-600 font-14">Deals</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">350</div>
-								<div class="weight-600 font-14">Campaign</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 mb-30">
-					<div class="card-box height-100-p widget-style1">
-						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
-							</div>
-							<div class="widget-data">
-								<div class="h4 mb-0">$6060</div>
-								<div class="weight-600 font-14">Worth</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xl-8 mb-30">
-					<div class="card-box height-100-p pd-20">
-						<h2 class="h4 mb-20">Activity</h2>
-						<div id="chart5"></div>
-					</div>
-				</div>
-				<div class="col-xl-4 mb-30">
-					<div class="card-box height-100-p pd-20">
-						<h2 class="h4 mb-20">Lead Target</h2>
-						<div id="chart6"></div>
-					</div>
-				</div>
-			</div>
-			<div class="card-box mb-30">
-				<h2 class="h4 pd-20">Best Selling Products</h2>
-				<table class="data-table table nowrap">
-					<thead>
-						<tr>
-							<th class="table-plus datatable-nosort">Product</th>
-							<th>Name</th>
-							<th>Color</th>
-							<th>Size</th>
-							<th>Price</th>
-							<th>Oty</th>
-							<th class="datatable-nosort">Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="table-plus">
-								<img src="vendors/images/product-1.jpg" width="70" height="70" alt="">
-							</td>
-							<td>
-								<h5 class="font-16">Shirt</h5>
-								by John Doe
-							</td>
-							<td>Black</td>
-							<td>M</td>
-							<td>$1000</td>
-							<td>1</td>
-							<td>
-								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-										<i class="dw dw-more"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-plus">
-								<img src="vendors/images/product-2.jpg" width="70" height="70" alt="">
-							</td>
-							<td>
-								<h5 class="font-16">Boots</h5>
-								by Lea R. Frith
-							</td>
-							<td>brown</td>
-							<td>9UK</td>
-							<td>$900</td>
-							<td>1</td>
-							<td>
-								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-										<i class="dw dw-more"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-plus">
-								<img src="vendors/images/product-3.jpg" width="70" height="70" alt="">
-							</td>
-							<td>
-								<h5 class="font-16">Hat</h5>
-								by Erik L. Richards
-							</td>
-							<td>Orange</td>
-							<td>M</td>
-							<td>$100</td>
-							<td>4</td>
-							<td>
-								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-										<i class="dw dw-more"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-plus">
-								<img src="vendors/images/product-4.jpg" width="70" height="70" alt="">
-							</td>
-							<td>
-								<h5 class="font-16">Long Dress</h5>
-								by Renee I. Hansen
-							</td>
-							<td>Gray</td>
-							<td>L</td>
-							<td>$1000</td>
-							<td>1</td>
-							<td>
-								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-										<i class="dw dw-more"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="table-plus">
-								<img src="vendors/images/product-5.jpg" width="70" height="70" alt="">
-							</td>
-							<td>
-								<h5 class="font-16">Blazer</h5>
-								by Vicki M. Coleman
-							</td>
-							<td>Blue</td>
-							<td>M</td>
-							<td>$1000</td>
-							<td>1</td>
-							<td>
-								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-										<i class="dw dw-more"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+					// Create a prepared statement
+					$stmt = mysqli_prepare($con, $sql);
+
+					
+					if ($stmt) {
+						// Bind parameters and execute the statement
+						mysqli_stmt_bind_param($stmt, "sss", $visitor,$category,$price);
+
+						if (mysqli_stmt_execute($stmt)) {
+							echo "<script>window.location.href='/Dashboard/ticketList.php'</script>";
+							exit(); // Make sure to exit to prevent further execution
+						} else {
+							// Display error message and redirect back to add employee page
+							echo "Something went wrong, try again...";
+						}
+
+						// Close the statement
+						mysqli_stmt_close($stmt);
+					} 
+				} 
+				// Close the database connection
+				mysqli_close($con);
+				
+				?>
+				
+
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h4 class="text-blue h4">Add Ticket Price</h4>
+                            <p class="mb-30">Add new ticket price</p>
+                        </div>
+                    </div>
+                   
+                    <form action="" method="POST">
+                       
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Visitor</label>
+                            <div class="col-sm-12 col-md-10">
+                            	<select class="form-control" name="visitor" required>
+                            		<option value="Malaysian" selected>Malaysian</option>
+                            		<option value="Foreigner" >Foreigner</option>
+                            	</select>
+                            </div>
+                        </div>      
+
+						<div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Category</label>
+                            <div class="col-sm-12 col-md-10">
+                            	<select class="form-control" name="category" required>
+                            		<option value="Adult" selected>Adult</option>
+                            		<option value="Children" >Children</option>
+                            		<option value="Senior Citizen" >Senior Citizen</option>
+                            	</select>
+                            </div>
+                        </div>   
+						
+						 <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Ticket Price</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="number" name="price" required placeholder="RM">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-10 offset-md-2">
+                                <button type="submit" class="btn btn-primary" name="addTicket">Add Ticket Price</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -582,11 +443,5 @@ require 'controllerAdminData.php'
 	<script src="vendors/scripts/script.min.js"></script>
 	<script src="vendors/scripts/process.js"></script>
 	<script src="vendors/scripts/layout-settings.js"></script>
-	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
-	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<script src="vendors/scripts/dashboard.js"></script>
 </body>
 </html>
