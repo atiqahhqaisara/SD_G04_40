@@ -50,6 +50,19 @@
         button:hover {
             background-color: #CC9966;
         }
+
+        table {
+            font-family: arial, sans-serif;
+             border-collapse: collapse;
+              width: 100%;
+        }
+
+        td, th {
+             border: 1px solid #dddddd;
+            text-align: left;
+             padding: 8px;
+            }
+
 </style>
 </head>
 <body>
@@ -82,13 +95,27 @@
   <div id="content">
 
   <div id="tickets">
-      <h1 style="text-align:center"><br>Tickets Price and Operation Hours</h1>
-      <a href="#"><img src="images/openinghourrate.png" alt="" weight = 500px height = 440px /></a></a>
+      <h1 style="text-align:center"><br>Ticket Price and Operation Hours</h1>
+         <table>
+    <tr>
+        <th>Ticket ID</th>
+        <th>Visitor</th>
+        <th>Category</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Malaysian</td>
+        <td>Senior Citizen</td>
+        <td>RM20.00</td>
+    </tr>
+        </table>
 
+<a href="#"><img src="images/openinghourrate.png" alt="" weight = 500px height = 440px /></a></a>
 <div id ="header"> 
 <br><br>
         
-       <a href= "bookTicket.php">Book Here</a>
+       <a style="margin:auto; text-align:center;" href= "bookTicket.php">Book Here</a>
        
       </div>
 

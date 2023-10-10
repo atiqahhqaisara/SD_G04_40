@@ -109,18 +109,18 @@
       </form>
       <img src="images/penguin2.jpg" alt=""/> </div>
   </div>
-  <div id="footer">
-    <div> <a href="#" class="logo"><img src="images/capybaraFooter3.png" alt=""/></a>
+ <div id="footer">
+    <div> <a href="#" class="logo"><img src="images/capybaraFooter.png" alt=""/></a>
       <div>
         <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia</p>
         <span>For enquiries, please call : </span><span>+603-4108 3422</span><span>Fax : +603-4107 5375</span> <span>Email: @zoonegaramalaysia.com</span> </div>
       <ul class="navigation">
-        <li><a href="homepage.php">Home</a></li>
-        <li><a href="ticketsCustomer.php">Tickets</a></li>
-        <li><a href="zooCustomer.php">The Zoo</a></li>
-        <li><a href="eventsCustomer.php">Events</a></li>
-        <li><a href="blogCustomer.php">Blog</a></li>
-        <li><a href="galleryCustomer.php">Gallery</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="tickets.php">Tickets</a></li>
+        <li><a href="zoo.php">The Zoo</a></li>
+        <li><a href="events.php">Events</a></li>
+        <li><a href="blog.php">Blog</a></li>
+        <li><a href="gallery.php">Gallery</a></li>
         <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
       </ul>
       <ul>
@@ -130,7 +130,7 @@
       </ul>
       <p><br>Copyright &copy; <a href="#">Zoo Negara 2023</a> - All Rights Reserved | <a target="_blank" href="index.php">zoonegaramalaysia.my</a></p>
     </div>
-  </div>
+    </div>
 </div>
 </body>
 </html>

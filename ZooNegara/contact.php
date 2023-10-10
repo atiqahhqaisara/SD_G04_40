@@ -30,7 +30,8 @@
   </div>
   <div id="content">
     <div id="contact">
-      <h1>Contact Information</h1>
+      <a href="#"><img src="images/zn(contact).jpg" width=800 height=240 alt=""/></a> <br>
+      <br><h1>Contact Information</h1>
       <h4>For any enquiries, call our general lines +603-4108 3422 / +603-4108 3424 and ask for the following Department:</h4>
       <h4><br>Location :</h4>
       <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia.</p>
@@ -38,7 +39,7 @@
       <p>Open Daily: 9:30 AM - 5:00 PM</p> 
       <h4>Reception Counter :</h4>
       <p>receptionist@zoonegaramalaysia.my</p>
-      <br><h4>Customer Service :</h4>
+      <h4>Customer Service :</h4>
       <p>customerservice@zoonegaramalaysia.my</p>
       <h4>Administration :</h4>
       <p>admindepartment@zoonegaramalaysia.my</p>
@@ -46,6 +47,7 @@
       <p>marketing@zoonegaramalaysia.my</p>
       <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a>
     </div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
     <div class="featured">
       <h2>Meet our Cutie Animals</h2>
       <ul>

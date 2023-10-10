@@ -9,6 +9,7 @@ require 'controllerUserData.php'
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 
 <style>
+
   body{
     font-family: Arial;
     color: #875316;
@@ -119,18 +120,18 @@ require 'controllerUserData.php'
                 
                     <br><br><button type="submit" name="UpdateCust">Edit Profile</button><br><br><br>
 
-                    <div id="header"> 
-                    <a href="changePassword.php">Change Password</a>
-                    </div>
-                    <br>
+                   
       </form>
       <?php
               }
             }
           }
           ?>
-
-
+           <div id="header"> 
+                    <a href="changePassword.php">Change Password</a>
+                    </div>
+                    <br>
+     </div>
         <div class="featured">
                 <h2>Meet our Cutie Animals</h2>
                 <ul>
