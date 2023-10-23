@@ -2,19 +2,19 @@
 
 include 'connection.php';
 
-if (isset($_GET['ticketId'])) {
-    $ticketId = $_GET['ticketId'];
+if (isset($_GET['eventId'])) {
+    $eventId = $_GET['eventId'];
     
-    $sql = "DELETE FROM ticket WHERE ticketId = ?";
+    $sql = "DELETE FROM event WHERE eventId = ?";
     
     $stmt = $con->prepare($sql);
     
- 
-    $stmt->bind_param("s", $ticketId);
+    $stmt->bind_param("s", $eventId);
     
     if ($stmt->execute()) {
-        echo "<script>alert('Ticket deleted successfully!')</script>";
-        echo '<script>window.location.href = "ticketList.php";</script>'; 
+
+        echo "<script>alert('Event deleted successfully!')</script>";
+        echo '<script>window.location.href = "eventList.php";</script>'; 
         exit; 
     } else {
         echo "<script>alert('Error deleting ticket!')</script>";
@@ -23,6 +23,7 @@ if (isset($_GET['ticketId'])) {
     $stmt->close();
 } else {
     echo "<script>alert('Invalid request!')</script>";
+
 }
 
 $con->close();

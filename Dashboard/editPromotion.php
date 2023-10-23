@@ -367,12 +367,12 @@ require 'controllerAdminData.php'
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Edit Ticket</h4>
+								<h4>Edit Promotion</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="ticketList.php">Ticket List</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Ticket</li>
+									<li class="breadcrumb-item"><a href="promotionList.php">Promotion List</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Edit Promotion</li>
 								</ol>
 							</nav>
 						</div>
@@ -380,113 +380,184 @@ require 'controllerAdminData.php'
 				</div>
 				
 				<?php
-				// Enable error reporting
-				error_reporting(E_ALL);
-				ini_set('display_errors', 1);
+                // Enable error reporting
+                error_reporting(E_ALL);
+                ini_set('display_errors', 1);
 
-				include 'connection.php';
+                include 'connection.php';
 
-				$row = []; // Initialize $row as an empty array
+                $row = []; // Initialize $row as an empty array
 
-				if ($_SERVER["REQUEST_METHOD"] === "POST") {
-					// Handle the POST request to update administrator information
-					$ticketId = $_POST['ticketId'];
-					$visitor = $_POST['visitor'];
-					$category = $_POST['category'];
-					$price = $_POST['price'];
-		
-					$sql = "UPDATE ticket SET  
-							visitor=?, 
-							category=?, 
-							price=?
-							WHERE ticketId=?";
-					
-					$stmt = $con->prepare($sql);
-					
-					// Bind parameters
-					$stmt->bind_param("ssss", $visitor, $category,$price,$ticketId);
-					
-					if ($stmt->execute()) {
-						// Update successful
-						
-						echo '<script>window.location.href = "ticketList.php";</script>'; // Redirect using JavaScript
-						exit; // Terminate the script
-					} else {
-						// Error handling
-						echo "Error updating administrator information: " . $stmt->error;
-					}
-					
-					$stmt->close();
-				} elseif (isset($_GET['ticketId'])) {
-					// Handle the GET request to display administrator information
-					$ticketId = $_GET['ticketId'];
-					$sql = "SELECT * FROM ticket WHERE ticketId = ?";
-					$stmt = $con->prepare($sql);
-					
-					// Bind the email parameter
-					$stmt->bind_param("s", $ticketId);
-					
-					if ($stmt->execute()) {
-						$result = $stmt->get_result();
-						if ($result->num_rows > 0) {
-							$row = $result->fetch_assoc();
-						} else {
-							echo "Ticket not found.";
-						}
-					} else {
-						echo "Error retrieving ticket information: " . $stmt->error;
-					}
-					
-					$stmt->close();
-				} else {
-					echo "Invalid request.";
-				}
+                if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                    // Handle the POST request to update promotion information
+                    $promotionId = $_POST['promotionId']; // Add this line to retrieve promotionId
+                    $promotionName = $_POST['promotionName'];
+                    $startDate = $_POST['startDate'];
+                    $lastDate = !empty($_POST['lastDate']) ? $_POST['lastDate'] : null;
+                    $description = $_POST['description'];
+                    $promotion = $_POST['promotion'];
 
-				$con->close();
-				?>
+                    // Handle the file upload
+                    $targetDirectory = "promo/"; // Specify the directory where you want to save uploaded files
+                    $targetFileName = $targetDirectory . basename($_FILES["image"]["name"]);
+                    $uploadOk = 1;
+                    $imageFileType = strtolower(pathinfo($targetFileName, PATHINFO_EXTENSION));
+
+                    // Check if the file is an actual image
+                    $check = getimagesize($_FILES["image"]["tmp_name"]);
+                    if ($check === false) {
+                        $uploadOk = 0;
+                    }
+
+                    // Check file size (you can adjust the size as needed)
+                    if ($_FILES["image"]["size"] > 500000) {
+                        $uploadOk = 0;
+                    }
+
+                    // Allow certain file formats (you can customize this list)
+                    if (
+                        $imageFileType != "jpg" && 
+                        $imageFileType != "png" && 
+                        $imageFileType != "jpeg" && 
+                        $imageFileType != "gif"
+                    ) {
+                        $uploadOk = 0;
+                    }
+
+                    // Check if $uploadOk is set to 0 by an error
+                    if ($uploadOk == 0) {
+                        echo "Sorry, your file was not uploaded.";
+                    } else {
+                        // If everything is ok, try to upload file
+                        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFileName)) {
+                            // File uploaded successfully, update promotion information
+                            $sql = "UPDATE promotion SET  
+                                    promotionName=?, 
+                                    startDate=?, 
+                                    lastDate=?,
+                                    description=?,
+                                    promotion=?,
+                                    image=?
+                                    WHERE promotionId=?";
+                            
+                            $stmt = $con->prepare($sql);
+                            
+                            // Bind parameters
+                            $stmt->bind_param("ssssssi", $promotionName, $startDate, $lastDate, $description, $promotion, $targetFileName, $promotionId);
+                            
+                            if ($stmt->execute()) {
+                                // Update successful
+								echo "<script>alert('Promotion Information Updated!')</script>";
+                                echo '<script>window.location.href = "promotionList.php";</script>'; // Redirect using JavaScript
+                                exit; // Terminate the script
+                            } else {
+                                // Error handling
+					
+                                echo "<script>alert('Error updating promotion information: '. $stmt->error .'!'')</script)";
+                            }
+                            
+                            $stmt->close();
+                        } else {
+							echo "<script>alert('Sorry, there was an error uploading your file!')</script>";
+                            
+                        }
+                    }
+                } elseif (isset($_GET['promotionId'])) {
+                    // Handle the GET request to display promotion information
+                    $promotionId = $_GET['promotionId'];
+                    $sql = "SELECT * FROM promotion WHERE promotionId = ?";
+                    $stmt = $con->prepare($sql);
+                    
+                    // Bind the promotionId parameter
+                    $stmt->bind_param("i", $promotionId);
+                    
+                    if ($stmt->execute()) {
+                        $result = $stmt->get_result();
+                        if ($result->num_rows > 0) {
+                            $row = $result->fetch_assoc();
+                        } else {
+                            echo "Promotion not found.";
+                        }
+                    } else {
+                        echo "Error retrieving promotion information: " . $stmt->error;
+                    }
+                    
+                    $stmt->close();
+                } else {
+                    echo "Invalid request.";
+                }
+
+                $con->close();
+                ?>
+
+                <!-- HTML form for editing promotions -->
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h4 class="text-blue h4">Edit Promotion</h4>
+                            <p class="mb-30">Edit promotion information</p>
+                        </div>
+                    </div>
+                    <form action="" method="POST" enctype="multipart/form-data">
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Promotion Id</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="promotionId" value="<?php echo isset($row['promotionId']) ? $row['promotionId'] : ''; ?>" readonly>
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Promotion Name</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="promotionName" value="<?php echo isset($row['promotionName']) ? $row['promotionName'] : ''; ?>">
+                            </div>
+                        </div>      
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Promotion Date</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="date" name="startDate" value="<?php echo isset($row['startDate']) ? $row['startDate'] : ''; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Last Date</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="date" name="lastDate" value="<?php echo isset($row['lastDate']) ? $row['lastDate'] : ''; ?>">
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Description of the Promotion</label>
+                            <div class="col-sm-12 col-md-10">
+                                <textarea class="form-control" type="text" name="description"><?php echo isset($row['description']) ? $row['description'] : ''; ?></textarea>
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Promotion</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="promotion" value="<?php echo isset($row['promotion']) ? $row['promotion'] : ''; ?>">
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Promotion Image</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="file" name="image">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-12 col-md-10 offset-md-2">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
 
-				<!-- Default Basic Forms Start -->
-				<div class="pd-20 card-box mb-30">
-					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Edit Ticket</h4>
-							<p class="mb-30">Edit ticket information</p>
-						</div>
-					</div>
-					<form action="" method="POST">
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Ticket Id</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="ticketId" value="<?php echo isset($row['ticketId']) ? $row['ticketId'] : ''; ?>" readonly>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Visitor</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="visitor" value="<?php echo isset($row['visitor']) ? $row['visitor'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Category</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="category" value="<?php echo isset($row['category']) ? $row['category'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Price</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="price" value="<?php echo isset($row['price']) ? $row['price'] : ''; ?>">
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-12 col-md-10 offset-md-2">
-								<button type="submit" class="btn btn-primary">Update</button>
-							</div>
-						</div>
-					</form>
-				</div>
 
 				<!-- Default Basic Forms End -->
 

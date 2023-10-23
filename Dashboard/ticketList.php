@@ -7,7 +7,7 @@ require 'controllerAdminData.php'
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>Ticket List</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -267,7 +267,7 @@ require 'controllerAdminData.php'
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/Dashboard/dashboard_admin.php" >
+			<a href="dashboard_admin.php" >
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -278,19 +278,15 @@ require 'controllerAdminData.php'
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+					<li>
+						<a href="dashboard_admin.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="index.php">Dashboard style 1</a></li>
-							<li><a href="index2.html">Dashboard style 2</a></li>
-						</ul>
 					</li>
 					
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-						<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
+							<span class="micon dw dw-id-card"></span><span class="mtext">Ticket</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="addStaff.php">Add Staff</a></li>
@@ -312,23 +308,51 @@ require 'controllerAdminData.php'
 					</li>
 					<li>
 						<a href="http://localhost/ZooNegara/index.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Homepage</span>
+							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-					<li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Ticket Price</span>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="addTicketPrice.php">Add Ticket</a></li>
+							<li><a href="ticketList.php">Ticket List</a></li>
+						</ul>
+					
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/events.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Events</span>
+	
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="addEvent.php">Add Event</a></li>
+							<li><a href="eventList.php">Event List</a></li>
+						</ul>
+					
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/info.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Promotions</span>
+
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="addPromotion.php">Add Promotion</a></li>
+							<li><a href="promotionList.php">Promotion List</a></li>
+						</ul>
+					
+					</li>
+
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon ti-announcement"></span><span class="mtext">Contact</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="addContact.php">Add PIC</a></li>
+							<li><a href="contactList.php">PIC List</a></li>
+						</ul>
+					
 					</li>
 					
 				</ul>
@@ -345,12 +369,12 @@ require 'controllerAdminData.php'
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Staff List</h4>
+								<h4>Ticket List</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Staff List</li>
+									<li class="breadcrumb-item"><a href="dashboard_admin.php">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Ticket List</li>
 								</ol>
 							</nav>
 						</div>
@@ -392,7 +416,7 @@ require 'controllerAdminData.php'
 						echo "<div class='dropdown'>";
 						echo "<a class='btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle' href='#' role='button' data-toggle='dropdown'><i class='dw dw-more'></i></a>";
 						echo "<div class='dropdown-menu dropdown-menu-right dropdown-menu-icon-list'>";
-						echo "<a class='btn btn-link' href='editTicket.php?ticketId=" . $row["ticketId"] . "'>Edit</a>";
+						echo "<a class='dropdown-item'  href='editTicket.php?ticketId=" . $row["ticketId"] . "'><i class=' fa fa-pencil'></i> Edit</a>";
 						echo "<a class='dropdown-item' href='deleteTicket.php?ticketId=" . $row['ticketId'] . "'><i class='dw dw-delete-3'></i> Delete</a>";
 						echo "</div>";
 						echo "</div>";

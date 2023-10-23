@@ -6,7 +6,7 @@ require 'controllerAdminData.php'
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>Add Event</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -262,10 +262,10 @@ require 'controllerAdminData.php'
 		</div>
 	</div>
 
-	<!-- sidebar menu - left -->
+<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/Dashboard/dashboard_admin.php" >
+			<a href="dashboard_staff.php" >
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -363,135 +363,153 @@ require 'controllerAdminData.php'
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Edit Ticket</h4>
-							</div>
-							<nav aria-label="breadcrumb" role="navigation">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="ticketList.php">Ticket List</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Ticket</li>
-								</ol>
-							</nav>
-						</div>
-					</div>
-				</div>
 				
-				<?php
-				// Enable error reporting
-				error_reporting(E_ALL);
-				ini_set('display_errors', 1);
+			<?php
+			// Include the database connection file
+			include 'connection.php';
 
-				include 'connection.php';
+			if (isset($_POST['addEvent'])) {
+				// Retrieve form data and sanitize
+				$eventName = $_POST['eventName'];
+				$eventDate = $_POST['eventDate'];
+				$lastDate =!empty($_POST['lastDate']) ? $_POST['lastDate'] : null;
+				$description = $_POST['description'];
 
-				$row = []; // Initialize $row as an empty array
+				// Handle the file upload
+				$targetDirectory = "zoo/"; // Specify the directory where you want to save uploaded files
+				$targetFileName = $targetDirectory . basename($_FILES["image"]["name"]);
+				$uploadOk = 1;
+				$imageFileType = strtolower(pathinfo($targetFileName, PATHINFO_EXTENSION));
 
-				if ($_SERVER["REQUEST_METHOD"] === "POST") {
-					// Handle the POST request to update administrator information
-					$ticketId = $_POST['ticketId'];
-					$visitor = $_POST['visitor'];
-					$category = $_POST['category'];
-					$price = $_POST['price'];
-		
-					$sql = "UPDATE ticket SET  
-							visitor=?, 
-							category=?, 
-							price=?
-							WHERE ticketId=?";
-					
-					$stmt = $con->prepare($sql);
-					
-					// Bind parameters
-					$stmt->bind_param("ssss", $visitor, $category,$price,$ticketId);
-					
-					if ($stmt->execute()) {
-						// Update successful
-						
-						echo '<script>window.location.href = "ticketList.php";</script>'; // Redirect using JavaScript
-						exit; // Terminate the script
+				// Check if the file is an actual image
+				if (isset($_POST["addEvent"])) {
+					$check = getimagesize($_FILES["image"]["tmp_name"]);
+					if ($check !== false) {
+						echo "File is an image - " . $check["mime"] . ".";
+						$uploadOk = 1;
 					} else {
-						// Error handling
-						echo "Error updating administrator information: " . $stmt->error;
+						echo "File is not an image.";
+						$uploadOk = 0;
 					}
-					
-					$stmt->close();
-				} elseif (isset($_GET['ticketId'])) {
-					// Handle the GET request to display administrator information
-					$ticketId = $_GET['ticketId'];
-					$sql = "SELECT * FROM ticket WHERE ticketId = ?";
-					$stmt = $con->prepare($sql);
-					
-					// Bind the email parameter
-					$stmt->bind_param("s", $ticketId);
-					
-					if ($stmt->execute()) {
-						$result = $stmt->get_result();
-						if ($result->num_rows > 0) {
-							$row = $result->fetch_assoc();
-						} else {
-							echo "Ticket not found.";
-						}
-					} else {
-						echo "Error retrieving ticket information: " . $stmt->error;
-					}
-					
-					$stmt->close();
-				} else {
-					echo "Invalid request.";
 				}
 
-				$con->close();
-				?>
+				// Check file size (you can adjust the size as needed)
+				if ($_FILES["image"]["size"] > 500000) {
+					echo "Sorry, your file is too large.";
+					$uploadOk = 0;
+				}
 
+				// Allow certain file formats (you can customize this list)
+				if (
+					$imageFileType != "jpg" && 
+					$imageFileType != "png" && 
+					$imageFileType != "jpeg" && 
+					$imageFileType != "gif"
+				) {
+					echo "Sorry, only JPG, JPEG, PNG, and GIF files are allowed.";
+					$uploadOk = 0;
+				}
 
-				<!-- Default Basic Forms Start -->
-				<div class="pd-20 card-box mb-30">
-					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Edit Ticket</h4>
-							<p class="mb-30">Edit ticket information</p>
-						</div>
+				// Check if $uploadOk is set to 0 by an error
+				if ($uploadOk == 0) {
+					echo "Sorry, your file was not uploaded.";
+				} else {
+					// If everything is ok, try to upload file
+					if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFileName)) {
+						echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+
+						// SQL query to insert data into the 'event' table
+						$sql = "INSERT INTO event (eventName, eventDate, lastDate, description, image) VALUES (?, ?, ?, ?, ?)";
+
+						// Create a prepared statement
+						$stmt = mysqli_prepare($con, $sql);
+
+						if ($stmt) {
+							// Bind parameters and execute the statement
+							mysqli_stmt_bind_param($stmt, "sssss", $eventName, $eventDate, $lastDate, $description, $targetFileName);
+
+							if (mysqli_stmt_execute($stmt)) {
+								// Data inserted successfully, redirect to the event list page
+								echo "<script>alert('New Event Added!')</script>";
+								echo "<script>window.location.href='eventList.php'</script>";
+								exit();
+							} else {
+								// Display MySQL error message
+								echo "<script>alert('MySQL Error!')</script>";
+								
+							}
+
+							// Close the statement
+							mysqli_stmt_close($stmt);
+						} else {
+							// Display an error message for the failed statement creation
+							echo "<script>alert('Error creating prepared statement!')</script>";
+						}
+					} else {
+						echo "<script>alert('Sorry, there was an error uploading your file!')</script>";
+						
+					}
+				}
+			}
+
+			// Close the database connection
+			mysqli_close($con);
+			?>
+
+			<!-- HTML form for adding events -->
+			<div class="pd-20 card-box mb-30">
+				<div class="clearfix">
+					<div class="pull-left">
+						<h4 class="text-blue h4">Add Events</h4>
+						<p class="mb-30">Add new events</p>
 					</div>
-					<form action="" method="POST">
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Ticket Id</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="ticketId" value="<?php echo isset($row['ticketId']) ? $row['ticketId'] : ''; ?>" readonly>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Visitor</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="visitor" value="<?php echo isset($row['visitor']) ? $row['visitor'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Category</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="category" value="<?php echo isset($row['category']) ? $row['category'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Price</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="price" value="<?php echo isset($row['price']) ? $row['price'] : ''; ?>">
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-12 col-md-10 offset-md-2">
-								<button type="submit" class="btn btn-primary">Update</button>
-							</div>
-						</div>
-					</form>
 				</div>
 
-				<!-- Default Basic Forms End -->
+				<form action="" method="POST" enctype="multipart/form-data">
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Event Name</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="text" name="eventName" required>
+						</div>
+					</div>
 
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Event Date</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="date" name="eventDate" required>
+						</div>
+					</div>
 
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Last Date</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="date" name="lastDate">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Description of the Event</label>
+						<div class="col-sm-12 col-md-10">
+							<textarea class="form-control" type="text" name="description" required></textarea>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Event Image</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="file" name="image">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-sm-12 col-md-10 offset-md-2">
+							<button type="submit" class="btn btn-primary" name="addEvent">Add Event</button>
+						</div>
+					</div>
+				</form>
 			</div>
+
+			
 		</div>
 	</div>
 	<!-- js -->

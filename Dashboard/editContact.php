@@ -390,51 +390,51 @@ require 'controllerAdminData.php'
 
 				if ($_SERVER["REQUEST_METHOD"] === "POST") {
 					// Handle the POST request to update administrator information
-					$ticketId = $_POST['ticketId'];
-					$visitor = $_POST['visitor'];
-					$category = $_POST['category'];
-					$price = $_POST['price'];
+					$picId = $_POST['picId'];
+					$picName = $_POST['picName'];
+					$picNum = $_POST['picNum'];
+					$picEmail = $_POST['picEmail'];
 		
-					$sql = "UPDATE ticket SET  
-							visitor=?, 
-							category=?, 
-							price=?
-							WHERE ticketId=?";
+					$sql = "UPDATE contact SET  
+							picName=?, 
+							picNum=?, 
+							picEmail=?
+							WHERE picId=?";
 					
 					$stmt = $con->prepare($sql);
 					
 					// Bind parameters
-					$stmt->bind_param("ssss", $visitor, $category,$price,$ticketId);
+					$stmt->bind_param("ssss", $picName, $picNum,$picEmail,$picId);
 					
 					if ($stmt->execute()) {
 						// Update successful
 						
-						echo '<script>window.location.href = "ticketList.php";</script>'; // Redirect using JavaScript
+						echo '<script>window.location.href = "contactList.php";</script>'; // Redirect using JavaScript
 						exit; // Terminate the script
 					} else {
 						// Error handling
-						echo "Error updating administrator information: " . $stmt->error;
+						echo "Error updating person in charge information: " . $stmt->error;
 					}
 					
 					$stmt->close();
-				} elseif (isset($_GET['ticketId'])) {
+				} elseif (isset($_GET['picId'])) {
 					// Handle the GET request to display administrator information
-					$ticketId = $_GET['ticketId'];
-					$sql = "SELECT * FROM ticket WHERE ticketId = ?";
+					$picId = $_GET['picId'];
+					$sql = "SELECT * FROM contact WHERE picId = ?";
 					$stmt = $con->prepare($sql);
 					
 					// Bind the email parameter
-					$stmt->bind_param("s", $ticketId);
+					$stmt->bind_param("s", $picId);
 					
 					if ($stmt->execute()) {
 						$result = $stmt->get_result();
 						if ($result->num_rows > 0) {
 							$row = $result->fetch_assoc();
 						} else {
-							echo "Ticket not found.";
+							echo "Person in charge not found.";
 						}
 					} else {
-						echo "Error retrieving ticket information: " . $stmt->error;
+						echo "Error retrieving person in charge information: " . $stmt->error;
 					}
 					
 					$stmt->close();
@@ -450,33 +450,33 @@ require 'controllerAdminData.php'
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
 						<div class="pull-left">
-							<h4 class="text-blue h4">Edit Ticket</h4>
-							<p class="mb-30">Edit ticket information</p>
+							<h4 class="text-blue h4">Edit Contact</h4>
+							<p class="mb-30">Edit contact information</p>
 						</div>
 					</div>
 					<form action="" method="POST">
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Ticket Id</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Id</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="ticketId" value="<?php echo isset($row['ticketId']) ? $row['ticketId'] : ''; ?>" readonly>
+								<input class="form-control" type="number" name="picId" value="<?php echo isset($row['picId']) ? $row['picId'] : ''; ?>" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Visitor</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Name</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="visitor" value="<?php echo isset($row['visitor']) ? $row['visitor'] : ''; ?>">
+								<input class="form-control" type="text" name="picName" value="<?php echo isset($row['picName']) ? $row['picName'] : ''; ?>">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Category</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Number</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="category" value="<?php echo isset($row['category']) ? $row['category'] : ''; ?>">
+								<input class="form-control" type="number" name="picNum" value="<?php echo isset($row['picNum']) ? $row['picNum'] : ''; ?>">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Price</label>
+							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Email</label>
 							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="price" value="<?php echo isset($row['price']) ? $row['price'] : ''; ?>">
+								<input class="form-control" type="text" name="picEmail" value="<?php echo isset($row['picEmail']) ? $row['picEmail'] : ''; ?>">
 							</div>
 						</div>
 

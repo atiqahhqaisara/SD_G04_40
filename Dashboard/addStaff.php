@@ -6,7 +6,7 @@ require 'controllerAdminData.php'
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>Add Staff</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -265,7 +265,7 @@ require 'controllerAdminData.php'
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.php">
+			<a href="dashboard_admin.php">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -276,25 +276,25 @@ require 'controllerAdminData.php'
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+					<li>
+						<a href="dashboard_admin.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="index.php">Dashboard style 1</a></li>
-							<li><a href="index2.html">Dashboard style 2</a></li>
-						</ul>
 					</li>
 					
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="addStaff.php">Add Staff</a></li>
+							<li><a href="staffList.php">Staff List</a></li>
+						</ul>
+					
+					</li>
 					<li>
 						<a href="chat.html" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-chat3"></span><span class="mtext">Chat</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="staffList.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Staff</span>
 						</a>
 					</li>
 
@@ -306,23 +306,51 @@ require 'controllerAdminData.php'
 					</li>
 					<li>
 						<a href="http://localhost/ZooNegara/index.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Homepage</span>
+							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-					<li>
-						<a href="invoice.html" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Ticket Price</span>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="addTicketPrice.php">Add Ticket</a></li>
+							<li><a href="ticketList.php">Ticket List</a></li>
+						</ul>
+					
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/events.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Events</span>
+	
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="addEvent.php">Add Event</a></li>
+							<li><a href="eventList.php">Event List</a></li>
+						</ul>
+					
 					</li>
-					<li>
-						<a href="http://localhost/ZooNegara/info.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-invoice"></span><span class="mtext">Promotions</span>
+
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="addPromotion.php">Add Promotion</a></li>
+							<li><a href="promotionList.php">Promotion List</a></li>
+						</ul>
+					
+					</li>
+
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon ti-announcement"></span><span class="mtext">Contact</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="addContact.php">Add PIC</a></li>
+							<li><a href="contactList.php">PIC List</a></li>
+						</ul>
+					
 					</li>
 					
 				</ul>
@@ -338,12 +366,12 @@ require 'controllerAdminData.php'
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Edit Staff</h4>
+								<h4>Add Staff</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="staffList.php">Staff List</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Staff</li>
+									<li class="breadcrumb-item"><a href="dashboard_admin.php">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Add Staff</li>
 								</ol>
 							</nav>
 						</div>
@@ -352,8 +380,6 @@ require 'controllerAdminData.php'
 
 				<!-- Add Staff Form and PHP Code Start -->
 				<?php
-				error_reporting(E_ALL);
-				ini_set('display_errors', 1);
 				// Include the database connection file (connection.php)
 				include 'connection.php';
 
@@ -385,12 +411,13 @@ require 'controllerAdminData.php'
 
 						if (mysqli_stmt_execute($stmt)) {
 							// Redirect to home page
-							// header("Location: /Dashboard/staffList.php");
-							echo "<script>window.location.href='/Dashboard/staffList.php'</script>";
-							exit(); // Make sure to exit to prevent further execution
+							echo "<script>alert('New Staff Added Successfully!')</script>";
+							echo '<script>location.href = "staffList.php";</script>';
+
+							exit(); 
 						} else {
-							// Display error message and redirect back to add employee page
-							echo "Something went wrong, try again...";
+							echo "<script>alert('Something went wrong, try again...')</script>";
+
 						}
 
 						// Close the statement

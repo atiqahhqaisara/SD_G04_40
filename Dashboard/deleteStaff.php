@@ -15,17 +15,17 @@ if (isset($_GET['email'])) {
     
     if ($stmt->execute()) {
         // Deletion successful
-        echo "Administrator deleted successfully.";
-        echo '<script>window.location.href = "/Dashboard/staffList.php";</script>'; // Redirect using JavaScript
+        echo "<script>alert('Administrator deleted successfully!')</script>";
+        echo '<script>window.location.href = "staffList.php";</script>'; // Redirect using JavaScript
         exit; // Terminate the script
     } else {
         // Error handling
-        echo "Error deleting administrator: " . $stmt->error;
+        echo "<script>alert('Error deleting staff!')</script>";
     }
     
     $stmt->close();
 } else {
-    echo "Invalid request.";
+    echo "<script>alert('Invalid request!')</script>";
 }
 
 $con->close();

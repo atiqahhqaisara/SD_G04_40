@@ -1,4 +1,5 @@
 <?php
+
 require 'controllerAdminData.php'
 ?>
 <!DOCTYPE html>
@@ -6,7 +7,7 @@ require 'controllerAdminData.php'
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>Event List</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -21,8 +22,9 @@ require 'controllerAdminData.php'
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -49,7 +51,7 @@ require 'controllerAdminData.php'
 	</div>
 
 	<div class="header">
-		<div class="header-left">
+	<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
 			<div class="header-search">
@@ -155,26 +157,26 @@ require 'controllerAdminData.php'
 			</div>
 			<div class="user-info-dropdown">
 				<div class="dropdown">
-						<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-						<?php
-						$currentAdmin = $_SESSION['email'];
-						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
-						$result = $con->query($sql);
+					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+					<?php
+					$currentAdmin = $_SESSION['email'];
+					$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
+					$result = $con->query($sql);
 
-						if ($result && mysqli_num_rows($result) > 0) {
-							$row = mysqli_fetch_assoc($result);
-							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
-							$fullName = $row['fullName']; // Assuming the column name is 'fullName'
-							if (!empty($profileImage)) {
-								echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="user-icon">';
-							} else {
-								echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="user-icon">';
-							}
-							echo '<span class="user-name">' . $fullName . '</span>';
+					if ($result && mysqli_num_rows($result) > 0) {
+						$row = mysqli_fetch_assoc($result);
+						$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
+						$fullName = $row['fullName']; // Assuming the column name is 'fullName'
+						if (!empty($profileImage)) {
+							echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="user-icon">';
 						} else {
 							echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="user-icon">';
 						}
-						?>
+						echo '<span class="user-name">' . $fullName . '</span>';
+					} else {
+						echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="user-icon">';
+					}
+					?>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
@@ -265,7 +267,7 @@ require 'controllerAdminData.php'
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="/Dashboard/dashboard_admin.php" >
+			<a href="dashboard_admin.php" >
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -360,6 +362,7 @@ require 'controllerAdminData.php'
 	</div>
 	<div class="mobile-menu-overlay"></div>
 
+
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -367,130 +370,76 @@ require 'controllerAdminData.php'
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Edit Ticket</h4>
+								<h4>Staff List</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="ticketList.php">Ticket List</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Ticket</li>
+									<li class="breadcrumb-item"><a href="dashboard_admin.php">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Event List</li>
 								</ol>
 							</nav>
 						</div>
 					</div>
 				</div>
-				
+				<!-- Simple Datatable start -->
 				<?php
-				// Enable error reporting
-				error_reporting(E_ALL);
-				ini_set('display_errors', 1);
-
 				include 'connection.php';
 
-				$row = []; // Initialize $row as an empty array
+				// Replace with your SQL query to fetch data
+				$sql = "SELECT * FROM event";
+				$result = $con->query($sql);
 
-				if ($_SERVER["REQUEST_METHOD"] === "POST") {
-					// Handle the POST request to update administrator information
-					$ticketId = $_POST['ticketId'];
-					$visitor = $_POST['visitor'];
-					$category = $_POST['category'];
-					$price = $_POST['price'];
-		
-					$sql = "UPDATE ticket SET  
-							visitor=?, 
-							category=?, 
-							price=?
-							WHERE ticketId=?";
-					
-					$stmt = $con->prepare($sql);
-					
-					// Bind parameters
-					$stmt->bind_param("ssss", $visitor, $category,$price,$ticketId);
-					
-					if ($stmt->execute()) {
-						// Update successful
-						
-						echo '<script>window.location.href = "ticketList.php";</script>'; // Redirect using JavaScript
-						exit; // Terminate the script
-					} else {
-						// Error handling
-						echo "Error updating administrator information: " . $stmt->error;
+				if ($result->num_rows > 0) {
+					echo "<div class='card-box mb-30'>";
+					echo "<div class='pd-20'>";
+					echo "<h4 class='text-blue h4'>Event List</h4>";
+					echo "</div>";
+					echo "<div class='pb-20'>";
+					echo "<table class='data-table table stripe hover nowrap'>";
+					echo "<thead>";
+					echo "<tr>";
+                    echo "<th class='table-plus datatable-nosort'>Event Id</th>";
+					echo "<th class='table-plus datatable-nosort'>Event Name</th>";
+					echo "<th>Event Date</th>";
+					echo "<th>Last Date</th>";
+                    echo "<th>Description</th>";
+                    echo "<th>Image</th>";
+					echo "<th class='datatable-nosort'>Action</th>";
+					echo "</tr>";
+					echo "</thead>";
+					echo "<tbody>";
+
+					while ($row = $result->fetch_assoc()) {
+						echo "<tr>";
+						echo "<td class='table-plus'>" . $row["eventId"] . "</td>";
+						echo "<td>" . $row["eventName"] . "</td>";
+						echo "<td>" . $row["eventDate"] . "</td>";
+                        echo "<td>" . $row["lastDate"] . "</td>";
+                        echo "<td>" . $row["description"] . "</td>"; 
+                        echo "<td>" . $row["image"] . "</td>"; 
+						echo "<td>";
+						echo "<div class='dropdown'>";
+						echo "<a class='btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle' href='#' role='button' data-toggle='dropdown'><i class='dw dw-more'></i></a>";
+						echo "<div class='dropdown-menu dropdown-menu-right dropdown-menu-icon-list'>";
+						echo "<a class='dropdown-item' href='editEvent.php?eventId=" . $row["eventId"] . "'><i class=' fa fa-pencil'></i> Edit</a>";
+						echo "<a class='dropdown-item' href='deleteEvent.php?eventId=" . $row['eventId'] . "'><i class='dw dw-delete-3'></i> Delete</a>";
+						echo "</div>";
+						echo "</div>";
+						echo "</td>";
+						echo "</tr>";
 					}
-					
-					$stmt->close();
-				} elseif (isset($_GET['ticketId'])) {
-					// Handle the GET request to display administrator information
-					$ticketId = $_GET['ticketId'];
-					$sql = "SELECT * FROM ticket WHERE ticketId = ?";
-					$stmt = $con->prepare($sql);
-					
-					// Bind the email parameter
-					$stmt->bind_param("s", $ticketId);
-					
-					if ($stmt->execute()) {
-						$result = $stmt->get_result();
-						if ($result->num_rows > 0) {
-							$row = $result->fetch_assoc();
-						} else {
-							echo "Ticket not found.";
-						}
-					} else {
-						echo "Error retrieving ticket information: " . $stmt->error;
-					}
-					
-					$stmt->close();
-				} else {
-					echo "Invalid request.";
+
+					echo "</tbody>";
+					echo "</table>";
+					echo "</div>";
+					echo "</div>";
 				}
 
 				$con->close();
 				?>
 
-
-				<!-- Default Basic Forms Start -->
-				<div class="pd-20 card-box mb-30">
-					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Edit Ticket</h4>
-							<p class="mb-30">Edit ticket information</p>
-						</div>
-					</div>
-					<form action="" method="POST">
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Ticket Id</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="ticketId" value="<?php echo isset($row['ticketId']) ? $row['ticketId'] : ''; ?>" readonly>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Visitor</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="visitor" value="<?php echo isset($row['visitor']) ? $row['visitor'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Category</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="category" value="<?php echo isset($row['category']) ? $row['category'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Price</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="price" value="<?php echo isset($row['price']) ? $row['price'] : ''; ?>">
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-12 col-md-10 offset-md-2">
-								<button type="submit" class="btn btn-primary">Update</button>
-							</div>
-						</div>
-					</form>
-				</div>
-
-				<!-- Default Basic Forms End -->
-
-
+				<!-- Simple Datatable End -->
+				
 			</div>
 		</div>
 	</div>
@@ -499,5 +448,18 @@ require 'controllerAdminData.php'
 	<script src="vendors/scripts/script.min.js"></script>
 	<script src="vendors/scripts/process.js"></script>
 	<script src="vendors/scripts/layout-settings.js"></script>
-</body>
+	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+	<!-- buttons for Export datatable -->
+	<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
+	<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
+	<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+	<!-- Datatable Setting js -->
+	<script src="vendors/scripts/datatable-setting.js"></script></body>
 </html>
