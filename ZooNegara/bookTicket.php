@@ -85,33 +85,38 @@
   </div>
   <div id="content">
     <div id="tickets">
-       <h1><br>Booking Details</h1>
-            <label for="booking">Select Date:</label>
-            <input type="date" id="booking" name="booking" required>
+    <h2>Booking Form</h2>
+    <form>
+        <label for="booking">Select Date:</label>
+        <input type="date" id="booking" name="booking" required><br><br>
 
-            <label for="ticket">Select Ticket:</label>
-            <label for="visitors">Malaysian (MyKad) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Foreigner (i-KAD)</label>
+        <label for="ticket">Select Ticket:</label>
+        <label for="visitors">Malaysian (MyKad) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Foreigner (i-KAD)</label>
 
-            <a><br>Adult - RM45.00&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Adult - RM50.00 </a>
-            <br><input type = "number" id="MYadult" name="MYadult" min="1" max="10">
-            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type = "number" id="Iadult" name="Iadult" min="1" max="10"><br>
+        <br><a>Adult - RM45.00&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Adult - RM50.00 </a><br>
+        <input type="number" id="MYadult" name="MYadult" min="1" max="10">
+        &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="number" id="Iadult" name="Iadult" min="1" max="10"><br>
 
-            <a><br>Children (3 to 12 years old) - RM18.00  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Children (3 to 12 years old) - RM25.00 </a></a>
-            <br><input type = "number" id="MYchild" name="MYchild" min="1" max="10">
-            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type = "number" id="Ichild" name="Ichild" min="1" max="10"><br>
+        <br><a>Children (3 to 12 years old) - RM18.00  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Children (3 to 12 years old) - RM25.00 </a></a><br>
+        <input type="number" id="MYchild" name="MYchild" min="1" max="10">
+        &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="number" id="Ichild" name="Ichild" min="1" max="10"><br>
 
-            <a><br>Senior Citizen (60 years and above) - RM23.00&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Senior Citizen (60 years and above) - RM50.00 </a>
-            <br><input type = "number" id="MYsenior" name="MYsenior" min="1" max="10">
-            &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            <input type = "number" id="Isenior" name="Isenior" min="1" max="10"><br>
+        <br><a>Senior Citizen (60 years and above) - RM23.00&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Senior Citizen (60 years and above) - RM50.00 </a><br>
+        <input type="number" id="MYsenior" name="MYsenior" min="1" max="10">
+        &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="number" id="Isenior" name="Isenior" min="1" max="10"><br><br>
 
         <div id="header"> 
         <br>
         <a href="summaryOrder.php">Next</a>
        
         </div>
+
+    </form>
+
+        
 
 
    </div>

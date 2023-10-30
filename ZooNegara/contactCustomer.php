@@ -1,3 +1,6 @@
+<?php
+require 'connection.php'
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,21 +37,39 @@
   <div id="content">
     <div id="contact">
       <h1>Contact Information</h1>
-      <h4>For any enquiries, call our general lines +603-4108 3422 / +603-4108 3424 and ask for the following Department:</h4>
+      <ul>
+       <h4>For any enquiries, call our general lines +603-4108 3422 / +603-4108 3424 and ask for the following Department:</h4>
       <h4><br>Location :</h4>
       <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia.</p>
       <h4>Operating Hours :</h4>
       <p>Open Daily: 9:30 AM - 5:00 PM</p> 
-      <h4>Reception Counter :</h4>
-      <p>receptionist@zoonegaramalaysia.my</p>
-      <h4>Customer Service :</h4>
-      <p>customerservice@zoonegaramalaysia.my</p>
-      <h4>Administration :</h4>
-      <p>admindepartment@zoonegaramalaysia.my</p>
-      <h4>Public Relations & Marketing :</h4>
-      <p>marketing@zoonegaramalaysia.my</p>
-      <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a>
-    </div>
+
+      <h4>Person in Charge :</h4>
+
+      <?php
+      
+      // Check connection
+      if (!$con) {
+          die("Connection failed: " . mysqli_connect_error());
+      }
+
+      // Step 2: Execute a query to retrieve event information
+      $sql = "SELECT * FROM contact";
+      $result = mysqli_query($con, $sql);
+
+      // Step 3: Generate HTML for each event
+      while ($row = mysqli_fetch_assoc($result)) {
+         
+          echo '<p>'.$row['picName'].' - ' .$row['picNum'].' ('.$row['picEmail'].')</p>';
+         
+      }
+
+      // Step 4: Close the database connection
+      mysqli_close($con);
+      ?>     
+      <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a> 
+      </ul>
+  </div>
     
     <div class="featured">
       <h2>Meet our Cutie Animals</h2>

@@ -1,3 +1,6 @@
+<?php
+require 'connection.php'
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,28 +38,31 @@
     <div id="events">
       <h1>Events</h1>
       <ul>
-        <li>
-          <div><a href="#"><img src="images/event (3).png" alt=""/></a></div>
-          <h4><a href="#">BIRTHDAY – ZOO FIESTA PARTY PACKAGE</a></h4>
-          <p>Celebrate your birthday with us and let our party crew host this memorable function.  We can even bring out some tame animals on your special day. Join our package now!</p>
-          <p><b>More information: </b><a href="birthdayPartyPackageCustomer.php">BIRTHDAY – ZOO FIESTA PARTY PACKAGE</a></p>
-        </li>
-        <li>
-          <div><a href="#"><img src="images/event (2).png" alt=""/></a></div>
-          <h4><a href="#">Orangutan Fun Walk @ Zoo Negara</a></h4>
-          <p>Date: 17th & 18th Discember 2023</p>
-          <p>With a minimum commitment fees you will get a free entrance to Zoo Negara, fun activities, lucky draw, t-shirt, finisher medal, 2 meals (breakfast & lunch) and e-certificate.
-            During the Orangutan Fun Walk, participants will have the opportunity to explore the zoo grounds while enjoying a leisurely stroll alongside the orangutan enclosures.
-            <br><b>More information: </b><a href = "orangUtanWalkCustomer.php">Orangutan Fun Walk</a>
-          </p>
-        </li>
-        <li>
-          <div><a href="#"><img src="images/event (1).png" alt=""/></a></div>
-          <h4><a href="#">Zoo Walk 2023 Fun with NATURE</a></h4>
-          <p>Date : November 25 2023</p>
-          <p>Zoo Walk will be held every single year, this year is no exception. Join our Zoo Walk and collect tiger t-shirt with a finisher medal.</p>
-          <p><b>More information: </b><a href = "zooWalk2023Customer.php">Zoo Walk 2023 Fun with NATURE</a>
-        </li>
+      <?php
+      
+      // Check connection
+      if (!$con) {
+          die("Connection failed: " . mysqli_connect_error());
+      }
+
+      // Step 2: Execute a query to retrieve event information
+      $sql = "SELECT * FROM event";
+      $result = mysqli_query($con, $sql);
+
+      // Step 3: Generate HTML for each event
+      while ($row = mysqli_fetch_assoc($result)) {
+          echo '<li>';
+          echo '<div><a href="#"><img src="' . $row['image'] . '" alt=""/></a></div>';
+          echo '<h4><a href="#">' . $row['eventName'] . '</a></h4>';
+          echo '<p>Date: ' . $row['eventDate'] . ' - ' . $row['lastDate'].'</p>';
+          echo '<p>' . $row['description'] . '</p>';
+          echo '</li>';
+      }
+
+      // Step 4: Close the database connection
+      mysqli_close($con);
+      ?>
+
       </ul>
     </div>
   </div>

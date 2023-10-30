@@ -1,3 +1,6 @@
+<?php
+require 'connection.php'
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,21 +100,48 @@
   <div id="tickets">
       <h1 style="text-align:center"><br>Ticket Price and Operation Hours</h1>
          <table>
-    <tr>
-        <th>Ticket ID</th>
-        <th>Visitor</th>
-        <th>Category</th>
-        <th>Price</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>Malaysian</td>
-        <td>Senior Citizen</td>
-        <td>RM20.00</td>
-    </tr>
-        </table>
+         <?php
 
-<a href="#"><img src="images/openinghourrate.png" alt="" weight = 500px height = 440px /></a></a>
+          if (!$con) {
+              die("Connection failed: " . mysqli_connect_error());
+          }
+
+$sql = "SELECT * FROM ticket ORDER BY ticketId";
+$custQry = mysqli_query($con, $sql);
+
+if (!$custQry) {
+    die("Error executing query: " . mysqli_error($con));
+}
+
+
+echo '<table class="w3-table w3-striped">';
+echo '<tr>';
+echo '<th>Ticket ID</th>';
+echo '<th>Visitor</th>';
+echo '<th>Category</th>';
+echo '<th>Price</th>';
+echo '</tr>';
+
+// Display each customer's information
+$count = 1;
+while ($row = mysqli_fetch_assoc($custQry)) {
+    echo '<tr>';
+    echo '<td>' . $row['ticketId'] . '</td>';
+    echo '<td>' . $row['visitor'] . '</td>';
+    echo '<td>' . $row['category'] . '</td>';
+    echo '<td>' . 'RM ' . $row['price'] . '</td>';
+    echo '</tr>';
+    $count++;
+}
+
+echo '</table>';
+
+// Close the database connection
+mysqli_close($con);
+?>
+
+
+
 <div id ="header"> 
 <br><br>
         
