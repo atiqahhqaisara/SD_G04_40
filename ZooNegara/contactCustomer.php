@@ -7,6 +7,47 @@ require 'connection.php'
 <title>Zoo Negara | Contact</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+
+<style>
+
+  body{
+    font-family: Arial;
+    color: #875316;
+    font-size: 15px;
+    font-weight: normal;
+    }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], input[type="tel"], input[type="email"] {
+            width: 160%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #964B00;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #CC9966;
+        }
+</style>
 </head>
 <body>
 <div id="page">
@@ -66,15 +107,15 @@ require 'connection.php'
 
       // Step 4: Close the database connection
       mysqli_close($con);
-      ?>     
-      <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a> 
-      <form action="#">
-        <h3>Do leave us an</h3>
-        <h2>ENQUIRY</h2>
-
-        <input type="text" value="comment here..." onBlur="this.value=!this.value?'your email here...':this.value;" onFocus="this.select()" onClick="this.value='';" />
-
-      </form>
+      ?>   
+      
+      <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a><br> 
+      <form  action="insertenquiry.php" method="post">
+      <h3>Do leave us an</h3><br>
+        <h2>ENQUIRY</h2><br>
+        <input type="text" name="enquiry" required>
+        <br><br><br><button type="submit" name="submit">Submit</button><br><br><br>
+        </form>
       </ul>
 
 

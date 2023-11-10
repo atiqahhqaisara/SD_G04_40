@@ -233,8 +233,4 @@ if(isset($_POST['signup'])){
     if(isset($_POST['login-now'])){
         header('Location: registerSignIn.php');
     }
-
-
-
-  
 ?>
