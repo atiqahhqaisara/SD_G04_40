@@ -20,7 +20,7 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="buyTicketSignUp.php">Buy tickets / Sign Up</a>
+    <a href="buyTicketSignUp.php">Buy Tickets / Sign Up</a>
     <ul id="navigation">
       <li id="link1"><a href="registerSignIn.php">Profile</a></li>
       <li id="link1" class="selected"><a href="index.php">Home</a></li>
@@ -102,11 +102,6 @@
     <div class="section3">
       <h2>Connect</h2>
       <a href="mailto:customerservice@zoonegaramalaysia.my?subject=Customer%20Service" id="email">Email Us</a> <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a>
-      <form action="#">
-        <h3>Subscribe to our</h3>
-        <h2>NEWSLETTER</h2>
-        <input type="text" value="your email here..." onBlur="this.value=!this.value?'your email here...':this.value;" onFocus="this.select()" onClick="this.value='';" />
-      </form>
       <img src="images/penguin2.jpg" alt=""/> </div>
   </div>
   <div id="footer">

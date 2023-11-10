@@ -68,7 +68,16 @@ require 'connection.php'
       mysqli_close($con);
       ?>     
       <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a> 
+      <form action="#">
+        <h3>Do leave us an</h3>
+        <h2>ENQUIRY</h2>
+
+        <input type="text" value="comment here..." onBlur="this.value=!this.value?'your email here...':this.value;" onFocus="this.select()" onClick="this.value='';" />
+
+      </form>
       </ul>
+
+
   </div>
     
     <div class="featured">
