@@ -84,43 +84,52 @@
     </ul>
   </div>
   <div id="content">
-    <div id="tickets">
-    <h2>Booking Form</h2>
-    <form>
-        <label for="booking">Select Date:</label>
-        <input type="date" id="booking" name="booking" required><br><br>
+        <div id="tickets">
+            <h2>Booking Form</h2>
+            <form action="summaryOrder.php" method="post">
+            <label for="booking">Select Date:</label>
+            <input type="date" id="booking" name="bookingDate" required><br><br>
 
-        <label for="ticket">Select Ticket:</label>
-        <label for="visitors">Malaysian (MyKad) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Foreigner (i-KAD)</label>
+                <label for="ticket">Select Ticket:</label>
+                <label for="visitors">Malaysian (MyKad) &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Foreigner (i-KAD)</label>
 
-        <br><a>Adult - RM45.00&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Adult - RM50.00 </a><br>
-        <input type="number" id="MYadult" name="MYadult" min="1" max="10">
-        &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <input type="number" id="Iadult" name="Iadult" min="1" max="10"><br>
+                <br><a>Adult - RM45.00&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Adult - RM50.00 </a><br>
+                <input type="number" id="MYadult" name="MYadult" min="1" max="10">
+                &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <input type="number" id="Iadult" name="Iadult" min="1" max="10"><br>
 
-        <br><a>Children (3 to 12 years old) - RM18.00  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Children (3 to 12 years old) - RM25.00 </a></a><br>
-        <input type="number" id="MYchild" name="MYchild" min="1" max="10">
-        &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <input type="number" id="Ichild" name="Ichild" min="1" max="10"><br>
+                <br><a>Children (3 to 12 years old) - RM18.00 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Children (3 to 12 years old) - RM25.00 </a><br>
+                <input type="number" id="MYchild" name="MYchild" min="1" max="10">
+                &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <input type="number" id="Ichild" name="Ichild" min="1" max="10"><br>
 
-        <br><a>Senior Citizen (60 years and above) - RM23.00&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Senior Citizen (60 years and above) - RM50.00 </a><br>
-        <input type="number" id="MYsenior" name="MYsenior" min="1" max="10">
-        &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <input type="number" id="Isenior" name="Isenior" min="1" max="10"><br><br>
+                <br><a>Senior Citizen (60 years and above) - RM23.00&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Senior Citizen (60 years and above) - RM50.00 </a><br>
+                <input type="number" id="MYsenior" name="MYsenior" min="1" max="10">
+                &ensp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <input type="number" id="Isenior" name="Isenior" min="1" max="10"><br><br>
 
-        <div id="header"> 
-        <br>
-        <a href="summaryOrder.php">Next</a>
-       
+                <!-- New division for user details -->
+                <div id="userDetails">
+                    <h2>User Details</h2>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required><br><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required><br><br>
+                </div>
+
+                <div id="header">
+                    <br>
+                    <input type="submit" value="Next">
+                </div>
+            </form>
         </div>
+    </div>
 
-    </form>
-
-        
-
-
-   </div>
-
+   
   <div class="featured">
       <h2>Meet our Cutie Animals</h2>
       <ul>

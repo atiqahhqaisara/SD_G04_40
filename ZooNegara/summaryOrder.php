@@ -72,40 +72,104 @@
       </div>
 
 <div id="content" >
-   <h1 style = "text-align: center"> Summary Order </h1>
-   <h2> &emsp; Selected Date: </h2>
-   &emsp;&emsp;<input type="date" id="selectedDate" name="selectedDate" required>
-   <br>
-   <br>
+<h2>Summary Order</h2>
 
-   <!-- info ticket here --> 
-   <h2> &emsp; Ticket Info  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Quantity </h2>
-   &emsp;&emsp;<input type="text" id="selectedTicket" name="selectedTicket" required>
-   &emsp;&emsp;&emsp;<input type="text" id="selectedTicket" name="selectedTicket" required>
-   <br>
-   <br>
+<?php
+include 'connection.php';
+// Retrieve values from the POST parameters
+$bookingDate = isset($_POST['bookingDate']) ? $_POST['bookingDate'] : '';
+$MYadult = isset($_POST['MYadult']) ? $_POST['MYadult'] : 0;
+$Iadult = isset($_POST['Iadult']) ? (int)$_POST['Iadult'] : 0;
+$MYchild = isset($_POST['MYchild']) ? (int)$_POST['MYchild'] : 0;
+$Ichild = isset($_POST['Ichild']) ? (int)$_POST['Ichild'] : 0;
+$MYsenior = isset($_POST['MYsenior']) ? (int)$_POST['MYsenior'] : 0;
+$Isenior = isset($_POST['Isenior']) ? (int)$_POST['Isenior'] : 0;
+$fullName = isset($_POST['fullName']) ? $_POST['fullName'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+
+// Ticket prices
+$priceMYadult = 45.00;
+$priceIadult = 50.00;
+$priceMYchild = 18.00;
+$priceIchild = 25.00;
+$priceMYsenior = 23.00;
+$priceIsenior = 50.00;
+
+// Calculate total amounts
+$totalMYadult = (int)$MYadult * $priceMYadult;
+$totalIadult = (int)$Iadult * $priceIadult;
+$totalMYchild = (int)$MYchild * $priceMYchild;
+$totalIchild = (int)$Ichild * $priceIchild;
+$totalMYsenior = (int)$MYsenior * $priceMYsenior;
+$totalIsenior = (int)$Isenior * $priceIsenior;
+
+// Calculate overall total
+(float)$grandTotal = $totalMYadult + $totalIadult + $totalMYchild + $totalIchild + $totalMYsenior + $totalIsenior;
 
 
-   <hr>
-   
-   <h2> &emsp; Total:</h2>
-   &emsp;&emsp;<input type="text" id="selectedTicket" name="selectedTicket" required>
-   <br> <br>
-   <hr>
-   <br>
+// Validate numeric values
+$MYadult = isset($MYadult) ? floatval($MYadult) : 0;
+$Iadult = isset($Iadult) ? floatval($Iadult) : 0;
+$MYchild = isset($MYchild) ? floatval($MYchild) : 0;
+$Ichild = isset($Ichild) ? floatval($Ichild) : 0;
+$MYsenior = isset($MYsenior) ? floatval($MYsenior) : 0;
+$Isenior = isset($Isenior) ? floatval($Isenior) : 0;
 
-   &emsp; &emsp; <a>Name: </a>
-   <br>
-   &emsp; &emsp; <a>Email: </a>
-   <br>
-   &emsp; &emsp; <a>Phone Number: </a>
-   <br>
+// SQL query to insert data into the booking table
+$sql = "INSERT INTO booking (bookingDate, MYadult, Iadult, MYchild, Ichild, MYsenior, Isenior, fullName, email, phone, grandTotal) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    <div id="header"> 
-        <br>
-        <a>Pay Now</a>
-       
-        </div>
+$stmt = $con->prepare($sql);
+$stmt->bind_param("ssssssssssd", $bookingDate, $MYadult, $Iadult, $MYchild, $Ichild, $MYsenior, $Isenior, $fullName, $email, $phone, $grandTotal);
+
+if ($stmt->execute()) {
+    $lastInsertId = $stmt->insert_id; // Retrieve the auto-generated bookingId
+    echo "Booking information inserted successfully. Booking ID: " . $lastInsertId;
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
+$con->close();
+
+?>
+
+<form action="processPayment.php" method="post">
+    <p>Date: <?= $bookingDate ?></p>
+    <p>Full Name: <?= $fullName ?></p>
+    <p>Email: <?= $email ?></p>
+    <p>Phone: <?= $phone ?></p>
+
+    <h3>Tickets:</h3>
+    <ul>
+        <li>Malaysian Adult (RM<?= $priceMYadult ?>): <?= $MYadult ?> x RM<?= $totalMYadult ?></li>
+        <li>Foreigner Adult (RM<?= $priceIadult ?>): <?= $Iadult ?> x RM<?= $totalIadult ?></li>
+        <li>Malaysian Child (RM<?= $priceMYchild ?>): <?= $MYchild ?> x RM<?= $totalMYchild ?></li>
+        <li>Foreigner Child (RM<?= $priceIchild ?>): <?= $Ichild ?> x RM<?= $totalIchild ?></li>
+        <li>Malaysian Senior (RM<?= $priceMYsenior ?>): <?= $MYsenior ?> x RM<?= $totalMYsenior ?></li>
+        <li>Foreigner Senior (RM<?= $priceIsenior ?>): <?= $Isenior ?> x RM<?= $totalIsenior ?></li>
+    </ul>
+
+    <p>Grand Total: RM<?= $grandTotal ?></p>
+
+    <input type="hidden" name="bookingDate" value="<?= $bookingDate ?>">
+    <input type="hidden" name="fullName" value="<?= $fullName ?>">
+    <input type="hidden" name="email" value="<?= $email ?>">
+    <input type="hidden" name="phone" value="<?= $phone ?>">
+    <input type="hidden" name="MYadult" value="<?= $MYadult ?>">
+    <input type="hidden" name="Iadult" value="<?= $Iadult ?>">
+    <input type="hidden" name="MYchild" value="<?= $MYchild ?>">
+    <input type="hidden" name="Ichild" value="<?= $Ichild ?>">
+    <input type="hidden" name="MYsenior" value="<?= $MYsenior ?>">
+    <input type="hidden" name="Isenior" value="<?= $Isenior ?>">
+    <input type="hidden" name="grandTotal" value="<?= floatval($grandTotal) ?>">
+
+    <input type="submit" value="Pay Now">
+</form>
+
+
+
 
         <div class="featured">
                 <h2>Meet our Cutie Animals</h2>

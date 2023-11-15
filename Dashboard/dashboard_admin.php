@@ -355,6 +355,12 @@ require 'controllerAdminData.php'
 						</ul>
 					
 					</li>
+
+					<li>
+						<a href="bookingList.php" class="dropdown-toggle no-arrow">
+							<span class="micon ti-home"></span><span class="mtext">Booking List</span>
+						</a>
+					</li>
 					
 				</ul>
 			</div>

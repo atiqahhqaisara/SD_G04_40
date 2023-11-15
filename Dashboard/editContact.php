@@ -380,120 +380,114 @@ require 'controllerAdminData.php'
 				</div>
 				
 				<?php
-				// Enable error reporting
-				error_reporting(E_ALL);
-				ini_set('display_errors', 1);
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-				include 'connection.php';
+include 'connection.php';
 
-				$row = []; // Initialize $row as an empty array
+$row = []; // Initialize $row as an empty array
 
-				if ($_SERVER["REQUEST_METHOD"] === "POST") {
-					// Handle the POST request to update administrator information
-					$picId = $_POST['picId'];
-					$picName = $_POST['picName'];
-					$picNum = $_POST['picNum'];
-					$picEmail = $_POST['picEmail'];
-		
-					$sql = "UPDATE contact SET  
-							picName=?, 
-							picNum=?, 
-							picEmail=?
-							WHERE picId=?";
-					
-					$stmt = $con->prepare($sql);
-					
-					// Bind parameters
-					$stmt->bind_param("ssss", $picName, $picNum,$picEmail,$picId);
-					
-					if ($stmt->execute()) {
-						// Update successful
-						
-						echo '<script>window.location.href = "contactList.php";</script>'; // Redirect using JavaScript
-						exit; // Terminate the script
-					} else {
-						// Error handling
-						echo "Error updating person in charge information: " . $stmt->error;
-					}
-					
-					$stmt->close();
-				} elseif (isset($_GET['picId'])) {
-					// Handle the GET request to display administrator information
-					$picId = $_GET['picId'];
-					$sql = "SELECT * FROM contact WHERE picId = ?";
-					$stmt = $con->prepare($sql);
-					
-					// Bind the email parameter
-					$stmt->bind_param("s", $picId);
-					
-					if ($stmt->execute()) {
-						$result = $stmt->get_result();
-						if ($result->num_rows > 0) {
-							$row = $result->fetch_assoc();
-						} else {
-							echo "Person in charge not found.";
-						}
-					} else {
-						echo "Error retrieving person in charge information: " . $stmt->error;
-					}
-					
-					$stmt->close();
-				} else {
-					echo "Invalid request.";
-				}
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Handle the POST request to update booking information
+    $bookingId = $_POST['bookingId'];
+    $bookingDate = $_POST['bookingDate'];
+    $fullName = $_POST['fullName'];
+    $phone = $_POST['phone'];
+    $MYadult = $_POST['MYadult'];
+    $MYchild = $_POST['MYchild'];
+    $MYsenior = $_POST['MYsenior'];
+    $Iadult = $_POST['Iadult'];
+    $Ichild = $_POST['Ichild'];
+    $Isenior = $_POST['Isenior'];
 
-				$con->close();
-				?>
+    $sql = "UPDATE booking SET  
+            bookingDate=?, 
+            fullName=?, 
+            phone=?, 
+            MYadult=?, 
+            MYchild=?, 
+            MYsenior=?, 
+            Iadult=?, 
+            Ichild=?, 
+            Isenior=?
+            WHERE bookingId=?";
+    
+    $stmt = $con->prepare($sql);
+    
+    // Bind parameters
+    $stmt->bind_param("ssssssssss", $bookingDate, $fullName, $phone, $MYadult, $MYchild, $MYsenior, $Iadult, $Ichild, $Isenior, $bookingId);
+    
+    if ($stmt->execute()) {
+        // Update successful
+        echo '<script>window.location.href = "bookingList.php";</script>'; // Redirect using JavaScript
+        exit; // Terminate the script
+    } else {
+        // Error handling
+        echo "Error updating booking information: " . $stmt->error;
+    }
+    
+    $stmt->close();
+} elseif (isset($_GET['bookingId'])) {
+    // Handle the GET request to display booking information
+    $bookingId = $_GET['bookingId'];
+    $sql = "SELECT * FROM booking WHERE bookingId = ?";
+    $stmt = $con->prepare($sql);
+    
+    // Bind the bookingId parameter
+    $stmt->bind_param("s", $bookingId);
+    
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            ?>
+            <form method="POST">
+                <input type="hidden" name="bookingId" value="<?= $row['bookingId']; ?>">
 
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h4 class="text-blue h4">View Booking</h4>
+                            <p class="mb-30">View booking information</p>
+                        </div>
+                    </div>
 
-				<!-- Default Basic Forms Start -->
-				<div class="pd-20 card-box mb-30">
-					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Edit Contact</h4>
-							<p class="mb-30">Edit contact information</p>
-						</div>
-					</div>
-					<form action="" method="POST">
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Id</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="picId" value="<?php echo isset($row['picId']) ? $row['picId'] : ''; ?>" readonly>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Name</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="picName" value="<?php echo isset($row['picName']) ? $row['picName'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Number</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="number" name="picNum" value="<?php echo isset($row['picNum']) ? $row['picNum'] : ''; ?>">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Person In Charge Email</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" name="picEmail" value="<?php echo isset($row['picEmail']) ? $row['picEmail'] : ''; ?>">
-							</div>
-						</div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Booking Date</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" name="bookingDate" value="<?= $row['bookingDate']; ?>" >
+                        </div>
+                    </div>
+                    <!-- Repeat the pattern for other fields -->
+                    <div class="form-group row">
+                        <div class="col-sm-12 col-md-10 offset-md-2">
+                            <button type="submit" class="btn btn-primary">
+                                Update
+                            </button>
+                            <button type="button" onclick="window.location.href='bookingList.php'" class="btn btn-secondary">
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <?php
+        } else {
+            echo "<h4>No Such Booking Id Found</h4>";
+        }
+    } else {
+        echo "Error retrieving booking information: " . $stmt->error;
+    }
+    
+    $stmt->close();
+} else {
+    echo "Invalid request.";
+}
 
-						<div class="form-group row">
-							<div class="col-sm-12 col-md-10 offset-md-2">
-								<button type="submit" class="btn btn-primary">Update</button>
-							</div>
-						</div>
-					</form>
-				</div>
+$con->close();
+?>
 
-				<!-- Default Basic Forms End -->
-
-
-			</div>
-		</div>
-	</div>
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
 	<script src="vendors/scripts/script.min.js"></script>

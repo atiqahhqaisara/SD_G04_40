@@ -113,7 +113,7 @@ require 'connection.php'
       <form  action="insertenquiry.php" method="post">
       <h3>Do leave us an</h3><br>
         <h2>ENQUIRY</h2><br>
-        <input type="text" name="enquiry" required>
+        <textarea name="enquiry" rows="6" cols="80" required></textarea>
         <br><br><br><button type="submit" name="submit">Submit</button><br><br><br>
         </form>
       </ul>
