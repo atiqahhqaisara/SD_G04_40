@@ -1,82 +1,97 @@
 <?php require_once "controllerUserData.php"; ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zoo Negara | Register</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 
-<title>Zoo Negara | Register</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="RegisterSignIn/fonts/material-icon/css/material-design-iconic-font.min.css">
 
-  <!-- Font Icon -->
-  <link rel="stylesheet" href="RegisterSignIn/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="RegisterSignIn/css/style.css">
 
-  <!-- Main css -->
-  <link rel="stylesheet" href="RegisterSignIn/css/style.css">
+    <style>
+        button {
+            background-color: #964B00;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+        }
 
+        button:hover {
+            background-color: #CC9966;
+        }
+
+        #password-display {
+            font-size: 14px;
+            margin-top: 5px;
+            color: #333;
+        }
+
+        .password-valid {
+            color: green;
+        }
+
+        .password-invalid {
+            color: red;
+        }
+
+        
+    </style>
 </head>
 
-<style>
-button {
-                background-color: #964B00;
-                color: #fff;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                cursor: pointer;
-                font-family: "Times New Roman", Times, serif;
-            }
-            button:hover {
-                background-color: #CC9966;
-            }
-</style>
-
 <body>
-<div id="page">
-<ul id="navigation">
-  <div id="header"> <a href="index.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
-    
-  </div>
+    <div id="page">
+        <ul id="navigation">
+            <div id="header">
+                <a href="index.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height="230"/></a>
+    </div>
 
-<div class="main">
-
-        <!-- Sign up form -->
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                        <?php
-                    if(count($errors) == 1){
-                        ?>
-                        <div class="alert alert-danger text-center">
-                            <?php
-                            foreach($errors as $showerror){
-                                echo $showerror;
-                            }
-                            ?>
-                        </div>
-                        <?php
-                    }elseif(count($errors) > 1){
-                        ?>
-                        <div class="alert alert-danger">
-                            <?php
-                            foreach($errors as $showerror){
-                                ?>
-                                <li><?php echo $showerror; ?></li>
-                                <?php
-                            }
-                            ?>
-                        </div>
-                        <?php
-                    }
-                    ?>
+            <div class="main">
+                <!-- Sign up form -->
+                <section class="signup">
+                    <div class="container">
+                        <div class="signup-content">
+                            <div class="signup-form">
+                                <h2 class="form-title">Sign up</h2>
+                                <form method="POST" class="register-form" id="register-form">
+                                    <?php
+                                    if(count($errors) == 1) {
+                                        ?>
+                                        <div class="alert alert-danger text-center">
+                                            <?php
+                                            foreach($errors as $showerror) {
+                                                echo $showerror;
+                                            }
+                                            ?>
+                                        </div>
+                                        <?php
+                                    } elseif(count($errors) > 1) {
+                                        ?>
+                                        <div class="alert alert-danger">
+                                            <?php
+                                            foreach($errors as $showerror) {
+                                                ?>
+                                                <li><?php echo $showerror; ?></li>
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <?php
+                                    }
+                                    ?>
                             <p>Your Full Name:</p>
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="E.g: Abu bin Ali" required/>
+                                <input type="text" name="name" id="name" placeholder="" required/>
                             </div>
                             <p>Your Date Of Birth:</p>
                             <div class="form-group">
@@ -87,31 +102,35 @@ button {
                             <p>Your Phone Number:</p>
                             <div class="form-group">
                                 <label for="contactNumber"><i class="zmdi zmdi-smartphone"></i></label>
-                                <input type="number" name="contactNumber" id="contactNumber" placeholder="E.g: 0172236871" required/>
+                                <input type="number" name="contactNumber" id="contactNumber" placeholder="" required/>
                             </div>
 
                             <p>Your Email:</p>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="E.g: abu@gmail.com" required/>
+                                <input type="email" name="email" id="email" placeholder="" required/>
                             </div>
 
                             <p>Your Password:</p>
                             <div class="form-group">
                                 <label for="password"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="password" id="password" placeholder="*Length must more than 8 characters"/>
+                                <input type="password" name="password" id="password" placeholder="*Length must be between 8 and 20 characters" 
+                                minlength="8" maxlength="20" oninput="checkPassword()" required />
                             </div>
+
+
 
                             <p>Repeat your password:</p>
                             <div class="form-group">
                                 <label for="cpassword"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="cpassword" id="cpassword" placeholder=""/>
+                                <input type="password" name="cpassword" id="cpassword" placeholder="" minlength="8" maxlength="20" 
+                                oninput="checkPassword()" />
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+
+                             <div id="password-display"></div>
                             </div>
-                 <div class="form-group form-button">
+                            
+                            <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
                                <!-- <a href="registerSignin.php"><button class="" role="button">Register</button></a> -->
                             </div>
@@ -153,6 +172,26 @@ button {
     </div>
   </div>
 </div>
+<script>
+        function checkPassword() {
+            var passwordInput = document.getElementById("password");
+            var confirmPasswordInput = document.getElementById("cpassword");
+            var passwordDisplay = document.getElementById("password-display");
+
+            if (passwordInput.value.length >= 8 && passwordInput.value.length <= 20) {
+                passwordDisplay.textContent = "Password meets the length requirement";
+                passwordDisplay.className = "password-valid";
+            } else {
+                passwordDisplay.textContent = "Password must be between 8 and 20 characters";
+                passwordDisplay.className = "password-invalid";
+            }
+
+            if (confirmPasswordInput.value !== "" && passwordInput.value !== confirmPasswordInput.value) {
+                passwordDisplay.textContent = "Passwords do not match";
+                passwordDisplay.className = "password-invalid";
+            }
+        }
+    </script>
 </body>
 </html>
 

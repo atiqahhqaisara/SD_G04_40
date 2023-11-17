@@ -1,12 +1,50 @@
 <?php
-require ('connection.php')
+include "controllerUserData.php";
+include "connection.php";
+// Check connection
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
+}
+
+// Fetch orders for the current user
+$currentCust = $_SESSION['email'];
+$sql = "SELECT * FROM booking WHERE email = '$currentCust'";
+$result = $con->query($sql);
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Zoo Negara | Info</title>
+<title>Zoo Negara | The Zoo</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+<style>
+   
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 <div id="page">
@@ -25,83 +63,52 @@ require ('connection.php')
     <ul id="navigation">
       <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1"><a href="homepage.php">Home</a></li>
-      <li id="link2"><a href="zooCustomer.php">The Zoo</a></li>
-      <li id="link3" class="selected"><a href="infoCustomer.php">Visitors Info</a></li>
+      <li id="link2" class="selected"><a href="zooCustomer.php">The Zoo</a></li>
+      <li id="link3"><a href="infoCustomer.php">Visitors Info</a></li>
       <li id="link4"><a href="eventsCustomer.php">Events</a></li>
       <li id="link6"><a href="contactCustomer.php">Contact Us</a></li>
       <li id="link7">
         <a href="signOut.php">Sign Out</a>
         </li>
-    
     </ul>
   </div>
-  <div id="content">
-    <div id="info">
-      <h1>Visitors Info</h1>
-      <p><a href="https://www.zoonegara.my/map.html" id="zooNegara">Zoo Negara Map</a></p>
-      <ul>
-        <li>
-          <h2><a href="#">Getting Here: </a></h2>
-          <p>By Light Rail Transit System (LRT) : <br>
-            - Alight at Wangsa Maju Station, Kelana Jaya Line  <br>    
-            - Board a taxi to Zoo Negara <br></p>
-            <p>By Bus : <br><br>
-              - Rapid KL number 253 from Putra LRT Station, Wangsamaju, KL<br>    
-              - Rapid KL number 220 from Lebuh Ampang, KL</p>
-        </li>
-        <li>
-          <h2><a href="#">Animal Feeding Session</a></h2>
-          <a href="#"><img src="images/animalfeed.png" alt="" weight=400 height=220/></a>
-          <p>Weekends & Public Holidays<br>
-            Children's World : 12.00 pm - 1.00 pm<br>
-            Javan Deer : 2.00 pm - 3.00 pm</p>
-        </li>
-        <li>
-          <h2><a href="#">Show Times - Multi-Animal Show</a></h2>
-          <a href="#"><img src="images/show_02.jpg" alt="" weight=400 height=220/><br><br></a>
-          <p>Saturday - Thursday : 11am & 3pm<br>
-            Our Multi-animal Show is CLOSED on Friday EXCEPT school holidays & public holidays.</p>
-        </li>
-
-        <h2> Promotion </h2>
-        <br>
-        <li>
+    <div id="content">
+        <div id="zoo">
+        <h2>Order History</h2>
         <?php
-    
-        if (!$con) {
-            die("Connection failed: " . mysqli_connect_error());
+        $sql = "SELECT * FROM booking WHERE status = '1'";
+        $result = $con->query($sql);
+        if ($result->num_rows > 0) {
+            echo "<table border='1'>
+                    <tr>
+                    <th>Booking ID</th>
+                    <th>Booking Date</th>
+                    <th>Full Name</th>
+                    <th>Receipt</th>
+                    </tr>";
+
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                $bookingId = $row["bookingId"];
+                echo "<tr>
+                        <td>" . $bookingId . "</td>
+                        <td>" . $row["bookingDate"] . "</td>
+                        <td>" . $row["fullName"] . "</td>
+                        <td><a href='viewReceipt.php?bookingId=$bookingId'>View Receipt</a></td>
+                    </tr>";
+            }
+            
+
+            echo "</table>";
+        } else {
+            echo "No orders found for the current user";
         }
 
-        // Step 2: Query the database to retrieve information
-        $sql = "SELECT * FROM promotion ORDER BY promotionId";
-        $promoQry = mysqli_query($con, $sql);
-
-        if (!$promoQry) {
-            die("Error executing query: " . mysqli_error($con));
-        }
-
-        // Display each ticket's information
-        $count = 1;
-        while ($row = mysqli_fetch_assoc($promoQry)) {
-            echo '<p>' . $row['promotionName'] . '</p>';
-            echo '<p>' . $row['promotion'] . '</p>';
-            echo '<p>' . $row['description'] . '</p>';
-            $count++;
-            echo '<br>';
-        }
-
-        // Close the database connection
-        mysqli_close($con);
+        // Close connection
+        $con->close();
         ?>
-
-        
-
-        </li>
-        
-      </ul>
-    </div>
-
-    <div class="featured">
+        </div>
+        <div class="featured">
       <h2>Meet our Cutie Animals</h2>
       <ul>
         <li class="first"> <a href="#"><img src="images/lion.png" alt=""/></a> <a href="#">Lion</a> </li>
@@ -110,13 +117,13 @@ require ('connection.php')
         <li> <a href="#"><img src="images/capybara.png" alt=""/></a> <a href="#">Capybara</a> </li>
         <li> <a href="#"><img src="images/zif.png" alt=""/></a> <a href="#">Giraffe</a> </li>
         <li> <a href="#"><img src="images/gibbon.png" alt=""/></a> <a href="#">White Gibbon</a> </li>
-        <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>
-        
+        <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>        
       </ul>
     </div>
+    
   </div>
   <div id="footer">
-    <div> <a href="#" class="logo"><img src="images/capybaraFooter3.png" alt=""/></a>
+    <div> <a href="#" class="logo"><img src="images/capybaraFooter.png" alt=""/></a>
       <div>
         <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia</p>
         <span>For enquiries, please call : </span><span>+603-4108 3422</span><span>Fax : +603-4107 5375</span> <span>Email: @zoonegaramalaysia.com</span> </div>
@@ -140,3 +147,5 @@ require ('connection.php')
 </div>
 </body>
 </html>
+
+  

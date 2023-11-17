@@ -1,3 +1,14 @@
+<?php
+include "controllerUserData.php";
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
+
+$currentCust = $_SESSION['email'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,7 +126,7 @@
                     <input type="text" id="fullName" name="fullName" required><br><br>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
+                    <input type="email" id="email" name="email" value="<?php echo $currentCust; ?>" required><br><br>
 
                     <label for="phone">Phone Number:</label>
                     <input type="tel" id="phone" name="phone" required><br><br>

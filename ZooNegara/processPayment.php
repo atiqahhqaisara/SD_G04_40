@@ -9,7 +9,8 @@ $grandTotal = ($grandTotal * 100);
 $apiUrl = 'https://dev.toyyibpay.com/index.php/api/createBill';
 $secretKey = 'o7lyshad-atzp-t0y3-z3gy-fix1opoiy1vr';
 $categoryCode = 'xacxkus6';
-//$billReturnUrl = 'C:\UniServerZ\www\ZooNegara\receipt.php';
+$billReturnUrl = 'http://localhost/ZooNegara/response.php';
+$billpaymentStatus = 0;
 
 $data = array(
     'userSecretKey' => $secretKey,
@@ -19,7 +20,7 @@ $data = array(
     'billPriceSetting' => 1,
     'billPayorInfo' => 1,
     'billAmount' => $grandTotal,
-   //'billReturnUrl' => $billReturnUrl,
+    'billReturnUrl' => $billReturnUrl,
     'billCallbackUrl' => '',
     'billExternalReferenceNo' => '',
     'billTo' => $fullName,
@@ -45,10 +46,21 @@ if ($result === FALSE) {
     die('Error occurred while processing payment.');
 }
 
-$obj = json_decode($result, true);
-$billcode = $obj[0]['BillCode'];
+// ...
 
-// Redirect to the payment gateway
-header("Location: https://dev.toyyibpay.com/{$billcode}");
-exit;
+// Decode the JSON response from ToyyibPay API
+$obj = json_decode($result, true);
+
+// Check if the BillCode is set in the response
+if (isset($obj[0]['BillCode'])) {
+    // Extract the BillCode from the response
+    $billcode = $obj[0]['BillCode'];
+
+    // Redirect to the ToyyibPay payment gateway
+    header("Location: https://dev.toyyibpay.com/{$billcode}");
+    exit;
+} else {
+    // Handle the case where BillCode is not present in the response
+    die('Error: BillCode not present in ToyyibPay API response.');
+}
 ?>

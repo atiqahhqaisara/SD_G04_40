@@ -41,9 +41,8 @@ if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 }
 
-// SQL query to insert data into the booking table
-$sql = "INSERT INTO booking (bookingDate, MYadult, Iadult, MYchild, Ichild, MYsenior, Isenior, fullName, email, phone) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO booking (bookingDate, MYadult, Iadult, MYchild, Ichild, MYsenior, Isenior, fullName, email, phone, orderDate) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
 $stmt = $con->prepare($sql);
 $stmt->bind_param("ssssssssss", $bookingDate, $MYadult, $Iadult, $MYchild, $Ichild, $MYsenior, $Isenior, $fullName, $email, $phone);

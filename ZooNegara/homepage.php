@@ -20,7 +20,7 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="http://localhost/ZooNegara/colorlib-booking-17/index.php">Buy Ticket Now</a>
+    <a href="http://localhost/ZooNegara/bookTicket.php">Buy Ticket Now</a>
     <ul id="navigation">
       <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1" class="selected"><a href="homepage.php">Home</a></li>
