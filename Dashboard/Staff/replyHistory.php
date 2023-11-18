@@ -1,5 +1,5 @@
 <?php
-require 'controllerAdminData.php';
+require '../controllerAdminData.php';
 
 $selectMessagesQuery = "SELECT r.replyId, r.message AS replyMessage, e.enquiryId, e.message AS enquiryMessage
                        FROM enquiry e

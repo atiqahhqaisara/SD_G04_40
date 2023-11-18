@@ -178,20 +178,6 @@ require '../controllerAdminData.php'
 						</a>
 					</li>
 					
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
-						</a>
-						<ul class="submenu">
-							<li><a href="addStaff.php">Add Staff</a></li>
-							<li><a href="staffList.php">Staff List</a></li>
-						</ul>
-					
-					</li>
-
-					<li>
-						<div class="dropdown-divider"></div>
-					</li>
 					<li>
 						<div class="sidebar-small-cap">Zoo Negara Website</div>
 					</li>
@@ -200,6 +186,7 @@ require '../controllerAdminData.php'
 							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
+
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon ti-info"></span><span class="mtext">About</span>
@@ -208,69 +195,43 @@ require '../controllerAdminData.php'
 							<li><a href="visionList.php">Vision List</a></li>
 							<li><a href="missionList.php">Mission List</a></li>
 						</ul>
-						</li>
+					</li>
 
-						</li>
-						<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+					<li>
+						<a href="bookingList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-shopping-cart"></span><span class="mtext">Booking</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="bookingList.php">Booking List</a></li>
-						</ul>
-					
 					</li>
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon ti-announcement"></span><span class="mtext">Contact</span>
+
+					<li>
+						<a href="contactList.php" class="dropdown-toggle no-arrow">
+							<span class="micon  fa fa-user-o"></span><span class="mtext">Contact</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="addContact.php">Add PIC</a></li>
-							<li><a href="contactList.php">PIC List</a></li>
-						</ul>
-					
 					</li>
-					</li>
-						<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+
+					<li>
+						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="enquiryList.php">Enquiry List</a></li>
-						</ul>
-					
 					</li>
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+
+					<li>
+						<a href="eventList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="addEvent.php">Add Event</a></li>
-							<li><a href="eventList.php">Event List</a></li>
-						</ul>
-					
 					</li>
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+
+					<li>
+						<a href="ticketList.php" class="dropdown-toggle no-arrow">
 							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="addTicketPrice.php">Add Ticket</a></li>
-							<li><a href="ticketList.php">Ticket List</a></li>
-						</ul>
-					
 					</li>
 
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+					<li>
+						<a href="promotionList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="addPromotion.php">Add Promotion</a></li>
-							<li><a href="promotionList.php">Promotion List</a></li>
-						</ul>
 					</li>
-
 					<li>
 						<a href="salesReport.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-files"></span><span class="mtext">Report</span>
@@ -281,6 +242,7 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
+	<div class="mobile-menu-overlay"></div>
 
 
 	<div class="main-container">

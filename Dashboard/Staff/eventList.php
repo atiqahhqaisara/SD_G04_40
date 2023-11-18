@@ -176,13 +176,7 @@ require '../controllerAdminData.php'
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
 					</li>
-					
-					<li>
-						<a href="staffList.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
-						</a>
-					</li>
-					
+			
 					<li>
 						<div class="sidebar-small-cap">Zoo Negara Website</div>
 					</li>
@@ -215,7 +209,7 @@ require '../controllerAdminData.php'
 					</li>
 
 					<li>
-						<a href="enquiryList.php" class="dropdown-toggle no-arrow">
+						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
 					</li>
