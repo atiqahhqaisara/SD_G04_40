@@ -3,7 +3,7 @@ $error = "";
 ?>
 <html>
     <head>
-        		<!-- Basic Page Info -->
+        <!-- Basic Page Info -->
 		<meta charset="utf-8" />
 		<title>Reset Password</title>
 
@@ -128,12 +128,16 @@ $error = "";
                                         <input type="hidden" name="action" value="update" class="form-control"/>
                                         <div class="form-group">
                                             <label><strong>Enter New Password:</strong></label>
-                                            <input type="password"  name="pass1" class="form-control"/>
+                                            <input type="password" name="pass1" class="form-control" minlength="8" maxlength="20" required />
+                                            <!-- Adjust the minlength and maxlength values as needed -->
                                         </div>
+
                                         <div class="form-group">
                                             <label><strong>Re-Enter New Password:</strong></label>
-                                            <input type="password"  name="pass2" class="form-control"/>
+                                            <input type="password" name="pass2" class="form-control" minlength="8" maxlength="20" required />
+                                            <!-- Adjust the minlength and maxlength values as needed -->
                                         </div>
+
                                         <input type="hidden" name="email" value="<?php echo $email; ?>"/>
                                         <div class="form-group">
                                             <input type="submit" id="reset" value="Reset Password"  class="btn btn-primary"/>

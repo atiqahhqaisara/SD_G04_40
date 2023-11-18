@@ -8,7 +8,7 @@ require 'controllerAdminData.php';
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Login Page</title>
+	<title>Dashboard Login</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -58,31 +58,27 @@ require 'controllerAdminData.php';
 						<div class="login-title">
 							<h2 class="text-center text-primary">Login To Dashboard</h2>
 						</div>
-<form method="POST" action="index.php">
-	
-			<div class="input-group custom">
-				<input type="text" name="email" id="email" class="form-control form-control-lg" placeholder="Email">
-				<div class="input-group-append custom">
-					<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
-				</div>
-			</div>
-			<div class="input-group custom">
-				<input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Password">
-				<div class="input-group-append custom">
-					<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
-				</div>
-			</div>
-			<div class="row pb-30">
-				<div class="col-6">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="customCheck1">
-						<label class="custom-control-label" for="customCheck1">Remember Me</label>
-					</div>
-				</div>
-				<div class="col-6">
-					<div class="forgot-password"><a href="forgot_pwd.php">Forgot Password?</a></div>
-				</div>
-			</div>
+						<form method="POST" action="index.php">
+							
+									<div class="input-group custom">
+										<input type="text" name="email" id="email" class="form-control form-control-lg" placeholder="Email">
+										<div class="input-group-append custom">
+											<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+										</div>
+									</div>
+									<div class="input-group custom">
+									<input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Password" minlength="8" maxlength="20">
+										<div class="input-group-append custom">
+											<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+										</div>
+									</div>
+									<div class="row pb-30">
+										<div class="col-6"></div>
+
+										<div class="col-6">
+											<div class="forgot-password"><a href="forgot_pwd.php">Forgot Password?</a></div>
+										</div>
+									</div>
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">

@@ -121,7 +121,7 @@ $error = "";
 
                 $output.='<p>Please click on the following link to reset your password.</p>';
                 //replace the site url
-                $output.='<p><a href="http://localhost/Dashboard/reset-password.php?key=' . $key . '&email=' . $email . '&action=reset" target="_blank">http://localhost/Dashboard/reset-password.php?key=' . $key . '&email=' . $email . '&action=reset</a></p>';
+				$output .= '<p><a href="http://localhost/Dashboard/reset-password.php?key=' . $key . '&email=' . $email . '&action=reset" target="_blank">Reset Password</a></p>';
                 $body = $output;
                 $subject = "Password Recovery";
 
@@ -134,7 +134,7 @@ $error = "";
                 $mail->Host = "smtp.gmail.com"; // Enter your host here
                 $mail->SMTPAuth = true;
                 $mail->Username = "zoonegara4004@gmail.com"; // Enter your email here
-                $mail->Password = "gmfergyntgzomcgz"; //Enter your password here
+                $mail->Password = "wjhbxlblwmmrgesc"; //Enter your password here
                 $mail->Port = 587;
                 $mail->IsHTML(true);
                 $mail->From = "zoonegara4004@gmail.com";

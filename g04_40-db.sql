@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 18, 2023 at 07:25 AM
+-- Generation Time: Nov 18, 2023 at 09:47 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.2.0
 
@@ -38,8 +38,7 @@ CREATE TABLE `aboutmission` (
 
 INSERT INTO `aboutmission` (`missionId`, `mission`) VALUES
 (5, 'To provide an outstanding and dynamic habitat for animals and plant life and incorporating high quality animal health care and husbandry.'),
-(6, 'To be the leader and innovator in wildlife conservation, recreation, education, training and research.'),
-(7, 'To collaborate and disseminate scientific knowledge to local, regional, and worldwide zoos through our science-based approach to wildlife management.');
+(6, 'To be the leader and innovator in wildlife conservation, recreation, education, training and research.');
 
 -- --------------------------------------------------------
 
@@ -57,7 +56,7 @@ CREATE TABLE `aboutvision` (
 --
 
 INSERT INTO `aboutvision` (`visionId`, `vision`) VALUES
-(2, 'To be one of the world\'s premier zoological park and aquaria dedicated to the conservation, recreation, education, training, and research of various animal and plant speciess');
+(2, 'To be one of the world\'s premier zoological park and aquaria dedicated to the conservation, recreation, education, training, and research of various animal and plant species');
 
 -- --------------------------------------------------------
 
@@ -84,11 +83,10 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`fullName`, `phone`, `email`, `password`, `newPassword`, `position`, `address`, `postal`, `district`, `states`, `profilePicture`) VALUES
-('Amir', '0178676818', 'amir123@gmail.com', '5913e612d3c4c24a75fb80b5b44b2e24', NULL, 'STAFF', 'Pasir Mas', 79992, 'KL', 'KL', NULL),
+('Amir Redzuan', '0178676810', 'amir123@gmail.com', '5913e612d3c4c24a75fb80b5b44b2e24', NULL, 'STAFF', 'Pasir Mas', 79992, 'KL', 'KL', NULL),
 ('Atiqah Qaisara', '0123456789', 'atiqahqaisarah@gmail.com', '2d60fb0b8a1d5d5e2b3393580ecab9aa', NULL, 'STAFF', 'Sentul', 51000, 'Kuala Lumpur', 'Kuala Lumpur', NULL),
-('ilya', '0122342506', 'fcvdgebhnj@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 'STAFF', 'dfssgh', 20144, 'thd', 'safa', NULL),
-('IRDINA SOFIA BINTI ROHAIDI', '0175710871', 'irdina5566@gmail.com', '86b19a0013a70a10e5c46bfd2b0b8504', '', 'ADMIN', 'Alam Impian', 30000, 'Klang', 'Selangor', 'Lv 4.jpg'),
-('Irdina Rohaidi', '0123456789', 'irdinacs21@gmail.com', 'bffa783a022fe2d98692014dda6d7a4c', '', 'STAFF', 'Keramat', 53100, 'Kuala Lumpur', 'Wilayah Persekutuan Kuala Lumpur', 'WhatsApp Image 2023-08-17 at 14.19.09.jpg');
+('IRDINA SOFIA BINTI ROHAIDI', '0175710871', 'irdina5566@gmail.com', 'b223d3f6339c228132e4e1e2732754ec', '', 'ADMIN', 'Alam Impian', 30000, 'Klang', 'Selangor', 'pic.jpg'),
+('Irdina Rohaidi', '0123456789', 'irdinacs21@gmail.com', 'b223d3f6339c228132e4e1e2732754ec', '', 'STAFF', 'Keramat', 53100, 'Kuala Lumpur', 'Wilayah Persekutuan Kuala Lumpur', 'pic.jpg');
 
 -- --------------------------------------------------------
 
@@ -118,8 +116,7 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`bookingId`, `orderDate`, `bookingDate`, `fullName`, `email`, `phone`, `MYadult`, `MYchild`, `MYsenior`, `Iadult`, `Ichild`, `Isenior`, `grandTotal`, `status`) VALUES
-(34, '2023-11-17 15:13:06', '2023-11-24', 'soifa', 'irdina5566@gmail.com', '0123456789', 1, 0, 0, 0, 0, 0, 45.00, 1),
-(35, '2023-11-17 17:35:01', '2023-11-30', 'irdina', 'irdina5566@gmail.com', '0123456789', 1, 0, 0, 0, 0, 0, 45.00, 0);
+(40, '2023-11-18 14:32:43', '2023-12-01', 'irdina', 'irdina5566@gmail.com', '0123456789', 1, 0, 0, 0, 0, 0, 45.00, 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +138,8 @@ CREATE TABLE `contact` (
 INSERT INTO `contact` (`picId`, `picName`, `picNum`, `picEmail`) VALUES
 (1, 'Ali', '0198810981', 'ali123@gmail.com'),
 (2, 'Aina', '0162345567', 'ainaa@gmail.com'),
-(3, 'Sheila', '0123342235', 'sheilarh@gmail.com');
+(4, 'Alya', '0123456789', 'alyaaa@gmail.com'),
+(5, 'Sofia', '0123456778', 'sofiaaaa@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -166,7 +164,7 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`name`, `dob`, `contactNumber`, `email`, `password`, `code`, `status`) VALUES
 ('Aisyah Qarirah binti Hijat', '2000-12-11', '0162557735', 'atiqahhqaisara@gmail.com', '$2y$10$yFvA.JijhZE8n0JWLvejxO9hvVkA600BnH.O2Y6v3K6OEPmA1iHli', 0, 'verified'),
 ('Laila Suhaila', '2003-10-13', '0162557794', 'atiqahqaisarahijat@gmail.com', '$2y$10$VCwQ8J7.NGeF9IAThAzwJevP4XYxFHpeZ.4gG0DfPiokIx7CEhYpS', 0, 'verified'),
-('IRDINA SOFIA BINTI ROHAIDI', '2003-11-03', '0175710871', 'irdina5566@gmail.com', '$2y$10$h/I9cidqjrPvDrFSqZZ4U.P/IpdkAV8wKtnTmhxf6Om0klqB8h.Cy', 0, 'verified'),
+('IRDINA SOFIA BINTI ROHAIDI', '2003-11-03', '0175710871', 'irdina5566@gmail.com', '$2y$10$XE0CDj4mSgaluE5j8367SuFMVOLFX0OppiXsTrjJUGPt.PIvZnt6a', 0, 'verified'),
 ('irdina', '2003-11-03', '0123456789', 'irdinacs21@gmail.com', '$2y$10$WQTpfV0bVjuhzKp9ZXM57e9jEG8KWLAj/vrvFOtDOh/iSu0yf7xrG', 0, 'verified');
 
 -- --------------------------------------------------------
@@ -190,7 +188,8 @@ CREATE TABLE `enquiry` (
 
 INSERT INTO `enquiry` (`enquiryId`, `email`, `phone`, `message`, `time`, `status`) VALUES
 (6, 'irdina5566@gmail.com', '0123345678', 'lapar', '2023-11-18 14:50:42', 1),
-(7, 'irdina5566@gmail.com', '0123456789', 'hahahahah', '2023-11-18 15:22:44', 1);
+(7, 'irdina5566@gmail.com', '0123456789', 'hahahahah', '2023-11-18 15:22:44', 1),
+(8, 'irdina5566@gmail.com', '0123456789', 'lapaarrr', '2023-11-19 05:24:33', 1);
 
 -- --------------------------------------------------------
 
@@ -212,8 +211,11 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`eventId`, `eventName`, `eventDate`, `lastDate`, `description`, `image`) VALUES
-(1, 'BIRTHDAY – ZOO FIESTA PARTY PACKAGE', '2023-01-01', '2023-12-31', 'Celebrate your birthday with us and let our party crew host this memorable function.  We can even bring out some tame animals on your special day. Join our package now!', 'zoo/event (3).png'),
-(2, 'Orangutan Fun Walk @ Zoo Negara', '2023-12-01', '2023-12-31', 'With a minimum commitment fees you will get a free entrance to Zoo Negara, fun activities, lucky draw, t-shirt, finisher medal, 2 meals (breakfast & lunch) and e-certificate. During the Orangutan Fun Walk, participants will have the opportunity to explore the zoo grounds while enjoying a leisurely stroll alongside the orangutan enclosures.', 'zoo/event (2).png');
+(1, 'Birthday Party - Zoo Fiesta Package', '2023-01-01', '2023-12-31', 'Celebrate your birthday with us and let our party crew host this memorable function.  We can even bring out some tame animals on your special day. Join our package now!', 'BirthdayPackage.jpg'),
+(2, 'Orang Utan Fun Walk @ Zoo Negara', '2023-12-01', '2023-12-31', 'With a minimum commitment fees you will get a free entrance to Zoo Negara, fun activities, lucky draw, t-shirt, finisher medal, 2 meals (breakfast & lunch) and e-certificate. During the Orangutan Fun Walk, participants will have the opportunity to explore the zoo grounds while enjoying a leisurely stroll alongside the orangutan enclosures.', 'event (2).png'),
+(15, 'Zoo Explorers Kids Camp', '2023-12-09', '2023-12-09', 'Calling all young explorers! Join us for a day filled with adventure, education, and hands-on fun. Our Zoo Explorers Kids Camp offers a unique opportunity for children to engage with wildlife through games, crafts, and guided tours. It\'s an unforgettable experience designed for the next generation of conservation enthusiasts.', 'zoo_map.jpg'),
+(16, 'Shutter Safari Photography Day', '2023-12-19', '2023-12-19', 'Grab your cameras and join us for a Shutter Safari Photography Day! Capture the beauty and essence of our zoo\'s inhabitants in this exclusive photography event. Whether you\'re a beginner or a seasoned photographer, this is your chance to snap stunning shots and gain insights from photography experts.', 'capybara.png'),
+(17, 'Dolphin Show', '2023-12-15', '2023-12-22', 'Enjoy the dolphin show!!', 'ticket-dolphin.jpg');
 
 -- --------------------------------------------------------
 
@@ -247,8 +249,7 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`transactionID`, `name`, `email`, `phone`, `price`, `status`) VALUES
-('TP2311172935475193', 'soifa', 'irdina5566@gmail.com', '0123456789', 45.00, 1),
-('TP2311174611502581', 'irdina', 'irdina5566@gmail.com', '0123456789', 45.00, 1);
+('TP2311183507029802', 'irdina', 'irdina5566@gmail.com', '0123456789', 45.00, 1);
 
 -- --------------------------------------------------------
 
@@ -271,8 +272,9 @@ CREATE TABLE `promotion` (
 --
 
 INSERT INTO `promotion` (`promotionId`, `promotionName`, `startDate`, `lastDate`, `description`, `promotion`, `image`) VALUES
-(2, 'Free Trem', '2023-10-13', '2023-10-17', 'Only Applicable for big family', 'Free', 'promo/feed.jpeg'),
-(3, 'Promo Dolphin Show', '2023-10-11', '2023-10-17', 'Enjoy our dolphin show! Only applicable walk-in', '50% Off', 'promo/event (1).png');
+(2, 'Free Trem', '2023-10-13', '2023-10-17', 'Only Applicable for big family', 'Free', 'tram.jpg'),
+(3, 'Promo Dolphin Show', '2023-10-11', '2023-10-17', 'Enjoy our dolphin show! Only applicable walk-in', '50% Off', 'promo/event (1).png'),
+(8, 'Creature Carnival', '2023-12-01', '2023-12-31', 'Join the Creature Carnival in style! Children dressed in carnival or animal-themed costumes receive half-price admission. A fun-filled day of entertainment and surprises awaits.', 'Half-Price Admission for Kids in Costume', 'kids.jpg');
 
 -- --------------------------------------------------------
 
@@ -295,7 +297,8 @@ CREATE TABLE `reply` (
 
 INSERT INTO `reply` (`replyId`, `enquiryId`, `email`, `phone`, `message`, `time`) VALUES
 (28, 6, 'irdina5566@gmail.com', '0123345678', 'hello', '2023-11-18 14:53:23'),
-(29, 7, 'irdina5566@gmail.com', '0123456789', 'iyeeee', '2023-11-18 15:24:09');
+(29, 7, 'irdina5566@gmail.com', '0123456789', 'iyeeee', '2023-11-18 15:24:09'),
+(30, 8, 'irdina5566@gmail.com', '0123456789', 'makanlah', '2023-11-19 05:31:41');
 
 -- --------------------------------------------------------
 
@@ -315,9 +318,11 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`ticketId`, `visitor`, `category`, `price`) VALUES
-(1, 'Malaysian', 'Adult', 50.00),
-(2, 'Malaysian', 'Children', 35.00),
-(3, 'Malaysian', 'Senior Citizen', 20.00);
+(1, 'Malaysian', 'Adult', 45.00),
+(2, 'Malaysian', 'Children', 18.00),
+(3, 'Malaysian', 'Senior Citizen', 23.00),
+(9, 'Foreigner', 'Adult', 50.00),
+(10, 'Foreigner', 'Children', 25.00);
 
 --
 -- Indexes for dumped tables
@@ -394,43 +399,43 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookingId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `bookingId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `picId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `picId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
-  MODIFY `enquiryId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `enquiryId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `eventId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `eventId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `promotionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `promotionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `reply`
 --
 ALTER TABLE `reply`
-  MODIFY `replyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `replyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `ticketId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ticketId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

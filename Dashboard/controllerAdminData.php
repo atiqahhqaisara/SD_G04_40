@@ -39,10 +39,10 @@ if (isset($_POST['login'])) {
         $position = $record['position'];
 
         if ($position == strtoupper('admin')) {
-            header("Location: \Dashboard\dashboard_admin.php");
+            header("Location: /Dashboard/Admin/index.php");
             exit; // Make sure to exit after redirection
         } else if ($position == strtoupper('staff')) {
-            header("Location:  \Dashboard-Staff\dashboard_staff.php");
+            header("Location:  /Dashboard/Staff/index.php");
             exit; // Make sure to exit after redirection
         } else {
             echo "<script>alert('Invalid position: $position');</script>";
