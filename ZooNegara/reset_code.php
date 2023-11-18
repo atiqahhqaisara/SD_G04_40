@@ -18,8 +18,6 @@ if($email == false){
         <div class="row">
             <div class="col-md-4 offset-md-4 form">
                 <form action="reset_code.php" method="POST" autocomplete="off">
-                <br><br><br><br><br><br><br><br><br><br>
-
                     <h2 class="text-center">Code Verification</h2>
                     <?php 
                     if(isset($_SESSION['info'])){

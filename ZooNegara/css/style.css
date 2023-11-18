@@ -141,16 +141,6 @@ p a, h4 a {
 #header ul#navigation li a:hover {
 	color: #c0ab8a;
 }
-
-#header ul#navigation li#link0 {
-	width:77px;
-}
-#header ul#navigation li#link0.selected {
-	background:url(../images/navigation.gif) no-repeat;
-	position: relative;
-	z-index: 9;
-}
-
 #header ul#navigation li#link1 {
 	width:77px;
 }
@@ -833,8 +823,6 @@ a#twitter {
 	font-weight: bold;
 	text-align: center;
 }
-
-
 #content div#tickets {
 	float: none;
 	height: 713px;
