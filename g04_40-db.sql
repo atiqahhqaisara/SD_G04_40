@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 17, 2023 at 06:43 PM
+-- Generation Time: Nov 18, 2023 at 07:25 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.2.0
 
@@ -176,19 +176,21 @@ INSERT INTO `customer` (`name`, `dob`, `contactNumber`, `email`, `password`, `co
 --
 
 CREATE TABLE `enquiry` (
-  `id` int NOT NULL,
+  `enquiryId` int NOT NULL,
   `email` varchar(500) NOT NULL,
   `phone` varchar(11) NOT NULL,
   `message` varchar(1200) NOT NULL,
-  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `enquiry`
 --
 
-INSERT INTO `enquiry` (`id`, `email`, `phone`, `message`, `time`) VALUES
-(4, 'irdina5566@gmail.com', '0123456789', 'lapar', '2023-11-17 17:22:19');
+INSERT INTO `enquiry` (`enquiryId`, `email`, `phone`, `message`, `time`, `status`) VALUES
+(6, 'irdina5566@gmail.com', '0123345678', 'lapar', '2023-11-18 14:50:42', 1),
+(7, 'irdina5566@gmail.com', '0123456789', 'hahahahah', '2023-11-18 15:22:44', 1);
 
 -- --------------------------------------------------------
 
@@ -275,6 +277,29 @@ INSERT INTO `promotion` (`promotionId`, `promotionName`, `startDate`, `lastDate`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reply`
+--
+
+CREATE TABLE `reply` (
+  `replyId` int NOT NULL,
+  `enquiryId` int NOT NULL,
+  `email` varchar(300) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  `message` varchar(5000) NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `reply`
+--
+
+INSERT INTO `reply` (`replyId`, `enquiryId`, `email`, `phone`, `message`, `time`) VALUES
+(28, 6, 'irdina5566@gmail.com', '0123345678', 'hello', '2023-11-18 14:53:23'),
+(29, 7, 'irdina5566@gmail.com', '0123456789', 'iyeeee', '2023-11-18 15:24:09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ticket`
 --
 
@@ -327,7 +352,7 @@ ALTER TABLE `customer`
 -- Indexes for table `enquiry`
 --
 ALTER TABLE `enquiry`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`enquiryId`),
   ADD KEY `email` (`email`);
 
 --
@@ -347,6 +372,13 @@ ALTER TABLE `payment`
 --
 ALTER TABLE `promotion`
   ADD PRIMARY KEY (`promotionId`);
+
+--
+-- Indexes for table `reply`
+--
+ALTER TABLE `reply`
+  ADD PRIMARY KEY (`replyId`),
+  ADD KEY `enquiryId` (`enquiryId`);
 
 --
 -- Indexes for table `ticket`
@@ -374,7 +406,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `enquiryId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `event`
@@ -387,6 +419,12 @@ ALTER TABLE `event`
 --
 ALTER TABLE `promotion`
   MODIFY `promotionId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `reply`
+--
+ALTER TABLE `reply`
+  MODIFY `replyId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `ticket`
@@ -409,6 +447,12 @@ ALTER TABLE `booking`
 --
 ALTER TABLE `enquiry`
   ADD CONSTRAINT `enquiry_ibfk_1` FOREIGN KEY (`email`) REFERENCES `customer` (`email`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `reply`
+--
+ALTER TABLE `reply`
+  ADD CONSTRAINT `reply_ibfk_1` FOREIGN KEY (`enquiryId`) REFERENCES `enquiry` (`enquiryId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

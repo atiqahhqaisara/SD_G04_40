@@ -1,6 +1,7 @@
 <?php
 include "controllerUserData.php";
 include "connection.php";
+
 // Check connection
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
@@ -8,9 +9,15 @@ if ($con->connect_error) {
 
 // Fetch orders for the current user
 $currentCust = $_SESSION['email'];
-$sql = "SELECT * FROM booking WHERE email = '$currentCust'";
-$result = $con->query($sql);
+$orderSql = "SELECT * FROM booking WHERE email = '$currentCust' AND status = '1'";
+$orderResult = $con->query($orderSql);
 
+// Fetch enquiries and replies for the current user
+$enquirySql = "SELECT e.enquiryId, e.email, e.phone, e.message AS enquiryMessage, r.message AS replyMessage
+               FROM enquiry e
+               LEFT JOIN reply r ON e.enquiryId = r.enquiryId
+               WHERE e.email = '$currentCust'";
+$enquiryResult = $con->query($enquirySql);
 ?>
 
 <!DOCTYPE html>
@@ -107,6 +114,36 @@ $result = $con->query($sql);
         // Close connection
         $con->close();
         ?>
+        <h2>Enquiry History</h2>
+
+        <?php
+        if ($enquiryResult->num_rows > 0) {
+            echo "<table border='1'>
+                    <tr>
+                        <th>Enquiry ID</th>
+                        <th>Email</th>
+                        <th>Phone No</th>
+                        <th>Enquiry Message</th>
+                        <th>Reply Message</th>
+                    </tr>";
+
+            // Output data of each row
+            while ($row = $enquiryResult->fetch_assoc()) {
+                echo "<tr>
+                        <td>" . $row["enquiryId"] . "</td>
+                        <td>" . $row["email"] . "</td>
+                        <td>" . $row["phone"] . "</td>
+                        <td>" . $row["enquiryMessage"] . "</td>
+                        <td>" . $row["replyMessage"] . "</td>
+                    </tr>";
+            }
+
+            echo "</table>";
+        } else {
+            echo "No enquiries found for the current user";
+        }
+        ?>
+        </div>
         </div>
         <div class="featured">
       <h2>Meet our Cutie Animals</h2>
