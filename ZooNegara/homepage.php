@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +8,10 @@
 </head>
 <body>
 <div id="page">
-  <div id="header"> <a href="index.html" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
+  <div id="header"> <a href="homepage.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
     <ul>
       <li class="first">
-        <h2><a href="live.html">Live</a></h2>
+        <h2><a href="live.php">Live</a></h2>
         <span>Have fun in your visit</span> </li>
       <li>
         <h2><a href="#">Love</a></h2>
@@ -19,14 +20,14 @@
         <h2><a href="#">Learn</a></h2>
         <span>Get to know the animals</span> </li>
     </ul>
-    <a href="buyTicketSignUpCustomer.php">Buy ticketsp</a>
+    <a href="http://localhost/ZooNegara/bookTicket.php">Buy Ticket Now</a>
     <ul id="navigation">
+      <li id="link1"><a href="customerProfile.php">Profile</a></li>
       <li id="link1" class="selected"><a href="homepage.php">Home</a></li>
-      <li id="link2"><a href="zooCustomer.html">The Zoo</a></li>
-      <li id="link3"><a href="infoCustomer.html">Visitors Info</a></li>
-      <li id="link4"><a href="eventsCustomer.html">Events</a></li>
-      <li id="link5"><a href="galleryCustomer.html">Gallery</a></li>
-      <li id="link6"><a href="contactCustomer.html">Contact Us</a></li>
+      <li id="link2"><a href="zooCustomer.php">The Zoo</a></li>
+      <li id="link3"><a href="infoCustomer.php">Visitors Info</a></li>
+      <li id="link4"><a href="eventsCustomer.php">Events</a></li>
+      <li id="link6"><a href="contactCustomer.php">Contact Us</a></li>
       <li id="link7"><a href="signOut.php">Sign Out</a></li>
     </ul>
     <img src="images/tiger.png" alt=""/>
@@ -102,34 +103,30 @@
     <div class="section3">
       <h2>Connect</h2>
       <a href="mailto:customerservice@zoonegaramalaysia.my?subject=Customer%20Service" id="email">Email Us</a> <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a>
-      <form action="#">
-        <h3>Subscribe to our</h3>
-        <h2>NEWSLETTER</h2>
-        <input type="text" value="your email here..." onBlur="this.value=!this.value?'your email here...':this.value;" onFocus="this.select()" onClick="this.value='';" />
-      </form>
       <img src="images/penguin2.jpg" alt=""/> </div>
   </div>
-  <div id="footer">
-    <div> <a href="#" class="logo"><img src="images/capybaraFooter3.png" alt=""/></a>
+ <div id="footer">
+    <div> <a href="#" class="logo"><img src="images/capybaraFooter.png" alt=""/></a>
       <div>
         <p>Zoo Negara, Hulu Kelang, 68000 Ampang, Selangor Darul Ehsan, Malaysia</p>
         <span>For enquiries, please call : </span><span>+603-4108 3422</span><span>Fax : +603-4107 5375</span> <span>Email: @zoonegaramalaysia.com</span> </div>
       <ul class="navigation">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="tickets.html">Tickets</a></li>
-        <li><a href="zoo.html">The Zoo</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="tickets.php">Tickets</a></li>
+        <li><a href="zoo.php">The Zoo</a></li>
+        <li><a href="events.php">Events</a></li>
+        <li><a href="blog.php">Blog</a></li>
+        <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="http://localhost/Dashboard/index.php">Log in Staff and Admin</a></li>
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>
         <li><a href="#">Love : Donate for the animals</a></li>
         <li><a href="#">Learn : Get to know the animals</a></li>
       </ul>
-      <p><br>Copyright &copy; <a href="#">Zoo Negara 2023</a> - All Rights Reserved | <a target="_blank" href="index.html">zoonegaramalaysia.my</a></p>
+      <p><br>Copyright &copy; <a href="#">Zoo Negara 2023</a> - All Rights Reserved | <a target="_blank" href="index.php">zoonegaramalaysia.my</a></p>
     </div>
-  </div>
+    </div>
 </div>
 </body>
 </html>

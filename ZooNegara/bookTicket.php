@@ -120,7 +120,6 @@ $currentCust = $_SESSION['email'];
                 <input type="number" id="Isenior" name="Isenior" min="1" max="10"><br><br>
 
                 <!-- New division for user details -->
-                <div id="userDetails">
                     <h2>User Details</h2>
                     <label for="fullName">Full Name:</label>
                     <input type="text" id="fullName" name="fullName" required><br><br>
@@ -130,30 +129,17 @@ $currentCust = $_SESSION['email'];
 
                     <label for="phone">Phone Number:</label>
                     <input type="tel" id="phone" name="phone" required><br><br>
-                </div>
 
-                <div id="header">
-                    <br>
-                    <input type="submit" value="Next">
-                </div>
+                    <div id="header">
+                        <br>
+                        <button type="submit">Next</button>
+                    </div>
             </form>
         </div>
     </div>
 
    
-  <div class="featured">
-      <h2>Meet our Cutie Animals</h2>
-      <ul>
-        <li class="first"> <a href="#"><img src="images/lion.png" alt=""/></a> <a href="#">Lion</a> </li>
-        <li> <a href="#"><img src="images/elephant.png" alt=""/></a> <a href="#">Elephant</a> </li>
-        <li> <a href="#"><img src="images/panda.png" alt=""/></a> <a href="#">Panda</a> </li>
-        <li> <a href="#"><img src="images/capybara.png" alt=""/></a> <a href="#">Capybara</a> </li>
-        <li> <a href="#"><img src="images/zif.png" alt=""/></a> <a href="#">Giraffe</a> </li>
-        <li> <a href="#"><img src="images/gibbon.png" alt=""/></a> <a href="#">White Gibbon</a> </li>
-        <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>
-        
-      </ul>
-    </div>
+  
 
   </div>
   <div id="footer">

@@ -7,6 +7,20 @@ if($_SESSION['info'] == false){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form {
+            max-width: 300px; /* Adjust the width as needed */
+            width: 100%;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Login Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

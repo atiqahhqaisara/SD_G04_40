@@ -3,16 +3,38 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Zoo Negara | Gallery</title>
+<title>Zoo Negara | Sign In / Register</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
+
+<style>
+
+button {
+            background-color: #964B00;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: Arial;
+        }
+        button:hover {
+            background-color: #CC9966;
+        }
+
+h2{
+  font-family: Arial;
+}
+</style>
+
 <body>
 <div id="page">
-  <div id="header"> <a href="index.html" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
+  <div id="header"> <a href="index.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
     <ul id="links">
       <li class="first">
-        <h2><a href="live.html">Live</a></h2>
+        <h2><a href="live.php">Live</a></h2>
         <span>Have fun in your visit</span> </li>
       <li>
         <h2><a href="#">Love</a></h2>
@@ -23,12 +45,12 @@
     </ul>
     
     <ul id="navigation">
-          <li id="link1"><a href="index.html">Home</a></li>
-          <li id="link2"><a href="zoo.html">The Zoo</a></li>
-          <li id="link3"><a href="info.html">Visitors Info</a></li>
-          <li id="link4"><a href="events.html">Events</a></li>
-          <li id="link5"><a href="gallery.html">Gallery</a></li>
-          <li id="link7"><a href="contact.html">Contact Us</a></li>
+          <li id="link1"><a href="registerSignIn.php">Profile</a></li>
+          <li id="link1"><a href="index.php">Home</a></li>
+          <li id="link2"><a href="zoo.php">The Zoo</a></li>
+          <li id="link3"><a href="info.php">Visitors Info</a></li>
+          <li id="link4"><a href="events.php">Events</a></li>
+          <li id="link7"><a href="contact.php">Contact Us</a></li>
         </ul>
   </div>
   <div id="content">
@@ -38,12 +60,6 @@
     <h2>Have account? Sign in NOW !!</h2>
     <a href="registerSignin.php"><button class="" role="button">Sign in</button></a>
   </ul>
-
-  <div id="tickets">
-      <h1><br>Tickets</h1>
-      <a href="#"><img src="images/openinghourrate.png" alt="" weight = 500px height = 440px /></a></a>
-      
-    </div>
 
   <div class="featured">
       <h2>Meet our Cutie Animals</h2>
@@ -66,12 +82,12 @@
         <p>Ellentesque habitant morbi tristique senectus et 0000</p>
         <span>285 067-39 282 / 5282 9273 999</span> <span>email@animalkingdomzoo.com</span> </div>
       <ul class="navigation">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="tickets.html">Tickets</a></li>
-        <li><a href="zoo.html">The Zoo</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="tickets.php">Tickets</a></li>
+        <li><a href="zoo.php">The Zoo</a></li>
+        <li><a href="events.php">Events</a></li>
+        <li><a href="blog.php">Blog</a></li>
+        <li><a href="gallery.php">Gallery</a></li>
       </ul>
       <ul>
         <li><a href="#">Live : Have fun in your visit</a></li>

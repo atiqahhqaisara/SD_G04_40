@@ -166,7 +166,6 @@ require 'controllerUserData.php'
                 <li> <a href="#"><img src="images/zif.png" alt=""/></a> <a href="#">Giraffe</a> </li>
                 <li> <a href="#"><img src="images/gibbon.png" alt=""/></a> <a href="#">White Gibbon</a> </li>
                 <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>
-                <li> <a href="#"><img src="images/deer.png" alt=""/></a> <a href="#">Spotted Deer</a> </li>
                 </ul>
         </div>
     

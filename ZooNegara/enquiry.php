@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($con, $sql)) {
         echo '<script>alert("Thanks for your enquiry. We will contact you very soon.");
-                    window.location.href="http://localhost/ZooNegara/homepage.php";  
+                    window.location.href="http://localhost/ZooNegara/history.php";  
                     </script>';
         exit();
     } else {

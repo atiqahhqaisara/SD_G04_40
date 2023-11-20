@@ -27,7 +27,43 @@ $enquiryResult = $con->query($enquirySql);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 <style>
-   
+   body{
+    font-family: Arial;
+    color: #875316;
+    font-size: 15px;
+    font-weight: normal;
+    }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], input[type="tel"], input[type="email"] {
+            width: 160%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #964B00;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #CC9966;
+        }
+
     table {
       border-collapse: collapse;
       width: 100%;
@@ -81,7 +117,7 @@ $enquiryResult = $con->query($enquirySql);
   </div>
     <div id="content">
         <div id="zoo">
-        <h2>Order History</h2>
+        <h1>Order History</h1><br>
         <?php
         $sql = "SELECT * FROM booking WHERE status = '1'";
         $result = $con->query($sql);
@@ -114,7 +150,7 @@ $enquiryResult = $con->query($enquirySql);
         // Close connection
         $con->close();
         ?>
-        <h2>Enquiry History</h2>
+        <h1>Enquiry History</h1><br>
 
         <?php
         if ($enquiryResult->num_rows > 0) {
@@ -143,22 +179,13 @@ $enquiryResult = $con->query($enquirySql);
             echo "No enquiries found for the current user";
         }
         ?>
+                <div>
+                       <br><br><button type="button" onclick="window.location.href='contactCustomer.php';">Back</button>
+                </div>
         </div>
         </div>
-        <div class="featured">
-      <h2>Meet our Cutie Animals</h2>
-      <ul>
-        <li class="first"> <a href="#"><img src="images/lion.png" alt=""/></a> <a href="#">Lion</a> </li>
-        <li> <a href="#"><img src="images/elephant.png" alt=""/></a> <a href="#">Elephant</a> </li>
-        <li> <a href="#"><img src="images/panda.png" alt=""/></a> <a href="#">Panda</a> </li>
-        <li> <a href="#"><img src="images/capybara.png" alt=""/></a> <a href="#">Capybara</a> </li>
-        <li> <a href="#"><img src="images/zif.png" alt=""/></a> <a href="#">Giraffe</a> </li>
-        <li> <a href="#"><img src="images/gibbon.png" alt=""/></a> <a href="#">White Gibbon</a> </li>
-        <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>        
-      </ul>
+     
     </div>
-    
-  </div>
   <div id="footer">
     <div> <a href="#" class="logo"><img src="images/capybaraFooter.png" alt=""/></a>
       <div>

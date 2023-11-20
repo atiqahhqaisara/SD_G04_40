@@ -28,7 +28,7 @@ require 'controllerUserData.php'
             font-weight: bold;
         }
         input[type="text"], input[type="date"], input[type="tel"], input[type="email"] {
-            width: 60%;
+            width: 230%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -118,7 +118,9 @@ require 'controllerUserData.php'
                     <br><br><label for="email">Email:</label>
                     <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>">
                 
-                    <br><br><button type="submit" name="UpdateCust">Edit Profile</button><br><br><br>
+                    <br><br><button type="submit" name="UpdateCust">Edit Profile</button><br><br>
+
+                    <button type="button" onclick="window.location.href='changePassword.php';">Change Password</button>
 
                    
       </form>
@@ -127,10 +129,7 @@ require 'controllerUserData.php'
             }
           }
           ?>
-           <div id="header"> 
-                    <a href="changePassword.php">Change Password</a>
-                    </div>
-                    <br>
+           
      </div>
         <div class="featured">
                 <h2>Meet our Cutie Animals</h2>

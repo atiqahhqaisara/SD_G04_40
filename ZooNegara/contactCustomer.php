@@ -47,6 +47,7 @@ require 'connection.php'
         button:hover {
             background-color: #CC9966;
         }
+
 </style>
 </head>
 <body>
@@ -110,15 +111,62 @@ require 'connection.php'
       ?>   
       
       <a href="https://www.facebook.com/znegaramalaysia" id="facebook">Facebook</a> <a href="https://twitter.com/znmzoonegara" id="twitter">Twitter</a><br> 
-      <form  action="insertenquiry.php" method="post">
-      <h3>Do leave us an</h3><br>
-        <h2>ENQUIRY</h2><br>
-        <textarea name="enquiry" rows="6" cols="80" required></textarea>
-        <br><br><br><button type="submit" name="submit">Submit</button><br><br><br>
-        </form>
-      </ul>
+      
+      <?php
+            include "controllerUserData.php";
 
+            // Check if the user is logged in
+            if (!isset($_SESSION['email'])) {
+                 header("Location: login.php"); // Redirect to login page if not logged in
+                 exit();
+            }
 
+            $currentCust = $_SESSION['email'];
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+              $email = $_POST["email"];
+              $phone = $_POST["phone"];
+              $message = $_POST["message"];
+
+                // Insert the enquiry into the database
+                $sql = "INSERT INTO `enquiry` (`email`, `phone`, `message`, `time`) 
+                    VALUES ('$email', '$phone', '$message', current_timestamp())";
+
+                if (mysqli_query($con, $sql)) {
+                echo '<script>alert("Thanks for your enquiry. We will contact you very soon.");
+                    window.location.href="http://localhost/ZooNegara/homepage.php";  
+                    </script>';
+                exit();
+                } else {
+                     echo "Error: " . $sql . "<br>" . mysqli_error($con);
+                }
+            }
+      ?>
+      <h2>Contact Us</h2>
+      <div class="section3">
+            <form action="enquiry.php" method="POST">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="<?php echo $currentCust; ?>" required readonly>
+                </div>
+                <div>
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Your phone number" required pattern="[0-9]{10}">
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="How may we help you?" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+
+                <div>
+                    <br><button type="button" onclick="window.location.href='history.php';">History</button>
+                </div>
+
+            </form>
+        </div>
   </div>
     
     <div class="featured">

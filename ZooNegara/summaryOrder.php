@@ -72,7 +72,7 @@
       </div>
 
 <div id="content" >
-<h2>Summary Order</h2>
+<h2>&emsp;&emsp;  Summary Order</h2>
 
 <?php
 include 'connection.php';
@@ -125,7 +125,7 @@ $stmt->bind_param("ssssssssssd", $bookingDate, $MYadult, $Iadult, $MYchild, $Ich
 
 if ($stmt->execute()) {
     $lastInsertId = $stmt->insert_id; // Retrieve the auto-generated bookingId
-    echo "Booking information inserted successfully. Booking ID: " . $lastInsertId;
+    echo "&emsp;&emsp;&emsp;&emsp;Booking information inserted successfully. Booking ID: " . $lastInsertId;
 } else {
     echo "Error: " . $stmt->error;
 }
@@ -136,14 +136,14 @@ $con->close();
 ?>
 
 <form action="processPayment.php" method="post">
-    <p>Date: <?= $bookingDate ?></p>
-    <p>Full Name: <?= $fullName ?></p>
-    <p>Email: <?= $email ?></p>
-    <p>Phone: <?= $phone ?></p>
+    <p>&emsp;&emsp;&emsp;&emsp;Date: <?= $bookingDate ?></p>
+    <p>&emsp;&emsp;&emsp;&emsp;Full Name: <?= $fullName ?></p>
+    <p>&emsp;&emsp;&emsp;&emsp;Email: <?= $email ?></p>
+    <p>&emsp;&emsp;&emsp;&emsp;Phone: <?= $phone ?></p>
 
-    <h3>Tickets:</h3>
+    <h3>&emsp;&emsp;&emsp;  Tickets:</h3>
     <ul>
-        <li>Malaysian Adult (RM<?= $priceMYadult ?>): <?= $MYadult ?> x RM<?= $totalMYadult ?></li>
+        &emsp;&emsp;&emsp;&emsp;<li>Malaysian Adult (RM<?= $priceMYadult ?>): <?= $MYadult ?> x RM<?= $totalMYadult ?></li>
         <li>Foreigner Adult (RM<?= $priceIadult ?>): <?= $Iadult ?> x RM<?= $totalIadult ?></li>
         <li>Malaysian Child (RM<?= $priceMYchild ?>): <?= $MYchild ?> x RM<?= $totalMYchild ?></li>
         <li>Foreigner Child (RM<?= $priceIchild ?>): <?= $Ichild ?> x RM<?= $totalIchild ?></li>
@@ -151,7 +151,7 @@ $con->close();
         <li>Foreigner Senior (RM<?= $priceIsenior ?>): <?= $Isenior ?> x RM<?= $totalIsenior ?></li>
     </ul>
 
-    <p>Grand Total: RM<?= $grandTotal ?></p>
+    <p>&emsp;&emsp;&emsp;&emsp;Grand Total: RM<?= $grandTotal ?></p>
 
     <input type="hidden" name="bookingDate" value="<?= $bookingDate ?>">
     <input type="hidden" name="fullName" value="<?= $fullName ?>">
@@ -165,7 +165,11 @@ $con->close();
     <input type="hidden" name="Isenior" value="<?= $Isenior ?>">
     <input type="hidden" name="grandTotal" value="<?= floatval($grandTotal) ?>">
 
-    <input type="submit" value="Pay Now">
+    <div id="header">
+    <br>
+    <button>Pay Now</button>
+</div>
+
 </form>
 
 
@@ -181,7 +185,6 @@ $con->close();
                 <li> <a href="#"><img src="images/zif.png" alt=""/></a> <a href="#">Giraffe</a> </li>
                 <li> <a href="#"><img src="images/gibbon.png" alt=""/></a> <a href="#">White Gibbon</a> </li>
                 <li> <a href="#"><img src="images/serval.png" alt=""/></a> <a href="#">Serval Cat</a> </li>
-                <li> <a href="#"><img src="images/deer.png" alt=""/></a> <a href="#">Spotted Deer</a> </li>
                 </ul>
         </div>
     

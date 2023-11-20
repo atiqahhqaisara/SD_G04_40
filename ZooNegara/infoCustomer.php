@@ -4,6 +4,25 @@ require ('connection.php')
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+
+        table {
+            font-family: arial, sans-serif;
+             border-collapse: collapse;
+              width: 100%;
+        }
+
+        td,th{
+             border: 1px solid #dddddd;
+            text-align: left;
+             padding: 8px;
+            }
+
+            th {
+      background-color: #f2f2f2;
+    }
+
+</style>
 <title>Zoo Negara | Info</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -63,42 +82,42 @@ require ('connection.php')
             Our Multi-animal Show is CLOSED on Friday EXCEPT school holidays & public holidays.</p>
         </li>
 
-        <h2> Promotion </h2>
-        <br>
-        <li>
-        <?php
-    
-        if (!$con) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        <h2> Promotion </h2><br>
 
-        // Step 2: Query the database to retrieve information
-        $sql = "SELECT * FROM promotion ORDER BY promotionId";
-        $promoQry = mysqli_query($con, $sql);
+    <table border="1">
+    <tr>
+        <th>Promotion Name</th>
+        <th>Promotion</th>
+        <th>Description</th>
+    </tr>
+    <?php
 
-        if (!$promoQry) {
-            die("Error executing query: " . mysqli_error($con));
-        }
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
-        // Display each ticket's information
-        $count = 1;
-        while ($row = mysqli_fetch_assoc($promoQry)) {
-            echo '<p>' . $row['promotionName'] . '</p>';
-            echo '<p>' . $row['promotion'] . '</p>';
-            echo '<p>' . $row['description'] . '</p>';
-            $count++;
-            echo '<br>';
-        }
+    // Step 2: Query the database to retrieve information
+    $sql = "SELECT * FROM promotion ORDER BY promotionId";
+    $promoQry = mysqli_query($con, $sql);
 
-        // Close the database connection
-        mysqli_close($con);
-        ?>
+    if (!$promoQry) {
+        die("Error executing query: " . mysqli_error($con));
+    }
 
-        
+    // Display each promotion's information in a table row
+    while ($row = mysqli_fetch_assoc($promoQry)) {
+        echo '<tr>';
+        echo '<td>' . $row['promotionName'] . '</td>';
+        echo '<td>' . $row['promotion'] . '</td>';
+        echo '<td>' . $row['description'] . '</td>';
+        echo '</tr>';
+    }
 
-        </li>
-        
-      </ul>
+    // Close the database connection
+    mysqli_close($con);
+    ?>
+    </table>
+
     </div>
 
     <div class="featured">
@@ -115,6 +134,7 @@ require ('connection.php')
       </ul>
     </div>
   </div>
+
   <div id="footer">
     <div> <a href="#" class="logo"><img src="images/capybaraFooter3.png" alt=""/></a>
       <div>

@@ -1,13 +1,25 @@
+<?php
+require 'connection.php'
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Zoo Negara | The Zoo</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+<style>
+        img {
+            margin-bottom: 12px; 
+        }
+    </style>
 </head>
 <body>
 <div id="page">
-  <div id="header"> <a href="homepage.php" id="logo"><img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
+  <div id="header"> <a href="homepage.php" id="logo">
+  <img src="images/header_logo_Zoo_Negara.png" alt="headerLogo" height = 230/></a>
     <ul id="links">
       <li class="first">
         <h2><a href="live.php">Live</a></h2>
@@ -33,18 +45,68 @@
   </div>
   <div id="content">
     <div id="zoo">
-      <h1>Zoo Negara Malaysia</h1>
-      <h3>About Us</h3>
-      <img src="images/bannerZoo.png" alt="" weight = 900px height = 120px/></a>
-      <p>Zoo Negara Malaysia is managed by the Malaysian Zoological Society, a non-governmental organization established to create the first local zoo for Malaysians.</p>
-      <p>Zoo Negara was officially opened on 14th November 1963 and has matured into a well-known zoo all around the world. We have a total of over 5137 specimen from 476 species of mammals, birds, reptiles, amphibians and fish.</p>
-      <h3>Vision</h3>
-      <p>To be one of the world’s premier zoological park and aquaria dedicated to conservation, recreation, education, training and research of various animal and plant species.</p>
-      <h3>Mission</h3>
-      <p>1. To provide an outstanding and dynamic habitat for animals and plant life and incorporating high quality animal health care and husbandry.</p>
-      <p>2. To be the leader and innovator in wildlife conservation, recreation, education, training and research.</p>
-      <p>3. To collaborate and disseminate scientific knowledge to local, regional and worldwide zoos through our science-based approach to wildlife management.</p>
-      <h3>Logo of Zoo Negara</h3><br>
+      <h1>About Us</h1><br>
+      <img src="images/bannerZoo.png" alt="" width="870" height="200">
+      <br>
+        <h2>Vision</h2>
+        <?php
+            if (!$con) {
+            die("Connection failed: " . mysqli_connect_error());
+            }
+
+            // Step 2: Query the database to retrieve information
+            $sql = "SELECT * FROM aboutvision ORDER BY visionid";
+            $visionQry = mysqli_query($con, $sql);
+
+            if (!$visionQry) {
+            die("Error executing vision query: " . mysqli_error($con));
+            }
+
+            // Display each vision's information
+            while ($row = mysqli_fetch_assoc($visionQry)) {
+            echo '<p>' . $row['vision'] . '</p>';
+            echo '<br>';
+            }
+
+            // Close the vision query
+            mysqli_free_result($visionQry);
+
+            // Close the database connection
+            mysqli_close($con);
+            ?>
+
+        <h2>Mission</h2>
+
+        <!-- Re-establish the connection before querying "Person in Charge" information -->
+        <?php
+            require 'connection.php';
+
+            // Check connection
+            if (!$con) {
+            die("Connection failed: " . mysqli_connect_error());
+            }
+
+            // Step 2: Execute a query to retrieve "Person in Charge" information
+            $sql = "SELECT * FROM aboutmission";
+            $result = mysqli_query($con, $sql);
+
+            if (!$result) {
+             die("Error executing person in charge query: " . mysqli_error($con));
+            }   
+
+            // Display each "Person in Charge" information
+            while ($row = mysqli_fetch_assoc($result)) {
+            echo '<p>' . $row['mission'] . '</p>';
+            }
+    
+           // Close the "Person in Charge" query
+            mysqli_free_result($result);
+
+            // Close the database connection
+            mysqli_close($con);
+        ?>
+
+      <h2>Logo of Zoo Negara</h2><br>
       <img src="images/sangkancil.png" alt=""/></a>
       <h4>The Malaysian Zoological Society has adopted the drawing of a mouse deer or “Sang Kancil” as the Society’s emblem.</h4>
       <h4>Sang Kancil is a clever, tricky mouse deer who is always finding himself in predicaments with animals that want to eat him or harm him, but he cleverly manages to escape each time.</h4>

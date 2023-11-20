@@ -13,7 +13,7 @@
  * @copyright 2012 - 2020 Marcus Bointon
  * @copyright 2010 - 2012 Jim Jagielski
  * @copyright 2004 - 2009 Andy Prevost
- * @license   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+ * @license   http://www.gnu.org/copyleft/lesser.php GNU Lesser General Public License
  * @note      This program is distributed in the hope that it will be useful - WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE.
@@ -461,7 +461,7 @@ class PHPMailer
      * Only applicable when sending via SMTP.
      *
      * @see https://en.wikipedia.org/wiki/Variable_envelope_return_path
-     * @see http://www.postfix.org/VERP_README.html Postfix VERP info
+     * @see http://www.postfix.org/VERP_README.php Postfix VERP info
      *
      * @var bool
      */
@@ -1723,9 +1723,9 @@ class PHPMailer
         //This sets the SMTP envelope sender which gets turned into a return-path header by the receiver
         //A space after `-f` is optional, but there is a long history of its presence
         //causing problems, so we don't use one
-        //Exim docs: http://www.exim.org/exim-html-current/doc/html/spec_html/ch-the_exim_command_line.html
-        //Sendmail docs: http://www.sendmail.org/~ca/email/man/sendmail.html
-        //Qmail docs: http://www.qmail.org/man/man8/qmail-inject.html
+        //Exim docs: http://www.exim.org/exim-html-current/doc/html/spec_html/ch-the_exim_command_line.php
+        //Sendmail docs: http://www.sendmail.org/~ca/email/man/sendmail.php
+        //Qmail docs: http://www.qmail.org/man/man8/qmail-inject.php
         //Example problem: https://www.drupal.org/node/1057954
 
         //PHP 5.6 workaround
@@ -1920,9 +1920,9 @@ class PHPMailer
         //This sets the SMTP envelope sender which gets turned into a return-path header by the receiver
         //A space after `-f` is optional, but there is a long history of its presence
         //causing problems, so we don't use one
-        //Exim docs: http://www.exim.org/exim-html-current/doc/html/spec_html/ch-the_exim_command_line.html
-        //Sendmail docs: http://www.sendmail.org/~ca/email/man/sendmail.html
-        //Qmail docs: http://www.qmail.org/man/man8/qmail-inject.html
+        //Exim docs: http://www.exim.org/exim-html-current/doc/html/spec_html/ch-the_exim_command_line.php
+        //Sendmail docs: http://www.sendmail.org/~ca/email/man/sendmail.php
+        //Qmail docs: http://www.qmail.org/man/man8/qmail-inject.php
         //Example problem: https://www.drupal.org/node/1057954
         //CVE-2016-10033, CVE-2016-10045: Don't pass -f if characters will be escaped.
 
