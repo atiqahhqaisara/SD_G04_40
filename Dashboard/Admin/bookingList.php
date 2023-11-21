@@ -41,7 +41,7 @@ require '../controllerAdminData.php'
 
 	<div class="header">
 		<div class="header-left">
-
+		<div class="menu-icon dw dw-menu"></div>
 		</div>
 		<div class="header-right">
 			<div class="dashboard-setting user-notification">
@@ -418,6 +418,12 @@ require '../controllerAdminData.php'
 												<label class='col-sm-12 col-md-2 col-form-label'>Total</label>
 												<div class='col-sm-12 col-md-10'>
 													<input class='form-control' type='number' name='grandTotal' value='{$row['grandTotal']}' readonly>
+												</div>
+											</div>
+											<div class='form-group row'>
+												<label class='col-sm-12 col-md-2 col-form-label'>Total</label>
+												<div class='col-sm-12 col-md-10'>
+													<input class='form-control' type='number' name='status' value='{$row['status']}' readonly>
 												</div>
 											</div>
 											<div class='form-group row'>

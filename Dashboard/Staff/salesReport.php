@@ -38,7 +38,7 @@ require '../controllerAdminData.php'
 
 	<div class="header">
 		<div class="header-left">
-			
+		<div class="menu-icon dw dw-menu"></div>
 		</div>
 		<div class="header-right">
 			<div class="dashboard-setting user-notification">
@@ -249,7 +249,7 @@ require '../controllerAdminData.php'
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Edit Ticket</h4>
+								<h4>Sales Report</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">

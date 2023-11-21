@@ -41,7 +41,7 @@ require '../controllerAdminData.php'
 
 	<div class="header">
 		<div class="header-left">
-
+		<div class="menu-icon dw dw-menu"></div>
 		</div>
 		<div class="header-right">
 			<div class="dashboard-setting user-notification">
@@ -195,12 +195,6 @@ require '../controllerAdminData.php'
 					</li>
 					
 					<li>
-						<a href="staffList.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
-						</a>
-					</li>
-					
-					<li>
 						<div class="sidebar-small-cap">Zoo Negara Website</div>
 					</li>
 					<li>
@@ -274,7 +268,7 @@ require '../controllerAdminData.php'
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Change Paasword</h4>
+								<h4>Change Password</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
@@ -302,7 +296,7 @@ require '../controllerAdminData.php'
 										$row = mysqli_fetch_assoc($result);
 										$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
 										if (!empty($profileImage)) {
-											echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="profile-photo">';
+											echo '<img src="../profile/' . $profileImage . '" alt="Profile Image" class="profile-photo">';
 										} else {
 											echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
 										}
@@ -375,7 +369,7 @@ require '../controllerAdminData.php'
 
 														if (isset($_POST['updatePassword'])) {
 															// Include your database connection file
-															include('connection.php');
+															include('../connection.php');
 
 															$old_pass = $_POST['oldPass'];
 															$new_pass = $_POST['newPass'];

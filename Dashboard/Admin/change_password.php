@@ -41,7 +41,7 @@ require '../controllerAdminData.php'
 
 	<div class="header">
 		<div class="header-left">
-
+		<div class="menu-icon dw dw-menu"></div>
 		</div>
 		<div class="header-right">
 			<div class="dashboard-setting user-notification">
@@ -302,7 +302,7 @@ require '../controllerAdminData.php'
 										$row = mysqli_fetch_assoc($result);
 										$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
 										if (!empty($profileImage)) {
-											echo '<img src="./profile/' . $profileImage . '" alt="Profile Image" class="profile-photo">';
+											echo '<img src="../profile/' . $profileImage . '" alt="Profile Image" class="profile-photo">';
 										} else {
 											echo '<img src="vendors/images/default-avatar.jpg" alt="Default Avatar" class="profile-photo">';
 										}
@@ -375,7 +375,7 @@ require '../controllerAdminData.php'
 
 														if (isset($_POST['updatePassword'])) {
 															// Include your database connection file
-															include('connection.php');
+															include '../connection.php';
 
 															$old_pass = $_POST['oldPass'];
 															$new_pass = $_POST['newPass'];

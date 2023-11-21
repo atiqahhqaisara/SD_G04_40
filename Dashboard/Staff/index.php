@@ -5,7 +5,7 @@ require '../controllerAdminData.php'
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Admin Dashboard</title>
+	<title>Staff Dashboard</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -38,7 +38,7 @@ require '../controllerAdminData.php'
 
 	<div class="header">
 		<div class="header-left">
-			
+		<div class="menu-icon dw dw-menu"></div>
 		</div>
 		<div class="header-right">
 			<div class="dashboard-setting user-notification">
@@ -268,16 +268,55 @@ require '../controllerAdminData.php'
 					</div>
 				</div>
 			</div>
+			<?php
+			// Assuming you have a database connection established already
+
+			// Get today's date in the format 'YYYY-MM-DD'
+			$todayDate = date('Y-m-d');
+
+			// Calculate the first day of the current month
+			$firstDayOfMonth = date('Y-m-01');
+
+			// Calculate the first day of the current year
+			$firstDayOfYear = date('Y-01-01');
+
+			// Fetch total number of bookings
+			$sqlTotalBookings = "SELECT COUNT(*) AS totalBookings FROM booking WHERE status=1";
+			$resultTotalBookings = $con->query($sqlTotalBookings);
+			$rowTotalBookings = $resultTotalBookings->fetch_assoc();
+			$totalBookings = $rowTotalBookings['totalBookings'];
+			
+			// Fetch daily data
+			// Fetch daily data including the time
+			$sqlDaily = "SELECT COUNT(*) AS dailyBookings, SUM(grandTotal) AS dailyRevenue FROM booking 
+			WHERE orderDate >= '2023-11-20 00:00:00' AND orderDate <= '2023-11-20 23:59:59' AND status=1";
+			$resultDaily = $con->query($sqlDaily);
+			$rowDaily = $resultDaily->fetch_assoc();
+			$dailyBookings = $rowDaily['dailyBookings'];
+			$dailyRevenue = $rowDaily['dailyRevenue'];
+
+			// Fetch monthly data
+			$sqlMonthly = "SELECT COUNT(*) AS monthlyBookings, SUM(grandTotal) AS monthlyRevenue FROM booking WHERE orderDate >= '$firstDayOfMonth' AND status=1";
+			$resultMonthly = $con->query($sqlMonthly);
+			$rowMonthly = $resultMonthly->fetch_assoc();
+			$monthlyBookings = $rowMonthly['monthlyBookings'];
+			$monthlyRevenue = $rowMonthly['monthlyRevenue'];
+
+			// Fetch annual data
+			$sqlAnnual = "SELECT COUNT(*) AS annualBookings, SUM(grandTotal) AS annualRevenue FROM booking WHERE orderDate >= '$firstDayOfYear' AND status=1";
+			$resultAnnual = $con->query($sqlAnnual);
+			$rowAnnual = $resultAnnual->fetch_assoc();
+			$annualBookings = $rowAnnual['annualBookings'];
+			$annualRevenue = $rowAnnual['annualRevenue'];
+			?>
+
 			<div class="row">
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart"></div>
-							</div>
 							<div class="widget-data">
-								<div class="h4 mb-0">2020</div>
-								<div class="weight-600 font-14">Contact</div>
+								<div class="h4 mb-0"><?php echo $totalBookings; ?></div>
+								<div class="weight-600 font-14">Total Bookings</div>
 							</div>
 						</div>
 					</div>
@@ -285,12 +324,13 @@ require '../controllerAdminData.php'
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart2"></div>
-							</div>
 							<div class="widget-data">
-								<div class="h4 mb-0">400</div>
-								<div class="weight-600 font-14">Deals</div>
+								<?php if ($dailyRevenue !== null) : ?>
+									<div class="h4 mb-0">RM <?php echo number_format($dailyRevenue, 2); ?></div>
+								<?php else : ?>
+									<div class="h4 mb-0">RM 0.00</div>
+								<?php endif; ?>
+								<div class="weight-600 font-14">Daily Sales</div>
 							</div>
 						</div>
 					</div>
@@ -298,12 +338,13 @@ require '../controllerAdminData.php'
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart3"></div>
-							</div>
 							<div class="widget-data">
-								<div class="h4 mb-0">350</div>
-								<div class="weight-600 font-14">Campaign</div>
+								<?php if ($monthlyRevenue !== null) : ?>
+									<div class="h4 mb-0">RM <?php echo number_format($monthlyRevenue, 2); ?></div>
+								<?php else : ?>
+									<div class="h4 mb-0">RM 0.00</div>
+								<?php endif; ?>
+								<div class="weight-600 font-14">Monthly Sales</div>
 							</div>
 						</div>
 					</div>
@@ -311,17 +352,19 @@ require '../controllerAdminData.php'
 				<div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
-							<div class="progress-data">
-								<div id="chart4"></div>
-							</div>
 							<div class="widget-data">
-								<div class="h4 mb-0">$6060</div>
-								<div class="weight-600 font-14">Worth</div>
+								<?php if ($annualRevenue !== null) : ?>
+									<div class="h4 mb-0">RM <?php echo number_format($annualRevenue, 2); ?></div>
+								<?php else : ?>
+									<div class="h4 mb-0">RM 0.00</div>
+								<?php endif; ?>
+								<div class="weight-600 font-14">Annual Sales</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
 			<div class="footer-wrap pd-20 mb-20 card-box">
 					Zoo Negara Admin Dashboard
 				</div>

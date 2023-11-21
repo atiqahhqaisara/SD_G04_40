@@ -41,7 +41,7 @@ require '../controllerAdminData.php'
 
 	<div class="header">
 		<div class="header-left">
-
+		<div class="menu-icon dw dw-menu"></div>
 		</div>
 		<div class="header-right">
 			<div class="dashboard-setting user-notification">

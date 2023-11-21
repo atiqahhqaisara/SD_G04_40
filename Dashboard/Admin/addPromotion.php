@@ -19,25 +19,29 @@ if (isset($_POST['addPromotion'])) {
 	// Check if the file is an actual image
 	$check = getimagesize($_FILES["image"]["tmp_name"]);
 	if ($check === false) {
-		echo "File is not an image.";
+		echo "<script>alert('File is not an image.')</script>";
+		echo "<script>window.location.href='promotionList.php'</script>";
 		$uploadOk = 0;
 	}
 
 	// Check file size (you can adjust the size as needed)
 	if ($_FILES["image"]["size"] > 500000) {
-		echo "Sorry, your file is too large.";
+		echo "<script>alert('Sorry, your file is too large.')</script>";
+		echo "<script>window.location.href='promotionList.php'</script>";
 		$uploadOk = 0;
 	}
 
 	// Allow certain file formats (you can customize this list)
 	if (!in_array($imageFileType, ["jpg", "png", "jpeg", "gif"])) {
-		echo "Sorry, only JPG, JPEG, PNG, and GIF files are allowed.";
+		echo "<script>alert('Sorry, only JPG, JPEG, PNG, and GIF files are allowed.')</script>";
+		echo "<script>window.location.href='promotionList.php'</script>";
 		$uploadOk = 0;
 	}
 
 	// Check if $uploadOk is set to 0 by an error
 	if ($uploadOk == 0) {
 		echo "<script>alert('Sorry, your file was not uploaded!')</script>";
+		echo "<script>window.location.href='promotionList.php'</script>";
 	} else {
 		// If everything is ok, try to upload file
 		$targetPath = $targetDirectory . $targetFileName;
@@ -61,6 +65,7 @@ if (isset($_POST['addPromotion'])) {
 				} else {
 					// Display MySQL error message
 					echo "<script>alert('MySQL Error: " . mysqli_error($con) . "')</script>";
+					echo "<script>window.location.href='promotionList.php'</script>";
 				}
 
 				// Close the statement
@@ -68,9 +73,11 @@ if (isset($_POST['addPromotion'])) {
 			} else {
 				// Display an error message for the failed statement creation
 				echo "<script>alert('Error creating prepared statement!')</script>";
+				echo "<script>window.location.href='promotionList.php'</script>";
 			}
 		} else {
 			echo "<script>alert('Sorry, there was an error uploading your file!')</script>";
+			echo "<script>window.location.href='promotionList.php'</script>";
 		}
 	}
 }
