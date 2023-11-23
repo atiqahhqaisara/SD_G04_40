@@ -1,10 +1,8 @@
 <?php
 // Include the database connection file (connection.php)
 include '../connection.php';
-
 // Check if the form is submitted
 if (isset($_POST['addStaff'])) {
-
 	// Retrieve form data and sanitize
 	$fullName = $_POST['fullName'];
 	$phone = $_POST['phone'];
@@ -22,8 +20,6 @@ if (isset($_POST['addStaff'])) {
 
 	// Create a prepared statement
 	$stmt = mysqli_prepare($con, $sql);
-
-
 	if ($stmt) {
 		// Bind parameters and execute the statement
 		mysqli_stmt_bind_param($stmt, "sssssssss", $fullName, $phone, $email, $position, $address, $postal, $district, $states, $password);
@@ -38,7 +34,6 @@ if (isset($_POST['addStaff'])) {
 			echo "<script>alert('Something went wrong, try again...')</script>";
 
 		}
-
 		// Close the statement
 		mysqli_stmt_close($stmt);
 	}

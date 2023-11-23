@@ -36,12 +36,11 @@ require '../controllerAdminData.php'
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
-
 <body>
 
 	<div class="header">
 		<div class="header-left">
-		<div class="menu-icon dw dw-menu"></div>
+			<div class="menu-icon dw dw-menu"></div>
 		</div>
 		<div class="header-right">
 			<div class="dashboard-setting user-notification">
@@ -84,7 +83,6 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -177,7 +175,7 @@ require '../controllerAdminData.php'
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.php" >
+			<a href="index.php">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -193,13 +191,13 @@ require '../controllerAdminData.php'
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
 					</li>
-					
+
 					<li>
 						<a href="staffList.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
 						</a>
 					</li>
-					
+
 					<li>
 						<div class="sidebar-small-cap">Zoo Negara Website</div>
 					</li>
@@ -259,13 +257,12 @@ require '../controllerAdminData.php'
 							<span class="micon ti-files"></span><span class="mtext">Report</span>
 						</a>
 					</li>
-		
+
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
 
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
@@ -285,7 +282,6 @@ require '../controllerAdminData.php'
 						</div>
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
@@ -380,11 +376,6 @@ require '../controllerAdminData.php'
 															$old_pass = $_POST['oldPass'];
 															$new_pass = $_POST['newPass'];
 															$re_pass = $_POST['rePass'];
-
-															// Check the connection
-															if ($con->connect_error) {
-																die("Connection failed: " . $con->connect_error);
-															}
 
 															// Use prepared statements to prevent SQL injection
 															$stmt = $con->prepare("SELECT * FROM admin WHERE email = ?");
@@ -512,5 +503,4 @@ require '../controllerAdminData.php'
 			style="display: none; visibility: hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
 </body>
-
 </html>

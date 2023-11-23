@@ -1,8 +1,6 @@
 <?php
-
 require 'controllerAdminData.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>

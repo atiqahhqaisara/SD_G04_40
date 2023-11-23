@@ -1,11 +1,8 @@
 <?php
 require '../controllerAdminData.php';
-
 $selectMessagesQuery = "SELECT r.replyId, r.message AS replyMessage, e.enquiryId, e.message AS enquiryMessage
                        FROM enquiry e
                        LEFT JOIN reply r ON e.enquiryId = r.enquiryId";
-
-
 $resultMessages = mysqli_query($con, $selectMessagesQuery);
 ?>
 <!DOCTYPE html>
@@ -13,15 +10,12 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<title>Reply History</title>
-
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
-
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
@@ -30,19 +24,16 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
 <body>
-
 	<div class="header">
 		<div class="header-left">
 		<div class="menu-icon dw dw-menu"></div>
@@ -62,7 +53,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
-
 						if ($result && mysqli_num_rows($result) > 0) {
 							$row = mysqli_fetch_assoc($result);
 							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
@@ -87,7 +77,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 			</div>
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -105,13 +94,11 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
 				<div class="sidebar-btn-group pb-30 mb-10">
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light ">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
 				<div class="sidebar-radio-group pb-10 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -127,7 +114,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 						<label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
 					</div>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 				<div class="sidebar-radio-group pb-30 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -155,14 +141,12 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
 					</div>
 				</div>
-
 				<div class="reset-options pt-30 text-center">
 					<button class="btn btn-danger" id="reset-settings">Reset Settings</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
@@ -191,7 +175,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon ti-info"></span><span class="mtext">About</span>
@@ -201,37 +184,31 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 							<li><a href="missionList.php">Mission List</a></li>
 						</ul>
 					</li>
-
 					<li>
 						<a href="bookingList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-shopping-cart"></span><span class="mtext">Booking</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="contactList.php" class="dropdown-toggle no-arrow">
 							<span class="micon  fa fa-user-o"></span><span class="mtext">Contact</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="eventList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="ticketList.php" class="dropdown-toggle no-arrow">
 							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="promotionList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
@@ -248,7 +225,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
     <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
@@ -267,7 +243,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
                     </div>
                 </div>
             </div>
-
                 <div class="row clearfix">
                     <div class="col-md-12 col-sm-12 mb-30">
                         <div class="pd-20 card-box">
@@ -285,15 +260,12 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
                                     <tbody>
                                         <?php
                                         $count = 0;
-
                                         while ($row = mysqli_fetch_assoc($resultMessages)) {
                                             $enquiryId = $row['enquiryId'];
                                             $enquiryMessage = $row['enquiryMessage'];
                                             $replyId = $row['replyId'];
                                             $replyMessage = $row['replyMessage'];
-
                                             $count++;
-
                                             echo '<tr>
                                                     <td>' . $enquiryId . '</td>
                                                     <td>' . $enquiryMessage . '</td>
@@ -301,7 +273,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
                                                     <td>' . $replyMessage . '</td>
                                                 </tr>';
                                         }
-
                                         if ($count == 0) {
                                             echo '<tr><td colspan="4">No reply history available!</td></tr>';
                                         }
@@ -312,16 +283,10 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- Your existing HTML code -->
-
             </div>
         </div>
     </div>
-
     <!-- Your existing footer and script references -->
-
 </body>
 </html>

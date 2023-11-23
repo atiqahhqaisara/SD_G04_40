@@ -1,7 +1,8 @@
 <?php
 require '../controllerAdminData.php'
-?>
+	?>
 <!DOCTYPE html>
+
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
@@ -16,27 +17,26 @@ require '../controllerAdminData.php'
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-	
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
+		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
 
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
 <body>
-
 	<div class="header">
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
@@ -52,7 +52,7 @@ require '../controllerAdminData.php'
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-					<?php
+						<?php
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
@@ -74,7 +74,8 @@ require '../controllerAdminData.php'
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.php"><i class="dw dw-user1"></i> Profile</a>
-						<a class="dropdown-item" href="change_password.php"><i class="dw dw-password"></i> Change Password</a>
+						<a class="dropdown-item" href="change_password.php"><i class="dw dw-password"></i> Change
+							Password</a>
 						<a class="dropdown-item" href="../index.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>
@@ -109,43 +110,57 @@ require '../controllerAdminData.php'
 				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
 				<div class="sidebar-radio-group pb-10 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input" value="icon-style-1" checked="">
+						<input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input"
+							value="icon-style-1" checked="">
 						<label class="custom-control-label" for="sidebaricon-1"><i class="fa fa-angle-down"></i></label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input" value="icon-style-2">
+						<input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input"
+							value="icon-style-2">
 						<label class="custom-control-label" for="sidebaricon-2"><i class="ion-plus-round"></i></label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input" value="icon-style-3">
-						<label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
+						<input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input"
+							value="icon-style-3">
+						<label class="custom-control-label" for="sidebaricon-3"><i
+								class="fa fa-angle-double-right"></i></label>
 					</div>
 				</div>
 
 				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 				<div class="sidebar-radio-group pb-30 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input" value="icon-list-style-1" checked="">
-						<label class="custom-control-label" for="sidebariconlist-1"><i class="ion-minus-round"></i></label>
+						<input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-1" checked="">
+						<label class="custom-control-label" for="sidebariconlist-1"><i
+								class="ion-minus-round"></i></label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input" value="icon-list-style-2">
-						<label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o" aria-hidden="true"></i></label>
+						<input type="radio" id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-2">
+						<label class="custom-control-label" for="sidebariconlist-2"><i class="fa fa-circle-o"
+								aria-hidden="true"></i></label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input" value="icon-list-style-3">
+						<input type="radio" id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-3">
 						<label class="custom-control-label" for="sidebariconlist-3"><i class="dw dw-check"></i></label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input" value="icon-list-style-4" checked="">
-						<label class="custom-control-label" for="sidebariconlist-4"><i class="icon-copy dw dw-next-2"></i></label>
+						<input type="radio" id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-4" checked="">
+						<label class="custom-control-label" for="sidebariconlist-4"><i
+								class="icon-copy dw dw-next-2"></i></label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input" value="icon-list-style-5">
-						<label class="custom-control-label" for="sidebariconlist-5"><i class="dw dw-fast-forward-1"></i></label>
+						<input type="radio" id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-5">
+						<label class="custom-control-label" for="sidebariconlist-5"><i
+								class="dw dw-fast-forward-1"></i></label>
 					</div>
 					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input" value="icon-list-style-6">
+						<input type="radio" id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input"
+							value="icon-list-style-6">
 						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
 					</div>
 				</div>
@@ -160,7 +175,7 @@ require '../controllerAdminData.php'
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.php" >
+			<a href="index.php">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
 				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
 			</a>
@@ -176,13 +191,13 @@ require '../controllerAdminData.php'
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
 					</li>
-					
+
 					<li>
 						<a href="staffList.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-id-card"></span><span class="mtext">Staff</span>
 						</a>
 					</li>
-					
+
 					<li>
 						<div class="sidebar-small-cap">Zoo Negara Website</div>
 					</li>
@@ -242,7 +257,7 @@ require '../controllerAdminData.php'
 							<span class="micon ti-files"></span><span class="mtext">Report</span>
 						</a>
 					</li>
-		
+
 				</ul>
 			</div>
 		</div>
@@ -258,26 +273,28 @@ require '../controllerAdminData.php'
 					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back 
+							Welcome back
 							<?php
 							$currentAdmin = $_SESSION['email'];
 							$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 							$result = $con->query($sql);
 
-						if ($result && mysqli_num_rows($result) > 0) {
-							$row = mysqli_fetch_assoc($result);
-							$fullName = $row['fullName']; // Assuming the column name is 'fullName'
-							echo '<div class="weight-600 font-30 text-blue">' . $fullName . '</div>';
-						}	
-						?>
+							if ($result && mysqli_num_rows($result) > 0) {
+								$row = mysqli_fetch_assoc($result);
+								$fullName = $row['fullName']; // Assuming the column name is 'fullName'
+								echo '<div class="weight-600 font-30 text-blue">' . $fullName . '</div>';
+							}
+							?>
 						</h4>
-						<p class="font-18 max-width-600">"Every challenge you face is an opportunity for growth, and with determination and resilience, you have the power to turn obstacles into stepping stones on your journey to success."</p>
+						<p class="font-18 max-width-600">"Every challenge you face is an opportunity for growth, and
+							with determination and resilience, you have the power to turn obstacles into stepping stones
+							on your journey to success."</p>
 					</div>
 				</div>
 			</div>
 			<?php
 			// Assuming you have a database connection established already
-
+			
 			// Get today's date in the format 'YYYY-MM-DD'
 			$todayDate = date('Y-m-d');
 
@@ -292,11 +309,11 @@ require '../controllerAdminData.php'
 			$resultTotalBookings = $con->query($sqlTotalBookings);
 			$rowTotalBookings = $resultTotalBookings->fetch_assoc();
 			$totalBookings = $rowTotalBookings['totalBookings'];
-			
+
 			// Fetch daily data
 			// Fetch daily data including the time
 			$sqlDaily = "SELECT COUNT(*) AS dailyBookings, SUM(grandTotal) AS dailyRevenue FROM booking 
-			WHERE orderDate >= '2023-11-20 00:00:00' AND orderDate <= '2023-11-20 23:59:59' AND status=1";
+			WHERE orderDate >= '$todayDate 00:00:00' AND orderDate <= '$todayDate 23:59:59' AND status=1";
 			$resultDaily = $con->query($sqlDaily);
 			$rowDaily = $resultDaily->fetch_assoc();
 			$dailyBookings = $rowDaily['dailyBookings'];
@@ -322,7 +339,9 @@ require '../controllerAdminData.php'
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
 							<div class="widget-data">
-								<div class="h4 mb-0"><?php echo $totalBookings; ?></div>
+								<div class="h4 mb-0">
+									<?php echo $totalBookings; ?>
+								</div>
 								<div class="weight-600 font-14">Total Bookings</div>
 							</div>
 						</div>
@@ -332,9 +351,11 @@ require '../controllerAdminData.php'
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
 							<div class="widget-data">
-								<?php if ($dailyRevenue !== null) : ?>
-									<div class="h4 mb-0">RM <?php echo number_format($dailyRevenue, 2); ?></div>
-								<?php else : ?>
+								<?php if ($dailyRevenue !== null): ?>
+									<div class="h4 mb-0">RM
+										<?php echo number_format($dailyRevenue, 2); ?>
+									</div>
+								<?php else: ?>
 									<div class="h4 mb-0">RM 0.00</div>
 								<?php endif; ?>
 								<div class="weight-600 font-14">Daily Sales</div>
@@ -346,9 +367,11 @@ require '../controllerAdminData.php'
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
 							<div class="widget-data">
-								<?php if ($monthlyRevenue !== null) : ?>
-									<div class="h4 mb-0">RM <?php echo number_format($monthlyRevenue, 2); ?></div>
-								<?php else : ?>
+								<?php if ($monthlyRevenue !== null): ?>
+									<div class="h4 mb-0">RM
+										<?php echo number_format($monthlyRevenue, 2); ?>
+									</div>
+								<?php else: ?>
 									<div class="h4 mb-0">RM 0.00</div>
 								<?php endif; ?>
 								<div class="weight-600 font-14">Monthly Sales</div>
@@ -360,9 +383,11 @@ require '../controllerAdminData.php'
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
 							<div class="widget-data">
-								<?php if ($annualRevenue !== null) : ?>
-									<div class="h4 mb-0">RM <?php echo number_format($annualRevenue, 2); ?></div>
-								<?php else : ?>
+								<?php if ($annualRevenue !== null): ?>
+									<div class="h4 mb-0">RM
+										<?php echo number_format($annualRevenue, 2); ?>
+									</div>
+								<?php else: ?>
 									<div class="h4 mb-0">RM 0.00</div>
 								<?php endif; ?>
 								<div class="weight-600 font-14">Annual Sales</div>
@@ -372,11 +397,11 @@ require '../controllerAdminData.php'
 				</div>
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
-					Zoo Negara Admin Dashboard
-				</div>
+				Zoo Negara Admin Dashboard
 			</div>
 		</div>
-			
+	</div>
+
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
 	<script src="vendors/scripts/script.min.js"></script>

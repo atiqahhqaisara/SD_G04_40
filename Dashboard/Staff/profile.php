@@ -6,15 +6,12 @@ require '../controllerAdminData.php'
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<title>Profile</title>
-
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
-
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
@@ -23,19 +20,16 @@ require '../controllerAdminData.php'
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
 <body>
-
 	<div class="header">
 		<div class="header-left">
 		<div class="menu-icon dw dw-menu"></div>
@@ -55,7 +49,6 @@ require '../controllerAdminData.php'
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
-
 						if ($result && mysqli_num_rows($result) > 0) {
 							$row = mysqli_fetch_assoc($result);
 							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
@@ -80,7 +73,6 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -98,13 +90,11 @@ require '../controllerAdminData.php'
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
 				<div class="sidebar-btn-group pb-30 mb-10">
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light ">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
 				<div class="sidebar-radio-group pb-10 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -120,7 +110,6 @@ require '../controllerAdminData.php'
 						<label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
 					</div>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 				<div class="sidebar-radio-group pb-30 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -148,14 +137,12 @@ require '../controllerAdminData.php'
 						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
 					</div>
 				</div>
-
 				<div class="reset-options pt-30 text-center">
 					<button class="btn btn-danger" id="reset-settings">Reset Settings</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
@@ -184,7 +171,6 @@ require '../controllerAdminData.php'
 							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon ti-info"></span><span class="mtext">About</span>
@@ -194,37 +180,31 @@ require '../controllerAdminData.php'
 							<li><a href="missionList.php">Mission List</a></li>
 						</ul>
 					</li>
-
 					<li>
 						<a href="bookingList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-shopping-cart"></span><span class="mtext">Booking</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="contactList.php" class="dropdown-toggle no-arrow">
 							<span class="micon  fa fa-user-o"></span><span class="mtext">Contact</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="eventList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="ticketList.php" class="dropdown-toggle no-arrow">
 							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="promotionList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
@@ -241,7 +221,6 @@ require '../controllerAdminData.php'
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -271,7 +250,6 @@ require '../controllerAdminData.php'
 								$currentAdmin = $_SESSION['email'];
 								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 								$result = $con->query($sql);
-
 								if ($result && mysqli_num_rows($result) > 0) {
 									$row = mysqli_fetch_assoc($result);
 									$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
@@ -290,7 +268,6 @@ require '../controllerAdminData.php'
 								$currentAdmin = $_SESSION['email'];
 								$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 								$result = $con->query($sql);
-
 								if ($result) {
 									if (mysqli_num_rows($result) > 0) {
 										$row = mysqli_fetch_assoc($result);
@@ -324,7 +301,6 @@ require '../controllerAdminData.php'
 							</div>
 						</div>
 					</div>
-
 					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
 						<div class="card-box height-100-p overflow-hidden">
 							<div class="profile-tab height-100-p">
@@ -449,7 +425,6 @@ require '../controllerAdminData.php'
 							}
 						}
 						?>
-
 						<!-- Setting Tab End -->
 					</div>
 				</div>
@@ -471,7 +446,6 @@ window.addEventListener("DOMContentLoaded", function () {
 	var cropBoxData;
 	var canvasData;
 	var cropper;
-
 	$("#modal")
 		.on("shown.bs.modal", function () {
 			cropper = new Cropper(image, {
@@ -497,7 +471,6 @@ window.addEventListener("DOMContentLoaded", function () {
 		});
 });
 </script>
-<!-- Google Tag Manager (noscript) -->
 <noscript
 ><iframe
 	src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
@@ -506,6 +479,5 @@ window.addEventListener("DOMContentLoaded", function () {
 	style="display: none; visibility: hidden"
 ></iframe
 ></noscript>
-<!-- End Google Tag Manager (noscript) -->
 </body>
 </html>

@@ -1,7 +1,5 @@
-User
 <?php
 require '../controllerAdminData.php';
-
 // Check if the form is submitted
 if (isset($_POST['contactReply'])) {
     // Retrieve form data
@@ -9,44 +7,34 @@ if (isset($_POST['contactReply'])) {
     $email = isset($_POST['email']) ? $_POST['email'] : ''; // Check if 'email' is set
     $phone = isset($_POST['phone']) ? $_POST['phone'] : ''; // Check if 'phone' is set
     $message = $_POST['message'];
-
     // Assuming you have the $enquiryId value available from your form or somewhere else
 $enquiryId = $_POST['enquiryId']; // Update this line with the appropriate source of enquiryId
-
 // Use prepared statements to prevent SQL injection
 $insertReplyQuery = "INSERT INTO reply (enquiryId, email, phone, message) VALUES (?, ?, ?, ?)";
 $stmt = mysqli_prepare($con, $insertReplyQuery);
-
 if ($stmt) {
     // Bind parameters
     mysqli_stmt_bind_param($stmt, "isss", $enquiryId, $email, $phone, $message);
-
     // Execute the statement
     $replyResult = mysqli_stmt_execute($stmt);
-
     if ($replyResult) {
         // Update the status in the 'enquiry' table to mark it as replied
         $updateStatusQuery = "UPDATE enquiry SET status = 1 WHERE enquiryId = ?";
         $stmtUpdateStatus = mysqli_prepare($con, $updateStatusQuery);
-
         if ($stmtUpdateStatus) {
             // Bind parameters
             mysqli_stmt_bind_param($stmtUpdateStatus, "i", $enquiryId);
-
             // Execute the statement to update status
             mysqli_stmt_execute($stmtUpdateStatus);
-
             // Close the statement
             mysqli_stmt_close($stmtUpdateStatus);
         }
-
         // Insert successful, you can perform additional actions if needed
         echo '<script>alert("Reply sent successfully!");</script>';
     } else {
         // Insert failed, handle the error
         echo '<script>alert("Failed to send reply. Please try again.");</script>';
     }
-
     // Close the statement
     mysqli_stmt_close($stmt);
 } else {
@@ -54,7 +42,6 @@ if ($stmt) {
     echo '<script>alert("Failed to prepare statement. Please try again.");</script>';
 }
 }
-
 // Fetch messages from the 'enquiry' table
 $selectMessagesQuery = "SELECT * FROM enquiry";
 $resultMessages = mysqli_query($con, $selectMessagesQuery);
@@ -64,15 +51,12 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<title>Manage Enquiry</title>
-
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
-
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
@@ -81,19 +65,16 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
 <body>
-
 	<div class="header">
 		<div class="header-left">
 		<div class="menu-icon dw dw-menu"></div>
@@ -113,7 +94,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
-
 						if ($result && mysqli_num_rows($result) > 0) {
 							$row = mysqli_fetch_assoc($result);
 							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
@@ -138,7 +118,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 			</div>
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -156,13 +135,11 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
 				<div class="sidebar-btn-group pb-30 mb-10">
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light ">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
 				<div class="sidebar-radio-group pb-10 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -178,7 +155,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 						<label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
 					</div>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 				<div class="sidebar-radio-group pb-30 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -206,14 +182,12 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
 					</div>
 				</div>
-
 				<div class="reset-options pt-30 text-center">
 					<button class="btn btn-danger" id="reset-settings">Reset Settings</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
@@ -242,7 +216,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon ti-info"></span><span class="mtext">About</span>
@@ -252,37 +225,31 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 							<li><a href="missionList.php">Mission List</a></li>
 						</ul>
 					</li>
-
 					<li>
 						<a href="bookingList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-shopping-cart"></span><span class="mtext">Booking</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="contactList.php" class="dropdown-toggle no-arrow">
 							<span class="micon  fa fa-user-o"></span><span class="mtext">Contact</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="eventList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="ticketList.php" class="dropdown-toggle no-arrow">
 							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="promotionList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
@@ -299,7 +266,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
 	<div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">
@@ -324,11 +290,9 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
       
 			<?php
 			include '../connection.php';
-
 			// Replace with your SQL query to fetch data
 			$selectMessagesQuery = "SELECT * FROM enquiry";
 			$result = $con->query($selectMessagesQuery);
-
 			if ($result->num_rows > 0) {
 				echo "<div class='card-box mb-30'>";
 				echo "<div class='pd-20'>";
@@ -347,14 +311,12 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 				echo "</tr>";
 				echo "</thead>";
 				echo "<tbody>";
-
 				while ($row = $result->fetch_assoc()) {
 					$enquiryId = $row['enquiryId'];
 					$email = $row['email'];
 					$phone = $row['phone'];
 					$message = $row['message'];
 					$status = $row['status'];
-
 					// Only display the row if the status is 0
 					if ($status == 0) {
 						echo "<tr>";
@@ -367,7 +329,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 									<button class='btn btn-sm btn-primary' type='button' data-toggle='modal' data-target='#reply{$enquiryId}'>Reply</button>
 								</td>";
 						echo "</tr>";
-
 						// Modal should be placed outside the loop
 						echo '
 						<div class="modal fade" id="reply' . $enquiryId . '" tabindex="-1" role="dialog" aria-labelledby="reply' . $enquiryId . '" aria-hidden="true">
@@ -396,7 +357,6 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 						</div>';
 					}
 				}
-
 				echo "</tbody>";
 				echo "</table>";
 				echo "</div>";
@@ -405,16 +365,11 @@ $resultMessages = mysqli_query($con, $selectMessagesQuery);
 				echo "No messages found.";
 			}
 			?>
-
-
-
-
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
 	<script src="vendors/scripts/script.min.js"></script>
 	<script src="vendors/scripts/process.js"></script>
 	<script src="vendors/scripts/layout-settings.js"></script>
 	
-
 </body>
 </html>

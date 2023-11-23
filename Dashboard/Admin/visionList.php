@@ -391,8 +391,6 @@ require '../controllerAdminData.php'
 							</div>
 						</div>";
 
-
-
                         $rowNumber++;
                     }
 

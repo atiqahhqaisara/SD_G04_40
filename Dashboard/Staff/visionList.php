@@ -6,15 +6,12 @@ require '../controllerAdminData.php'
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<title>Vision List</title>
-
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
-
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
@@ -23,19 +20,16 @@ require '../controllerAdminData.php'
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
 <body>
-
 	<div class="header">
 		<div class="header-left">
 			
@@ -55,7 +49,6 @@ require '../controllerAdminData.php'
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
-
 						if ($result && mysqli_num_rows($result) > 0) {
 							$row = mysqli_fetch_assoc($result);
 							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
@@ -80,7 +73,6 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -98,13 +90,11 @@ require '../controllerAdminData.php'
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
 				<div class="sidebar-btn-group pb-30 mb-10">
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light ">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
 				<div class="sidebar-radio-group pb-10 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -120,7 +110,6 @@ require '../controllerAdminData.php'
 						<label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
 					</div>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 				<div class="sidebar-radio-group pb-30 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -148,14 +137,12 @@ require '../controllerAdminData.php'
 						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
 					</div>
 				</div>
-
 				<div class="reset-options pt-30 text-center">
 					<button class="btn btn-danger" id="reset-settings">Reset Settings</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
@@ -184,7 +171,6 @@ require '../controllerAdminData.php'
 							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon ti-info"></span><span class="mtext">About</span>
@@ -194,37 +180,31 @@ require '../controllerAdminData.php'
 							<li><a href="missionList.php">Mission List</a></li>
 						</ul>
 					</li>
-
 					<li>
 						<a href="bookingList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-shopping-cart"></span><span class="mtext">Booking</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="contactList.php" class="dropdown-toggle no-arrow">
 							<span class="micon  fa fa-user-o"></span><span class="mtext">Contact</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="eventList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="ticketList.php" class="dropdown-toggle no-arrow">
 							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="promotionList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
@@ -241,8 +221,6 @@ require '../controllerAdminData.php'
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -264,11 +242,9 @@ require '../controllerAdminData.php'
 				<!-- Simple Datatable start -->
 				<?php
 				include '../connection.php';
-
 				// Replace with your SQL query to fetch data
 				$sql = "SELECT * FROM aboutvision";
 				$result = $con->query($sql);
-
 				if ($result->num_rows > 0) {
 					echo "<div class='card-box mb-30'>";
 					echo "<div class='pd-20'>";
@@ -284,9 +260,7 @@ require '../controllerAdminData.php'
 					echo "</tr>";
 					echo "</thead>";
 					echo "<tbody>";
-
 					 $rowNumber = 1; // Initialize the row number
-
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $rowNumber . "</td>";
@@ -296,9 +270,7 @@ require '../controllerAdminData.php'
 						<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#editVisionModal{$rowNumber}'>Edit</button>
 						<a href='deleteVision.php?visionId={$row["visionId"]}' class='btn btn-info btn-sm'>Delete</a>
 						</td>";
-
                         echo "</tr>";
-
 						echo "
 						<!-- View Vision Modal -->
 						<div class='modal fade' id='viewVisionModal{$rowNumber}' tabindex='-1' role='dialog' aria-labelledby='viewVisionModalLabel{$rowNumber}' aria-hidden='true'>
@@ -319,14 +291,12 @@ require '../controllerAdminData.php'
 													<input class='form-control' type='text' name='visionId' value='{$row['visionId']}' readonly>
 												</div>
 											</div>
-
 											<div class='form-group row'>
 												<label class='col-sm-12 col-md-2 col-form-label'>Vision</label>
 												<div class='col-sm-12 col-md-10'>
 													<textarea class='form-control' type='text' name='vision' readonly>{$row['vision']}</textarea>
 												</div>
 											</div>
-
 											<div class='form-group row'>
 												<div class='col-sm-12 col-md-10 offset-md-2'>
 													<button type='button' data-dismiss='modal' class='btn btn-primary'>
@@ -339,7 +309,6 @@ require '../controllerAdminData.php'
 								</div>
 							</div>
 						</div>";
-
 						echo "
 						<!-- Edit Vision Modal -->
 						<div class='modal fade' id='editVisionModal{$rowNumber}' tabindex='-1' role='dialog' aria-labelledby='editVisionModalLabel{$rowNumber}' aria-hidden='true'>
@@ -354,22 +323,18 @@ require '../controllerAdminData.php'
 									<div class='modal-body'>
 										<!-- Your Form Content Goes Here -->
 										<form action='editVision.php' method='POST' enctype='multipart/form-data'>
-
 											<div class='form-group row'>
 												<label class='col-sm-12 col-md-2 col-form-label'>Vision Id</label>
 												<div class='col-sm-12 col-md-10'>
 													<input class='form-control' type='text' name='visionId' value='{$row['visionId']}' readonly>
 												</div>
 											</div>
-
 											<div class='form-group row'>
 												<label class='col-sm-12 col-md-2 col-form-label'>Vision</label>
 												<div class='col-sm-12 col-md-10'>
 													<textarea class='form-control' name='vision'>{$row['vision']}</textarea>
 												</div>
 											</div>
-
-
 											<div class='form-group row'>
 												<div class='col-sm-12 col-md-10 offset-md-2'>
 													<button type='submit' class='btn btn-primary'>Update</button>
@@ -378,27 +343,20 @@ require '../controllerAdminData.php'
 													</button>
 												</div>
 											</div>
-
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>";
-
-
-
                         $rowNumber++;
                     }
-
 					echo "</tbody>";
 					echo "</table>";
 					echo "</div>";
 					echo "</div>";
 				}
-
 				$con->close();
 				?>
-
 				<!-- Simple Datatable End -->
 				
 			</div>

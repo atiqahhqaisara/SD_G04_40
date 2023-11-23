@@ -1,6 +1,6 @@
 <?php
 require '../controllerAdminData.php'
-	?>
+?>
 <!DOCTYPE html>
 
 <head>
@@ -84,7 +84,7 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
-
+ 
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -265,8 +265,6 @@ require '../controllerAdminData.php'
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -441,7 +439,7 @@ require '../controllerAdminData.php'
 						</div>
 					</div>";
 
-						echo "
+					echo "
 					<!-- Edit Booking Modal -->
 					<div class='modal fade' id='editBooking{$rowNumber}' tabindex='-1' role='dialog' aria-labelledby='editBookingModalLabel{$rowNumber}' aria-hidden='true'>
 						<div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
@@ -552,42 +550,36 @@ require '../controllerAdminData.php'
 						</div>
 					</div>
 				</div>";
+				$rowNumber++;
+			}
 
+			echo "</tbody>";
+			echo "</table>";
+			echo "</div>";
+			echo "</div>";
+		}
 
+		$con->close();
+		?>
 
-
-						$rowNumber++;
-					}
-
-					echo "</tbody>";
-					echo "</table>";
-					echo "</div>";
-					echo "</div>";
-				}
-
-				$con->close();
-				?>
-
-
-				<!-- js -->
-				<script src="vendors/scripts/core.js"></script>
-				<script src="vendors/scripts/script.min.js"></script>
-				<script src="vendors/scripts/process.js"></script>
-				<script src="vendors/scripts/layout-settings.js"></script>
-				<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-				<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-				<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-				<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-				<!-- buttons for Export datatable -->
-				<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-				<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-				<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
-				<!-- Datatable Setting js -->
-				<script src="vendors/scripts/datatable-setting.js"></script>
+		<!-- js -->
+		<script src="vendors/scripts/core.js"></script>
+		<script src="vendors/scripts/script.min.js"></script>
+		<script src="vendors/scripts/process.js"></script>
+		<script src="vendors/scripts/layout-settings.js"></script>
+		<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+		<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+		<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+		<!-- buttons for Export datatable -->
+		<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
+		<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
+		<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
+		<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+		<!-- Datatable Setting js -->
+		<script src="vendors/scripts/datatable-setting.js"></script>
 </body>
-
 </html>

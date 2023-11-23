@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
 if (isset($_GET['picId'])) {
     $picId = $_GET['picId'];

@@ -1,9 +1,7 @@
 <?php
 require '../controllerAdminData.php'
 ?>
-<!DOCTYPE html
-
-<html>
+<!DOCTYPE html>
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
@@ -281,8 +279,6 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
-
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -425,8 +421,6 @@ require '../controllerAdminData.php'
 							</div>
 						</div>";
 
-
-
                         $rowNumber++;
                     }
 
@@ -438,8 +432,6 @@ require '../controllerAdminData.php'
 
 				$con->close();
 				?>
-
-				<!-- Simple Datatable End -->
 				
 			</div>
 		</div>

@@ -1,9 +1,7 @@
 <?php
 require '../controllerAdminData.php'
 ?>
-<!DOCTYPE html
-
-<html>
+<!DOCTYPE html>
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
@@ -318,9 +316,6 @@ require '../controllerAdminData.php'
 				$con->close();
 				?>
 
-
-				<!-- Simple Datatable End -->
-				
 			</div>
 		</div>
 	</div>

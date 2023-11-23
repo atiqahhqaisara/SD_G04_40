@@ -6,15 +6,12 @@ require '../controllerAdminData.php'
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<title>Sales Report</title>
-
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
-
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
@@ -23,19 +20,16 @@ require '../controllerAdminData.php'
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
 <body>
-
 	<div class="header">
 		<div class="header-left">
 		<div class="menu-icon dw dw-menu"></div>
@@ -55,7 +49,6 @@ require '../controllerAdminData.php'
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
-
 						if ($result && mysqli_num_rows($result) > 0) {
 							$row = mysqli_fetch_assoc($result);
 							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
@@ -80,7 +73,6 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -98,13 +90,11 @@ require '../controllerAdminData.php'
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
 				<div class="sidebar-btn-group pb-30 mb-10">
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light ">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
 				<div class="sidebar-radio-group pb-10 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -120,7 +110,6 @@ require '../controllerAdminData.php'
 						<label class="custom-control-label" for="sidebaricon-3"><i class="fa fa-angle-double-right"></i></label>
 					</div>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 				<div class="sidebar-radio-group pb-30 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -148,14 +137,12 @@ require '../controllerAdminData.php'
 						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
 					</div>
 				</div>
-
 				<div class="reset-options pt-30 text-center">
 					<button class="btn btn-danger" id="reset-settings">Reset Settings</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
@@ -184,7 +171,6 @@ require '../controllerAdminData.php'
 							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon ti-info"></span><span class="mtext">About</span>
@@ -194,37 +180,31 @@ require '../controllerAdminData.php'
 							<li><a href="missionList.php">Mission List</a></li>
 						</ul>
 					</li>
-
 					<li>
 						<a href="bookingList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-shopping-cart"></span><span class="mtext">Booking</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="contactList.php" class="dropdown-toggle no-arrow">
 							<span class="micon  fa fa-user-o"></span><span class="mtext">Contact</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="eventList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="ticketList.php" class="dropdown-toggle no-arrow">
 							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="promotionList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
@@ -241,7 +221,6 @@ require '../controllerAdminData.php'
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -266,7 +245,6 @@ require '../controllerAdminData.php'
 							<h5 class="h4 text-blue mb-20">Sales Report</h5>
 							<?php
 							include "../connection.php";
-
 							// Initialize totals with default values
 							$selectedMonth = "";
 							$selectedYear = "";
@@ -277,24 +255,20 @@ require '../controllerAdminData.php'
 							$iChildTotal = 0;
 							$iSeniorTotal = 0;
 							$totalSales = 0;
-
 							if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								// Debugging: Check if $_POST['selectedMonth'] and $_POST['selectedYear'] are set
 								if (isset($_POST['selectedMonth']) && isset($_POST['selectedYear'])) {
 									$selectedMonth = $_POST['selectedMonth'];
 									$selectedYear = $_POST['selectedYear'];
-
 									// Check connection
 									if ($con->connect_error) {
 										die("Connection failed: " . $con->connect_error);
 									}
-
 									// Fetch data from the database
 									$sql = "SELECT MYadult, MYchild, MYsenior, Iadult, Ichild, Isenior, grandTotal, status
 									FROM booking 
 									WHERE DATE_FORMAT(orderDate, '%Y-%m') = '$selectedYear-$selectedMonth' AND status='1'";
 									$result = $con->query($sql);
-
 									// Check for SQL errors and fetch data
 									if (!$result) {
 										die("SQL Error: " . $con->error);
@@ -309,18 +283,15 @@ require '../controllerAdminData.php'
 											$iAdultTotal += $row['Iadult'];
 											$iChildTotal += $row['Ichild'];
 											$iSeniorTotal += $row['Isenior'];
-
 											// Calculate total sales
 											$totalSales += $row['grandTotal'];
 										}
 									}
-
 									// Close the database connection
 									$con->close();
 								}
 							}
 							?>
-
 							<form method="post" action="" onsubmit="return validateForm()">
 								<div class="row">
 									<div class="form-group col-md-3">
@@ -340,7 +311,6 @@ require '../controllerAdminData.php'
 											<option value="12">December</option>
 										</select>
 									</div>
-
 									<div class="form-group col-md-3">
 										<label for="selectedYear">Year</label>
 										<select class="form-control" name="selectedYear" id="selectedYear">
@@ -353,7 +323,6 @@ require '../controllerAdminData.php'
 											?>
 										</select>
 									</div>
-
 									<div class="form-group col-md-3">
 									<label>&nbsp;</label>
                        				 <br>
@@ -365,7 +334,6 @@ require '../controllerAdminData.php'
 							<div class="pb-20">
 								<table class="table hover multiple-select-row data-table-export nowrap">
 								<h5 class="h4 text-blue mb-20"><?php echo isset($selectedMonth) && isset($selectedYear) ? $selectedMonth . " " . $selectedYear : ""; ?></h5>
-
 									<thead>
 										<tr>
 											<th>MY Adult</th>
@@ -393,30 +361,24 @@ require '../controllerAdminData.php'
 						</div>
 					</div>
 				</div>
-
-
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
 	<script src="vendors/scripts/script.min.js"></script>
 	<script src="vendors/scripts/process.js"></script>
 	<script src="vendors/scripts/layout-settings.js"></script>
-
 	<script>
     // Validation function
     function validateForm() {
         var selectedMonth = document.getElementById("selectedMonth").value;
         var selectedYear = document.getElementById("selectedYear").value;
-
         if (selectedMonth === "" || selectedYear === "") {
             alert("Please select both month and year.");
             return false;
         }
-
         // If validation passes, the form will submit
         return true;
     }
 </script>
 	
-
 </body>
 </html>

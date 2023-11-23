@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
 if (isset($_GET['missionId'])) {
 	$missionId = mysqli_real_escape_string($con, $_GET['missionId']);

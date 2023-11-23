@@ -12,8 +12,6 @@ if (isset($_POST['addPIC'])) {
 
 	// Create a prepared statement
 	$stmt = mysqli_prepare($con, $sql);
-
-
 	if ($stmt) {
 		// Bind parameters and execute the statement
 		mysqli_stmt_bind_param($stmt, "sss", $picName, $picNum, $picEmail);

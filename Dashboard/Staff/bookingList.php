@@ -2,20 +2,16 @@
 require '../controllerAdminData.php'
 	?>
 <!DOCTYPE html>
-
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
 	<title>Booking List</title>
-
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png">
-
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
 		rel="stylesheet">
@@ -25,20 +21,16 @@ require '../controllerAdminData.php'
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
-
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
-
 <body>
-
 	<div class="header">
 		<div class="header-left">
 		<div class="menu-icon dw dw-menu"></div>
@@ -58,7 +50,6 @@ require '../controllerAdminData.php'
 						$currentAdmin = $_SESSION['email'];
 						$sql = "SELECT * FROM admin WHERE email='$currentAdmin'";
 						$result = $con->query($sql);
-
 						if ($result && mysqli_num_rows($result) > 0) {
 							$row = mysqli_fetch_assoc($result);
 							$profileImage = $row['profilePicture']; // Assuming the column name is 'profilePicture'
@@ -84,7 +75,6 @@ require '../controllerAdminData.php'
 			</div>
 		</div>
 	</div>
-
 	<div class="right-sidebar">
 		<div class="sidebar-title">
 			<h3 class="weight-600 font-16 text-blue">
@@ -102,13 +92,11 @@ require '../controllerAdminData.php'
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-white active">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary header-dark">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
 				<div class="sidebar-btn-group pb-30 mb-10">
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-light ">White</a>
 					<a href="javascript:void(0);" class="btn btn-outline-primary sidebar-dark active">Dark</a>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
 				<div class="sidebar-radio-group pb-10 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -128,7 +116,6 @@ require '../controllerAdminData.php'
 								class="fa fa-angle-double-right"></i></label>
 					</div>
 				</div>
-
 				<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 				<div class="sidebar-radio-group pb-30 mb-10">
 					<div class="custom-control custom-radio custom-control-inline">
@@ -166,14 +153,12 @@ require '../controllerAdminData.php'
 						<label class="custom-control-label" for="sidebariconlist-6"><i class="dw dw-next"></i></label>
 					</div>
 				</div>
-
 				<div class="reset-options pt-30 text-center">
 					<button class="btn btn-danger" id="reset-settings">Reset Settings</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- sidebar menu - left -->
 	<div class="left-side-bar">
 		<div class="brand-logo">
@@ -193,7 +178,6 @@ require '../controllerAdminData.php'
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
 					</li>
-
 					
 					<li>
 						<div class="sidebar-small-cap">Zoo Negara Website</div>
@@ -203,7 +187,6 @@ require '../controllerAdminData.php'
 							<span class="micon ti-home"></span><span class="mtext">Homepage</span>
 						</a>
 					</li>
-
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon ti-info"></span><span class="mtext">About</span>
@@ -213,37 +196,31 @@ require '../controllerAdminData.php'
 							<li><a href="missionList.php">Mission List</a></li>
 						</ul>
 					</li>
-
 					<li>
 						<a href="bookingList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-shopping-cart"></span><span class="mtext">Booking</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="contactList.php" class="dropdown-toggle no-arrow">
 							<span class="micon  fa fa-user-o"></span><span class="mtext">Contact</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="manageEnquiry.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-help-alt"></span><span class="mtext">Enquiry</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="eventList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-map"></span><span class="mtext">Event</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="ticketList.php" class="dropdown-toggle no-arrow">
 							<span class="micon fa fa-ticket"></span><span class="mtext">Ticket</span>
 						</a>
 					</li>
-
 					<li>
 						<a href="promotionList.php" class="dropdown-toggle no-arrow">
 							<span class="micon ti-announcement"></span><span class="mtext">Promotion</span>
@@ -260,8 +237,6 @@ require '../controllerAdminData.php'
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
-
-
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -283,7 +258,6 @@ require '../controllerAdminData.php'
 				<?php
 				$sql = "SELECT * FROM booking";
 				$result = $con->query($sql);
-
 				if ($result->num_rows > 0) {
 					echo "<div class='card-box mb-30'>";
 					echo "<div class='pd-20'>";
@@ -301,11 +275,8 @@ require '../controllerAdminData.php'
 					echo "</tr>";
 					echo "</thead>";
 					echo "<tbody>";
-
 					$rowNumber = 1;
-
 					while ($row = $result->fetch_assoc()) {
-
 						echo "<tr>";
 						echo "<td>" . $rowNumber . "</td>";
 						echo "<td class='table-plus'>" . $row["bookingId"] . "</td>";
@@ -316,7 +287,6 @@ require '../controllerAdminData.php'
 						<button type='button' class='btn  btn-info' data-toggle='modal' data-target='#editBooking{$rowNumber}'>Edit</button>
 						<a href='deleteBooking.php?bookingId={$row['bookingId']}' class='btn  btn-info'>Delete</a>
 					</td>";
-
 						echo "
 						<!-- View Booking Modal -->
 						<div class='modal fade' id='viewBooking{$rowNumber}' tabindex='-1' role='dialog' aria-labelledby='viewBookingModalLabel{$rowNumber}' aria-hidden='true'>
@@ -338,21 +308,18 @@ require '../controllerAdminData.php'
 													<input class='form-control' type='number' name='bookingId' value='{$row['bookingId']}' readonly>
 												</div>
 											</div>
-
 											<div class='form-group row'>
 												<label class='col-sm-12 col-md-2 col-form-label'>Order Date</label>
 												<div class='col-sm-12 col-md-10'>
 													<input class='form-control' type='text' name='orderDate' value='{$row['orderDate']}' readonly>
 												</div>
 											</div>
-
 											<div class='form-group row'>
 												<label class='col-sm-12 col-md-2 col-form-label'>Booking Date</label>
 												<div class='col-sm-12 col-md-10'>
 													<input class='form-control' type='text' name='bookingDate' value=' {$row["bookingDate"]}' readonly>
 												</div>
 											</div>
-
 											<div class='form-group row'>
 												<label class='col-sm-12 col-md-2 col-form-label'>Full Name</label>
 												<div class='col-sm-12 col-md-10'>
@@ -429,7 +396,6 @@ require '../controllerAdminData.php'
 							</div>
 						</div>
 					</div>";
-
 						echo "
 					<!-- Edit Booking Modal -->
 					<div class='modal fade' id='editBooking{$rowNumber}' tabindex='-1' role='dialog' aria-labelledby='editBookingModalLabel{$rowNumber}' aria-hidden='true'>
@@ -451,21 +417,18 @@ require '../controllerAdminData.php'
 												<input class='form-control' type='number' name='bookingId' value='{$row['bookingId']}' readonly>
 											</div>
 										</div>
-
 										<div class='form-group row'>
 											<label class='col-sm-12 col-md-2 col-form-label'>Order Date</label>
 											<div class='col-sm-12 col-md-10'>
 												<input class='form-control' type='text' name='orderDate' value='{$row['orderDate']}' readonly>
 											</div>
 										</div>
-
 										<div class='form-group row'>
 											<label class='col-sm-12 col-md-2 col-form-label'>Booking Date</label>
 											<div class='col-sm-12 col-md-10'>
 												<input class='form-control' type='text' name='bookingDate' value='{$row["bookingDate"]}' >
 											</div>
 										</div>
-
 										<div class='form-group row'>
 											<label class='col-sm-12 col-md-2 col-form-label'>Full Name</label>
 											<div class='col-sm-12 col-md-10'>
@@ -541,42 +504,34 @@ require '../controllerAdminData.php'
 						</div>
 					</div>
 				</div>";
-
-
-
-
 						$rowNumber++;
 					}
-
 					echo "</tbody>";
 					echo "</table>";
 					echo "</div>";
 					echo "</div>";
 				}
-
 				$con->close();
 				?>
-
-
-				<!-- js -->
-				<script src="vendors/scripts/core.js"></script>
-				<script src="vendors/scripts/script.min.js"></script>
-				<script src="vendors/scripts/process.js"></script>
-				<script src="vendors/scripts/layout-settings.js"></script>
-				<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
-				<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-				<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
-				<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-				<!-- buttons for Export datatable -->
-				<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-				<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-				<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-				<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
-				<!-- Datatable Setting js -->
-				<script src="vendors/scripts/datatable-setting.js"></script>
+<!-- js -->
+<script src="vendors/scripts/core.js"></script>
+<script src="vendors/scripts/script.min.js"></script>
+<script src="vendors/scripts/process.js"></script>
+<script src="vendors/scripts/layout-settings.js"></script>
+<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<!-- buttons for Export datatable -->
+<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
+<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
+<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
+<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+<!-- Datatable Setting js -->
+<script src="vendors/scripts/datatable-setting.js"></script>
 </body>
-
 </html>
+
